@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_cek_in/view/home_screen/home_container.dart';
-import 'package:go_cek_in/view/home_screen/home_page.dart';
-import 'package:go_cek_in/view/splash_screen/splash_screen_page.dart';
-import 'package:go_cek_in/view/akun_screen/akun_container.dart';
-import 'package:go_cek_in/Constant/constant.dart';
+import 'view/home_screen/home_container.dart';
+import 'view/home_screen/home_page.dart';
+import 'view/splash_screen/splash_screen_page.dart';
+import 'view/akun_screen/akun_container.dart';
+import 'constant/constant.dart';
 import 'view/pindai_screen/pindai_container.dart';
 
 void main() {
