@@ -1,3 +1,4 @@
+import 'package:covid_go_cek_in/constant/constant.dart';
 import 'package:flutter/material.dart';
 // import 'package:go_cek_in/models/users.dart';
 
@@ -8,7 +9,7 @@ class HomeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green.shade50,
+      backgroundColor: lightGreenColor,
       resizeToAvoidBottomInset: false,
       body: _buildContent(context),
     );
@@ -17,7 +18,7 @@ class HomeContainer extends StatelessWidget {
 
 Widget _buildContent(BuildContext context) {
   return Container(
-    color: Color.fromARGB(255, 93, 212, 130),
+    color: mainColor,
     child: SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(
@@ -25,7 +26,7 @@ Widget _buildContent(BuildContext context) {
           Image.asset('assets/img/header_home.png'),
           Container(
             decoration: BoxDecoration(
-                color: Color.fromARGB(255, 246, 250, 249),
+                color: lighterGreenColor,
                 // color: Colors.blue,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
@@ -38,23 +39,23 @@ Widget _buildContent(BuildContext context) {
                   _buildMargin(10),
                   Material(
                     elevation: 5.0,
-                    shadowColor: Colors.black38,
+                    shadowColor: textColor.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(15.0),
                     child: TextFormField(
                       autofocus: false,
                       decoration: InputDecoration(
                           hintText: 'Bandung, Jawa Barat',
                           hintStyle:
-                              TextStyle(fontSize: 15, color: Colors.black45),
+                              TextStyle(fontSize: 15, color: bodyColor),
                           focusedBorder: OutlineInputBorder(
                               borderSide: const BorderSide(
                                   color: Colors.white, width: 0.0)),
                           prefixIcon:
-                              Icon(Icons.pin_drop, color: Colors.black38),
+                              Icon(Icons.pin_drop, color: bodyColor),
                           suffixIcon: Material(
                             elevation: 5.0,
                             color: Colors.green.shade400,
-                            shadowColor: Colors.green,
+                            shadowColor: mainColor,
                             borderRadius: BorderRadius.only(
                               topRight: Radius.circular(15.0),
                               bottomRight: Radius.circular(15.0),
@@ -72,14 +73,14 @@ Widget _buildContent(BuildContext context) {
                   Text(
                     "Kasus",
                     textAlign: TextAlign.left,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22, color: textColor),
                   ),
                   _buildMargin(10),
                   Row(
                     children: <Widget>[
                       Text(
                         "Update 3 Maret 2021",
-                        style: TextStyle(color: Colors.black38),
+                        style: TextStyle(color: bodyColor),
                       ),
                       Spacer(),
                       Text(
@@ -102,13 +103,13 @@ Widget _buildContent(BuildContext context) {
                                 Text("36 rb",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        color: Colors.red,
+                                        color: dangerColor,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 30)),
                                 Text("Meninggal",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        color: Colors.red, fontSize: 15))
+                                        color: dangerColor, fontSize: 15))
                               ],
                             ),
                             Spacer(),
@@ -117,13 +118,13 @@ Widget _buildContent(BuildContext context) {
                                 Text("1,6 jt",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        color: Colors.yellow,
+                                        color: warningColor,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 30)),
                                 Text("Kasus",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        color: Colors.yellow, fontSize: 15))
+                                        color: warningColor, fontSize: 15))
                               ],
                             ),
                             Spacer(),

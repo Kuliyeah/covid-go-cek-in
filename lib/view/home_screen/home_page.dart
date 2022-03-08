@@ -1,3 +1,4 @@
+import 'package:covid_go_cek_in/constant/constant.dart';
 import 'package:covid_go_cek_in/view/pindai_screen/pindai_container.dart';
 import 'package:flutter/material.dart';
 import '../akun_screen/akun_container.dart';
@@ -37,7 +38,7 @@ class HomeScreenPageState extends State<HomeScreenPage> {
       bottomNavigationBar: new BottomNavigationBar(
           onTap: onTabTapped, // new
           currentIndex: currentIndex,
-          fixedColor: Colors.green,
+          fixedColor: mainColor,
           items: [
             BottomNavigationBarItem(
               icon: new Icon(Icons.qr_code),

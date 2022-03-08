@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:covid_go_cek_in/constant/constant.dart';
 import 'package:flutter/material.dart';
 import '../login_screen/login_page.dart';
 
@@ -31,7 +32,7 @@ class _SplashScreenState extends State<SplashScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green.shade50,
+      backgroundColor: splashBgColor,
       body: InkWell(
         child: Stack(
           fit: StackFit.expand,
@@ -66,7 +67,7 @@ class _SplashScreenState extends State<SplashScreenPage> {
                           children: <Widget>[
                             Text(
                               _versionName,
-                              style: TextStyle(color: Colors.green),
+                              style: TextStyle(color: mainColor),
                             ),
                           ])
                     ],

@@ -8,8 +8,8 @@ String ANIMATED_SPLASH = '/SplashScreen',
 //
 Color mainColor = Color(0xFF5DD482);
 Color splashBgColor = Color(0xFFCAFFDA);
-Color grTopLeftColor = Color(0xFFF3F3F3);
-Color grBottomRightColor = Color(0xFFE3FFF6);
+Color lighterGreenColor = Color.fromARGB(255, 247, 247, 247);
+Color lightGreenColor = Color(0xFFE3FFF6);
 Color textColor = Color(0xFF29343D);
 Color bodyColor = Color(0xFF888888);
 Color warningColor = Color(0xFFF6C000);
