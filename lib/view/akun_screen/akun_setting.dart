@@ -8,6 +8,7 @@ class AkunSetting extends StatelessWidget {
       backgroundColor: Colors.green.shade50,
       resizeToAvoidBottomInset: false,
       body: _buildContent(context),
+      
     );
   }
 }

@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "GoCheck-in",
       theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Lato'),
-      home: SplashScreenPage(),
+      home: AkunContainer(),
       routes: <String, WidgetBuilder>{
         HOME_SCREEN: (BuildContext context) => new HomeScreenPage(),
         ANIMATED_SPLASH: (BuildContext context) => new SplashScreenPage(),

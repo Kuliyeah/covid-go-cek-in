@@ -1,6 +1,8 @@
+import 'package:covid_go_cek_in/constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'akun_setting.dart';
 import '../history_screen/history_page.dart';
+import 'tiles_account_setting.dart';
 
 class AkunContainer extends StatelessWidget {
   @override
@@ -16,227 +18,66 @@ class AkunContainer extends StatelessWidget {
 Widget _buildContent(BuildContext context) {
   return SingleChildScrollView(
       scrollDirection: Axis.vertical,
-      child: Column(
-        children: <Widget>[
-          Container(
-            color: Color.fromARGB(255, 66, 192, 105),
-            child: Padding(
-              padding: EdgeInsets.only(top: 50, left: 20, bottom: 20),
-              child: Row(children: <Widget>[
-                Image.asset('assets/img/avatar/avatar_7.png', scale: 1.5),
-                Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "Lovanto R.",
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 5),
-                        child: Text("RifkyLovanto@gmail.com",
-                            style: TextStyle(
-                                fontSize: 15.5,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white)),
-                      ),
-                    ],
-                  ),
-                ),
-              ]),
-            ),
-          ),
-          GestureDetector(
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
-                  child: Icon(
-                    Icons.history_outlined,
-                    color: Color.fromARGB(255, 41, 52, 61),
-                    size: 35,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
-                  child: Text(
-                    "Riwayat Check-in",
+      child: Container(
+        color: lightGreenColor,
+        child: Column(
+          children: [
+            SizedBox(height: 100,),
+            Center(
+              child: Column(
+                children: [
+                  Image.asset('assets/img/avatar/avatar_1.png'),
+                  SizedBox(height: 11,),
+                  Text(
+                    'Ganti Avatar',
                     style: TextStyle(
-                      fontSize: 17,
-                      color: Color.fromARGB(255, 41, 52, 61),
+                      fontWeight: FontWeight.w500,
+                      color: mainColor
                     ),
                   ),
-                ),
-              ],
-            ),
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => HistoryPage()));
-            },
-          ),
-          Divider(color: Colors.black45),
-          GestureDetector(
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
-                  child: Icon(
-                    Icons.account_circle_outlined,
-                    color: Color.fromARGB(255, 41, 52, 61),
-                    size: 35,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
-                  child: Text(
-                    "Pengaturan Akun",
+                  SizedBox(height: 11,),
+                  Text('Gilang Gumelar',
                     style: TextStyle(
-                        fontSize: 17, color: Color.fromARGB(255, 41, 52, 61)),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w900,
+                      color: textColor,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => AkunSetting()));
-            },
-          ),
-          Divider(color: Colors.black45),
-          Row(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
-                child: Icon(
-                  Icons.settings_outlined,
-                  color: Color.fromARGB(255, 41, 52, 61),
-                  size: 35,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
-                child: Text(
-                  "Pengaturan Aplikasi",
-                  style: TextStyle(
-                      fontSize: 17, color: Color.fromARGB(255, 41, 52, 61)),
-                ),
-              ),
-            ],
-          ),
-          Divider(color: Colors.black45),
-          Row(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
-                child: Icon(
-                  Icons.article_outlined,
-                  color: Color.fromARGB(255, 41, 52, 61),
-                  size: 35,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
-                child: Text(
-                  "Log Pengembangan",
-                  style: TextStyle(
-                      fontSize: 17, color: Color.fromARGB(255, 41, 52, 61)),
-                ),
-              ),
-            ],
-          ),
-          Divider(color: Colors.black45),
-          Row(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
-                child: Icon(
-                  Icons.copyright_outlined,
-                  color: Color.fromARGB(255, 41, 52, 61),
-                  size: 35,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
-                child: Text(
-                  "Lisensi Open Source",
-                  style: TextStyle(
-                      fontSize: 17, color: Color.fromARGB(255, 41, 52, 61)),
-                ),
-              ),
-            ],
-          ),
-          Divider(color: Colors.black45),
-          Row(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
-                child: Icon(
-                  Icons.wysiwyg_outlined,
-                  color: Color.fromARGB(255, 41, 52, 61),
-                  size: 35,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
-                child: Text(
-                  "Terms of Service",
-                  style: TextStyle(
-                      fontSize: 17, color: Color.fromARGB(255, 41, 52, 61)),
-                ),
-              ),
-            ],
-          ),
-          Divider(color: Colors.black45),
-          Row(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
-                child: Icon(
-                  Icons.help_outline,
-                  color: Color.fromARGB(255, 41, 52, 61),
-                  size: 35,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
-                child: Text(
-                  "Bantuan",
-                  style: TextStyle(
-                      fontSize: 17, color: Color.fromARGB(255, 41, 52, 61)),
-                ),
-              ),
-            ],
-          ),
-          Divider(color: Colors.black45),
-          Row(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
-                child: Icon(
-                  Icons.login_outlined,
-                  color: Color.fromARGB(255, 41, 52, 61),
-                  size: 35,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
-                child: Text(
-                  "Logout",
-                  style: TextStyle(
-                    fontSize: 17,
-                    color: Color.fromARGB(255, 41, 52, 61),
+                  SizedBox(height: 6,),
+                  Text('11451923344275628849',
+                    style: TextStyle(
+                      color: textColor
+                    ),
                   ),
-                ),
+                  SizedBox(height: 30,),
+                  Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(40)
+                      )
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(30),
+                      child: Column(
+                        children: [
+                          TilesAccountSetting('assets/img/person.png', 'Nama', 'Gilang Gumelar'),
+                          SizedBox(height: 30,),
+                          TilesAccountSetting('assets/img/person.png', 'E-Mail', 'gilanggumelar@gmail.com'),
+                          SizedBox(height: 30,),
+                          TilesAccountSetting('assets/img/person.png', 'Nomor Telepon', '+62 8884 2422 2222'),
+                          SizedBox(height: 30,),
+                          TilesAccountSetting('assets/img/person.png', 'Alamat', 'Jl. Ki Joko Bodo, RT.69, RW.3...'),
+                          SizedBox(height: 30,),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
               ),
-            ],
-          ),
-        ],
+            )
+          ]
+        ),
       ));
 }
