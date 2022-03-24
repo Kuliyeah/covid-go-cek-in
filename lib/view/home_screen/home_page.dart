@@ -1,4 +1,5 @@
 import 'package:covid_go_cek_in/constant/constant.dart';
+import 'package:covid_go_cek_in/view/history_screen/history_page.dart';
 import 'package:covid_go_cek_in/view/pindai_screen/pindai_container.dart';
 import 'package:flutter/material.dart';
 import '../akun_screen/akun_container.dart';
@@ -34,6 +35,12 @@ class HomeScreenPageState extends State<HomeScreenPage> {
           content: Text('Tap back again to exit'),
         ),
         child: viewContainer[currentIndex],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.history),
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => HistoryPage()));
+        },
       ),
       bottomNavigationBar: new BottomNavigationBar(
           onTap: onTabTapped, // new

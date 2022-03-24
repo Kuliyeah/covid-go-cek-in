@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'view/home_screen/home_container.dart';
+import 'view/history_screen/history_page.dart';
 import 'view/home_screen/home_page.dart';
 import 'view/splash_screen/splash_screen_page.dart';
 import 'view/akun_screen/akun_container.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "GoCheck-in",
       theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Lato'),
-      home: AkunContainer(),
+      home: HomeScreenPage(),
       routes: <String, WidgetBuilder>{
         HOME_SCREEN: (BuildContext context) => new HomeScreenPage(),
         ANIMATED_SPLASH: (BuildContext context) => new SplashScreenPage(),

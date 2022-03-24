@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../home_screen/home_page.dart';
+import 'tiles.dart';
 
 class HistoryPage extends StatelessWidget {
   @override
@@ -8,6 +9,11 @@ class HistoryPage extends StatelessWidget {
       backgroundColor: Colors.green.shade50,
       resizeToAvoidBottomInset: false,
       body: _buildContent(context),
+      appBar: AppBar(
+        elevation: 0,
+        title: Text("Riwayat",),
+        
+      )
     );
   }
 }
@@ -17,32 +23,6 @@ Widget _buildContent(BuildContext context) {
     scrollDirection: Axis.vertical,
     child: Column(
       children: <Widget>[
-        Padding(
-          padding: EdgeInsets.only(top: 60, left: 30, right: 30),
-          child: Row(
-            children: <Widget>[
-              GestureDetector(
-                child: Icon(
-                  Icons.arrow_back,
-                  color: Colors.black,
-                  size: 25,
-                ),
-                onTap: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => HomeScreenPage()));
-                },
-              ),
-              Spacer(),
-              Text(
-                "Riwayat Check-in",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-              Spacer(),
-            ],
-          ),
-        ),
         Padding(
           padding: EdgeInsets.fromLTRB(20, 30, 20, 30),
           child: Material(
@@ -79,231 +59,30 @@ Widget _buildContent(BuildContext context) {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Card(
-                  child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(20, 15, 20, 10),
-                    child: Row(
-                      children: <Widget>[
-                        Text(
-                          "ABATA Coffee",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        Spacer(),
-                        Text(
-                          "3 Maret 2011",
-                          style: TextStyle(
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(20, 0, 20, 15),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 6,
-                          child: Text(
-                            "Jl. In Aja Dulu, Gg Cocok Yaudahlah adwa da wadawdaw wa dwa daw a",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                        Spacer(),
-                        Text(
-                          "9.30 - 10.00 WIB",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              )),
-              Card(
-                  child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(20, 15, 20, 10),
-                    child: Row(
-                      children: <Widget>[
-                        Text(
-                          "ABATA Coffee",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        Spacer(),
-                        Text(
-                          "3 Maret 2011",
-                          style: TextStyle(
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(20, 0, 20, 15),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 6,
-                          child: Text(
-                            "Jl. In Aja Dulu, Gg Cocok Yaudahlah",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                        Spacer(),
-                        Text(
-                          "9.30 - 10.00 WIB",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              )),
-              Card(
-                  child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(20, 15, 20, 10),
-                    child: Row(
-                      children: <Widget>[
-                        Text(
-                          "ABATA Coffee",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        Spacer(),
-                        Text(
-                          "3 Maret 2011",
-                          style: TextStyle(
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(20, 0, 20, 15),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 6,
-                          child: Text(
-                            "Jl. In Aja Dulu, Gg Cocok Yaudahlah adwa da wadawdaw wa dwa daw a",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                        Spacer(),
-                        Text(
-                          "9.30 - 10.00 WIB",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              )),
-              Card(
-                  child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(20, 15, 20, 10),
-                    child: Row(
-                      children: <Widget>[
-                        Text(
-                          "ABATA Coffee",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        Spacer(),
-                        Text(
-                          "3 Maret 2011",
-                          style: TextStyle(
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(20, 0, 20, 15),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 6,
-                          child: Text(
-                            "Jl. In Aja Dulu, Gg Cocok Yaudahlah",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                        Spacer(),
-                        Text(
-                          "9.30 - 10.00 WIB",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              )),
-              Card(
-                  child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(20, 15, 20, 10),
-                    child: Row(
-                      children: <Widget>[
-                        Text(
-                          "ABATA Coffee",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        Spacer(),
-                        Text(
-                          "3 Maret 2011",
-                          style: TextStyle(
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(20, 0, 20, 15),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 6,
-                          child: Text(
-                            "Jl. In Aja Dulu, Gg Cocok Yaudahlah adwa da wadawdaw wa dwa daw a",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                        Spacer(),
-                        Text(
-                          "9.30 - 10.00 WIB",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              )),
+              Tiles("Abata Coffe", "Jl. In Aja Dulu, Gg Cocok Yaudahlah",
+                  "3 Maret 2021", "9.30 - 10.00 WIB"),
+              SizedBox(height: 8),
+              Tiles("Abata Coffe", "Jl. In Aja Dulu, Gg Cocok Yaudahlah",
+                  "3 Maret 2021", "9.30 - 10.00 WIB"),
+              SizedBox(height: 8),
+              Tiles("Abata Coffe", "Jl. In Aja Dulu, Gg Cocok Yaudahlah",
+                  "3 Maret 2021", "9.30 - 10.00 WIB"),
+              SizedBox(height: 8),
+              Tiles("Abata Coffe", "Jl. In Aja Dulu, Gg Cocok Yaudahlah",
+                  "3 Maret 2021", "9.30 - 10.00 WIB"),
+              SizedBox(height: 8),
+              Tiles("Abata Coffe", "Jl. In Aja Dulu, Gg Cocok Yaudahlah",
+                  "3 Maret 2021", "9.30 - 10.00 WIB"),
+              SizedBox(height: 8),
+              Tiles("Abata Coffe", "Jl. In Aja Dulu, Gg Cocok Yaudahlah",
+                  "3 Maret 2021", "9.30 - 10.00 WIB"),
+              SizedBox(height: 8),
+              Tiles("Abata Coffe", "Jl. In Aja Dulu, Gg Cocok Yaudahlah",
+                  "3 Maret 2021", "9.30 - 10.00 WIB"),
+              SizedBox(height: 8),
+              Tiles("Abata Coffe", "Jl. In Aja Dulu, Gg Cocok Yaudahlah",
+                  "3 Maret 2021", "9.30 - 10.00 WIB"),
+              SizedBox(height: 8),
               _buildMargin(20),
               GestureDetector(
                 child: Text(
