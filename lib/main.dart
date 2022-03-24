@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'view/home_screen/home_container.dart';
-import 'view/history_screen/history_page.dart';
 import 'view/home_screen/home_page.dart';
 import 'view/splash_screen/splash_screen_page.dart';
 import 'view/akun_screen/akun_container.dart';

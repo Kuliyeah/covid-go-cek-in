@@ -1,6 +1,6 @@
 import 'package:covid_go_cek_in/constant/constant.dart';
+import 'package:covid_go_cek_in/view/akun_screen/akun_setting.dart';
 import 'package:flutter/material.dart';
-import '../history_screen/history_page.dart';
 import 'tiles_account_setting.dart';
 import '../home_screen/home_page.dart';
 
@@ -48,7 +48,7 @@ Widget _buildContent(BuildContext context) {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => HomeScreenPage()));
+                          builder: (BuildContext context) => AkunSetting()));
                 },
               ),
             ],

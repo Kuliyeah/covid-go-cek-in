@@ -1,19 +1,20 @@
+import 'package:covid_go_cek_in/constant/constant.dart';
 import 'package:flutter/material.dart';
-import '../home_screen/home_page.dart';
 import 'tiles.dart';
 
 class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green.shade50,
+      backgroundColor: lighterGreenColor,
       resizeToAvoidBottomInset: false,
       body: _buildContent(context),
       appBar: AppBar(
         elevation: 0,
-        title: Text("Riwayat",),
-        
-      )
+        title: Text(
+          "Riwayat",
+        ),
+      ),
     );
   }
 }
@@ -83,18 +84,7 @@ Widget _buildContent(BuildContext context) {
               Tiles("Abata Coffe", "Jl. In Aja Dulu, Gg Cocok Yaudahlah",
                   "3 Maret 2021", "9.30 - 10.00 WIB"),
               SizedBox(height: 8),
-              _buildMargin(20),
-              GestureDetector(
-                child: Text(
-                  "Lihat Lebih Banyak >",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.green,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              _buildMargin(30)
+              _buildMargin(20)
             ],
           ),
         ),
