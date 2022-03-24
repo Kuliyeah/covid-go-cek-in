@@ -1,4 +1,5 @@
 import 'package:covid_go_cek_in/constant/constant.dart';
+import 'news_tiles.dart';
 import 'package:flutter/material.dart';
 // import 'package:go_cek_in/models/users.dart';
 
@@ -45,13 +46,11 @@ Widget _buildContent(BuildContext context) {
                       autofocus: false,
                       decoration: InputDecoration(
                           hintText: 'Bandung, Jawa Barat',
-                          hintStyle:
-                              TextStyle(fontSize: 15, color: bodyColor),
+                          hintStyle: TextStyle(fontSize: 15, color: bodyColor),
                           focusedBorder: OutlineInputBorder(
                               borderSide: const BorderSide(
                                   color: Colors.white, width: 0.0)),
-                          prefixIcon:
-                              Icon(Icons.pin_drop, color: bodyColor),
+                          prefixIcon: Icon(Icons.pin_drop, color: bodyColor),
                           suffixIcon: Material(
                             elevation: 5.0,
                             color: Colors.green.shade400,
@@ -73,7 +72,10 @@ Widget _buildContent(BuildContext context) {
                   Text(
                     "Kasus",
                     textAlign: TextAlign.left,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22, color: textColor),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22,
+                        color: textColor),
                   ),
                   _buildMargin(10),
                   Row(
@@ -146,17 +148,23 @@ Widget _buildContent(BuildContext context) {
                           ],
                         ),
                       )),
-                  _buildMargin(30),
+                  SizedBox(
+                    height: 8,
+                  ),
                   Text(
-                    "Peta Persebaran",
+                    "Berita",
                     textAlign: TextAlign.left,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22,
+                        color: textColor),
                   ),
-                  _buildMargin(20),
-                  Image.asset(
-                    'assets/img/dummyMaps.png',
-                    scale: 0.9,
-                  ),
+                  SizedBox(height: 8,),
+                  NewsTiles("adas", "Daerah 1", "Melonjaknya kasus Covid19"),
+                  SizedBox(height: 4,),
+                  NewsTiles("adas", "Daerah 1", "Melonjaknya kasus Covid19"),
+                  SizedBox(height: 4,),
+                  NewsTiles("adas", "Daerah 1", "Melonjaknya kasus Covid19"),
                 ],
               ),
             ),
