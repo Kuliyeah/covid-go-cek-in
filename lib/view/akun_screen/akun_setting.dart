@@ -2,6 +2,7 @@ import 'package:covid_go_cek_in/constant/constant.dart';
 import 'package:covid_go_cek_in/view/home_screen/home_page.dart';
 import 'package:covid_go_cek_in/view/login_screen/login_page.dart';
 import 'package:covid_go_cek_in/view/menu_screen/log_page.dart';
+import 'package:covid_go_cek_in/view/menu_screen/termsofservice_page.dart';
 import 'package:flutter/material.dart';
 import '../history_screen/history_page.dart';
 
@@ -159,7 +160,7 @@ Widget _buildContent(BuildContext context) {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => LoginPage()));
+                      builder: (BuildContext context) => TermsPage()));
             },
           ),
           Divider(color: Colors.black45),

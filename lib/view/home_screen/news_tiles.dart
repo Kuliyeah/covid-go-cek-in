@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+// ignore: must_be_immutable
 class NewsTiles extends StatelessWidget {
   String _description;
   String _imgUrl;
@@ -12,9 +14,7 @@ class NewsTiles extends StatelessWidget {
       width: double.infinity,
       height: 84,
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10)
-      ),
+          color: Colors.white, borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: EdgeInsets.all(10),
         child: Row(
@@ -24,20 +24,33 @@ class NewsTiles extends StatelessWidget {
               height: 84,
               decoration: BoxDecoration(
                 color: Color(0xFFFDB8B8),
-                
               ),
               child: Image(image: AssetImage('assets/img/virus.png')),
             ),
-            SizedBox(width: 10,),
+            SizedBox(
+              width: 10,
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(_title, style: TextStyle(fontSize: 16),),
-                  SizedBox(height: 8,),
-                  Text(_description, style: TextStyle(fontSize: 10, color: Color(0xFF888888),), softWrap: true,)
+                  Text(
+                    _title,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    _description,
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: Color(0xFF888888),
+                    ),
+                    softWrap: true,
+                  )
                 ],
               ),
             )

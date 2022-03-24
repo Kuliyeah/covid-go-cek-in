@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Tiles extends StatelessWidget {
   String _namaTempat;
   String _alamat;
@@ -15,9 +16,7 @@ class Tiles extends StatelessWidget {
       width: double.infinity,
       height: 70,
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(4)
-      ),
+          color: Colors.white, borderRadius: BorderRadius.circular(4)),
       child: Padding(
         padding: EdgeInsets.all(12),
         child: Row(
