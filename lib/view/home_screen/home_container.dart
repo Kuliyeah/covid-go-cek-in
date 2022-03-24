@@ -149,7 +149,7 @@ Widget _buildContent(BuildContext context) {
                         ),
                       )),
                   SizedBox(
-                    height: 8,
+                    height: 20,
                   ),
                   Text(
                     "Berita",
@@ -159,12 +159,18 @@ Widget _buildContent(BuildContext context) {
                         fontSize: 22,
                         color: textColor),
                   ),
-                  SizedBox(height: 8,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   NewsTiles("adas", "Daerah 1", "Melonjaknya kasus Covid19"),
-                  SizedBox(height: 4,),
-                  NewsTiles("adas", "Daerah 1", "Melonjaknya kasus Covid19"),
-                  SizedBox(height: 4,),
-                  NewsTiles("adas", "Daerah 1", "Melonjaknya kasus Covid19"),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  NewsTiles("adas", "Daerah 2", "Melonjaknya kasus Covid19"),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  NewsTiles("adas", "Daerah 3", "Melonjaknya kasus Covid19"),
                 ],
               ),
             ),

@@ -1,14 +1,14 @@
 import 'package:covid_go_cek_in/constant/constant.dart';
 import 'package:flutter/material.dart';
-import 'akun_setting.dart';
 import '../history_screen/history_page.dart';
 import 'tiles_account_setting.dart';
+import '../home_screen/home_page.dart';
 
 class AkunContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: lighterGreenColor,
       resizeToAvoidBottomInset: false,
       body: _buildContent(context),
     );
@@ -17,67 +17,118 @@ class AkunContainer extends StatelessWidget {
 
 Widget _buildContent(BuildContext context) {
   return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Container(
-        color: lightGreenColor,
-        child: Column(
-          children: [
-            SizedBox(height: 100,),
-            Center(
-              child: Column(
-                children: [
-                  Image.asset('assets/img/avatar/avatar_1.png'),
-                  SizedBox(height: 11,),
-                  Text(
-                    'Ganti Avatar',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: mainColor
-                    ),
-                  ),
-                  SizedBox(height: 11,),
-                  Text('Gilang Gumelar',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900,
-                      color: textColor,
-                    ),
-                  ),
-                  SizedBox(height: 6,),
-                  Text('11451923344275628849',
-                    style: TextStyle(
-                      color: textColor
-                    ),
-                  ),
-                  SizedBox(height: 30,),
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(40)
-                      )
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(30),
-                      child: Column(
-                        children: [
-                          TilesAccountSetting('assets/img/person.png', 'Nama', 'Gilang Gumelar'),
-                          SizedBox(height: 30,),
-                          TilesAccountSetting('assets/img/person.png', 'E-Mail', 'gilanggumelar@gmail.com'),
-                          SizedBox(height: 30,),
-                          TilesAccountSetting('assets/img/person.png', 'Nomor Telepon', '+62 8884 2422 2222'),
-                          SizedBox(height: 30,),
-                          TilesAccountSetting('assets/img/person.png', 'Alamat', 'Jl. Ki Joko Bodo, RT.69, RW.3...'),
-                          SizedBox(height: 30,),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
+    scrollDirection: Axis.vertical,
+    child: Column(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(top: 45, left: 30, right: 30),
+          child: Row(
+            children: <Widget>[
+              GestureDetector(
+                child: Icon(
+                  Icons.arrow_back,
+                  color: textColor,
+                  size: 35,
+                ),
+                onTap: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => HomeScreenPage()));
+                },
               ),
-            )
-          ]
+              Spacer(),
+              GestureDetector(
+                child: Icon(
+                  Icons.settings_outlined,
+                  color: textColor,
+                  size: 35,
+                ),
+                onTap: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => HomeScreenPage()));
+                },
+              ),
+            ],
+          ),
         ),
-      ));
+        _buildMargin(20),
+        Image.asset('assets/img/avatar/avatar_13.png', height: 150),
+        _buildMargin(15),
+        Text(
+          "Ganti Avatar",
+          style: TextStyle(fontSize: 16, color: mainColor),
+        ),
+        _buildMargin(20),
+        Text(
+          "Your Name Here",
+          style: TextStyle(
+              fontSize: 20, color: textColor, fontWeight: FontWeight.bold),
+        ),
+        _buildMargin(10),
+        Text(
+          "11451923344275628849",
+          style: TextStyle(
+            fontSize: 15,
+            color: textColor,
+          ),
+        ),
+        _buildMargin(70),
+        Container(
+          height: 440,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              // color: Colors.blue,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(40, 40, 40, 30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                TilesAccountSetting(Icons.person, 'Nama', 'Gilang Gumelar'),
+                _buildMargin(20),
+                Container(
+                  height: 1,
+                  color: textColor,
+                ),
+                _buildMargin(30),
+                TilesAccountSetting(
+                    Icons.mail_outline, 'E-Mail', 'gilanggumelar@gmail.com'),
+                _buildMargin(20),
+                Container(
+                  height: 1,
+                  color: textColor,
+                ),
+                _buildMargin(30),
+                TilesAccountSetting(
+                    Icons.phone, 'Nomor Telepon', 'gilanggumelar@gmail.com'),
+                _buildMargin(20),
+                Container(
+                  height: 1,
+                  color: textColor,
+                ),
+                _buildMargin(30),
+                TilesAccountSetting(Icons.pin_drop_outlined, 'Alamat',
+                    'gilanggumelar@gmail.com'),
+                _buildMargin(20),
+                Container(
+                  height: 1,
+                  color: textColor,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget _buildMargin(double n) {
+  return SizedBox(
+    height: n,
+  );
 }

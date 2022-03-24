@@ -1,8 +1,8 @@
-import 'package:covid_go_cek_in/constant/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:covid_go_cek_in/constant/constant.dart';
 
 class TilesAccountSetting extends StatelessWidget {
-  final String? settingImg;
+  final IconData? settingImg;
   final String? title;
   final String? name;
   TilesAccountSetting(this.settingImg, this.title, this.name);
@@ -10,35 +10,53 @@ class TilesAccountSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children : [
+      children: [
         Row(
-          children: [
-            Image.asset('$settingImg'),
-            SizedBox(width:28,),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '$title',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    color: textColor
+          children: <Widget>[
+            Icon(
+              settingImg,
+              color: Colors.green,
+              size: 40.0,
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    '$title',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: textColor,
+                    ),
                   ),
-                ),
-                Text(
-                  '$name',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    color: textColor
+                  _buildMargin(5),
+                  Text(
+                    '$name',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: textColor,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                )
-              ],
+                ],
+              ),
             ),
             Spacer(),
-            Icon(Icons.edit, color: textColor.withOpacity(0.4),),
+            Icon(
+              Icons.edit,
+              color: Colors.black54,
+              size: 25,
+            ),
           ],
         ),
       ],
     );
   }
+}
+
+Widget _buildMargin(double n) {
+  return SizedBox(
+    height: n,
+  );
 }
