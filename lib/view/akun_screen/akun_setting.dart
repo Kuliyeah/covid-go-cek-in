@@ -5,6 +5,7 @@ import 'package:covid_go_cek_in/view/menu_screen/log_page.dart';
 import 'package:covid_go_cek_in/view/menu_screen/termsofservice_page.dart';
 import 'package:flutter/material.dart';
 import 'bantuan_screen/bantuan_page.dart';
+import 'setting_aplikasi_screen/setting_aplikasi_page.dart';
 import '../history_screen/history_page.dart';
 
 class AkunSetting extends StatelessWidget {
@@ -99,7 +100,8 @@ Widget _buildContent(BuildContext context) {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => LoginPage()));
+                      builder: (BuildContext context) =>
+                          Setting_aplikasi_page()));
             },
           ),
           Divider(color: Colors.black45),
