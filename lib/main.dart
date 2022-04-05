@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'view/home_screen/home_container.dart';
-import 'view/home_screen/home_page.dart';
+import 'view/screen/main_screen.dart';
 import 'view/splash_screen/splash_screen_page.dart';
-import 'view/akun_screen/akun_container.dart';
+import 'view/screen/account_screen/akun_container.dart';
 import 'constant/constant.dart';
 // import 'view/pindai_screen/pindai_container.dart';
 
@@ -17,12 +16,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "GoCheck-in",
       theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Lato'),
-      home: HomeScreenPage(),
+      home: MainScreen(),
       routes: <String, WidgetBuilder>{
-        HOME_SCREEN: (BuildContext context) => new HomeScreenPage(),
+        HOME_SCREEN: (BuildContext context) => new MainScreen(),
         ANIMATED_SPLASH: (BuildContext context) => new SplashScreenPage(),
         // PHOTO_CONTAINER_SCREEN: (BuildContext context) => new PindaiContainer(),
-        VIDEO_CONTAINER_SCREEN: (BuildContext context) => new HomeContainer(),
+        VIDEO_CONTAINER_SCREEN: (BuildContext context) => new MainScreen(),
         ALBUM_CONTAINER_SCREEN: (BuildContext context) => new AkunContainer()
       },
     );
