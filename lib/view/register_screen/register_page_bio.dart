@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../home_screen/home_page.dart';
+import '../screen/main_screen.dart';
 import '../register_screen/register_page.dart';
 
 enum Kelamin { Pria, Wanita }
@@ -185,7 +185,7 @@ Widget _buildContent(BuildContext context, String username, String password) {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => HomeScreenPage()));
+                          builder: (BuildContext context) => MainScreen()));
                 },
               ),
             ),

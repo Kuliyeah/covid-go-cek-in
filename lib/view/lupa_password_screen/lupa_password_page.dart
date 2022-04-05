@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../home_screen/home_page.dart';
+import '../screen/main_screen.dart';
 import '../login_screen/login_page.dart';
 
 class LupaPasswordPage extends StatelessWidget {
@@ -71,7 +71,7 @@ Widget _buildContent(BuildContext context) {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => HomeScreenPage()));
+                          builder: (BuildContext context) => MainScreen()));
                 },
               ),
             ),

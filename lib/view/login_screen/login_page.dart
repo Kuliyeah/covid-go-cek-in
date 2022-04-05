@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../home_screen/home_page.dart';
+import '../screen/main_screen.dart';
 import '../lupa_password_screen/lupa_password_page.dart';
 import '../register_screen/register_page.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
@@ -112,10 +112,11 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   onPressed: () {
                     Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                HomeScreenPage()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => MainScreen(),
+                      ),
+                    );
                   },
                 ),
               ),
