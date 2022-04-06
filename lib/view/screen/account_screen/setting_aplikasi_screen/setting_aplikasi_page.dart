@@ -1,14 +1,14 @@
 import "package:flutter/material.dart";
 import 'package:covid_go_cek_in/constant/constant.dart';
 
-class Setting_aplikasi_page extends StatefulWidget {
-  Setting_aplikasi_page({Key? key}) : super(key: key);
+class SettingAplikasiPage extends StatefulWidget {
+  SettingAplikasiPage({Key? key}) : super(key: key);
 
   @override
-  State<Setting_aplikasi_page> createState() => _Setting_aplikasi_pageState();
+  State<SettingAplikasiPage> createState() => _SettingAplikasiPageState();
 }
 
-class _Setting_aplikasi_pageState extends State<Setting_aplikasi_page> {
+class _SettingAplikasiPageState extends State<SettingAplikasiPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: lighterGreenColor,
