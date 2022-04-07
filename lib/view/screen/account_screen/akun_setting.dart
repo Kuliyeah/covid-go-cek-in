@@ -2,7 +2,7 @@ import 'package:covid_go_cek_in/constant/constant.dart';
 import 'package:covid_go_cek_in/view/screen/main_screen.dart';
 import 'package:covid_go_cek_in/view/login_screen/login_page.dart';
 import 'menu_screen/log_page.dart';
-import 'menu_screen/termsofservice_page.dart';
+import 'term_of_service_screen/term_of_service_page.dart';
 import 'package:flutter/material.dart';
 import 'bantuan_screen/bantuan_page.dart';
 import 'setting_aplikasi_screen/setting_aplikasi_page.dart';
@@ -163,7 +163,8 @@ Widget _buildContent(BuildContext context) {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => TermsPage()));
+                      builder: (BuildContext context) =>
+                          Term_Of_Service_Page()));
             },
           ),
           Divider(color: Colors.black45),
