@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'view/screen/main_screen.dart';
 import 'view/splash_screen/splash_screen_page.dart';
-// import 'view/screen/account_screen/akun_container.dart';
 import 'constant/constant.dart';
 import 'view/screen/scan_screen/scan_page.dart';
 
