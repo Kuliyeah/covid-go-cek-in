@@ -123,7 +123,7 @@ Future<Kasus> fetchPost() async {
   if (response.statusCode == 200) {
     return Kasus.fromJson(jsonDecode(response.body));
   } else {
-    throw Exception('Failed to load album');
+    throw Exception('Failed to load data covid-19');
   }
 }
 

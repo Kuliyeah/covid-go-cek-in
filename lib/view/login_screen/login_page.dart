@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:covid_go_cek_in/view/screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import '../lupa_password_screen/lupa_password_page.dart';
 import '../register_screen/register_page.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:http/http.dart' as http;
 
 bool _showPassword = false;
 
@@ -12,6 +17,9 @@ class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
+
+final usernameController = TextEditingController();
+final passwordController = TextEditingController();
 
 class _LoginPageState extends State<LoginPage> {
   @override
@@ -55,6 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                   )),
               _buildMargin(20),
               TextFormField(
+                controller: usernameController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -73,6 +82,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               _buildMargin(20),
               TextFormField(
+                controller: passwordController,
                 obscureText: !_showPassword,
                 decoration: InputDecoration(
                   suffixIcon: IconButton(
@@ -109,18 +119,64 @@ class _LoginPageState extends State<LoginPage> {
                 height: 45,
                 // ignore: deprecated_member_use
                 child: RaisedButton(
-                  child: const Text("Masuk",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  child: const Text(
+                    "Masuk",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   color: Colors.green,
                   textColor: Colors.white,
                   shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const MainScreen()));
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                  ),
+                  onPressed: () async {
+                    String username = usernameController.text;
+                    String password = passwordController.text;
+
+                    String url =
+                        'http://192.168.0.18:8787/v1/pengunjung/login/' +
+                            username;
+                    var response = await http.get(url);
+                    var decodedData = jsonDecode(response.body);
+
+                    if (decodedData != null) {
+                      if (username ==
+                          decodedData['data']['usernamePengunjung']) {
+                        if (password ==
+                            decodedData['data']['passwordPengunjung']) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const MainScreen(),
+                            ),
+                          );
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Selamat datang " +
+                                  decodedData['data']['namaPengunjung']),
+                              duration: const Duration(milliseconds: 1000),
+                            ),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Password tidak sesuai"),
+                              duration: Duration(milliseconds: 1000),
+                            ),
+                          );
+                        }
+                      }
+                    } else if (decodedData == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Akun tidak terdaftar"),
+                          duration: Duration(milliseconds: 1000),
+                        ),
+                      );
+                    }
                   },
                 ),
               ),
