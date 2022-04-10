@@ -228,7 +228,13 @@ class DetailKasusState extends State<DetailKasus> {
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
-          return const CircularProgressIndicator();
+          return const SizedBox(
+            height: 40,
+            width: 20,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         },
       ),
     );
@@ -365,7 +371,13 @@ class KasusContainerState extends State<KasusContainer> {
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }
-        return const CircularProgressIndicator();
+        return const SizedBox(
+          height: 40,
+          width: 20,
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
       },
     );
   }
