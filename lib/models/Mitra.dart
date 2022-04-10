@@ -16,7 +16,7 @@ class Mitra {
   final String? namaMitra;
   final String? alamatMitra;
   final String? noHpMitra;
-  final int? jenisUsaha;
+  final String? jenisUsaha;
   final String? deskripsi;
   final String? fotoUsaha;
   final String? status;
