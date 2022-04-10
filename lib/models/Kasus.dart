@@ -13,7 +13,7 @@ class Kasus {
   factory Kasus.fromJson(Map<String, dynamic> json) {
     return Kasus(
         confirmeds: json['confirmed']['value'],
-        recovereds: json['recovered']['value'],
-        deaths: 5801909);
+        recovereds: 5801909,
+        deaths: json['deaths']['value']);
   }
 }

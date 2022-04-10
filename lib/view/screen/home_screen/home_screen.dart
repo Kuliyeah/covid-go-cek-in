@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../constant/constant.dart';
 import 'package:intl/intl.dart' as intl;
 import 'dart:convert';
+
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
 
@@ -196,7 +197,9 @@ class KasusContainerState extends State<KasusContainer> {
                     children: <Widget>[
                       Text(
                         intl.NumberFormat.decimalPattern()
-                            .format(snapshot.data!.confirmeds),
+                                .format(snapshot.data!.confirmeds)
+                                .substring(0, 3) +
+                            " jt",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: warningColor,
@@ -214,7 +217,9 @@ class KasusContainerState extends State<KasusContainer> {
                     children: <Widget>[
                       Text(
                         intl.NumberFormat.decimalPattern()
-                            .format(snapshot.data!.recovereds),
+                                .format(snapshot.data!.recovereds)
+                                .substring(0, 3) +
+                            " jt",
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                             color: Colors.green,
