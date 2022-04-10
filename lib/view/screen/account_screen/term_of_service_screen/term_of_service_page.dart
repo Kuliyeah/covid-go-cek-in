@@ -1,7 +1,9 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 
 class Term_Of_Service_Page extends StatefulWidget {
-  Term_Of_Service_Page({Key? key}) : super(key: key);
+  const Term_Of_Service_Page({Key? key}) : super(key: key);
 
   @override
   State<Term_Of_Service_Page> createState() => _Term_Of_Service_pageState();
@@ -110,35 +112,36 @@ class _Term_Of_Service_pageState extends State<Term_Of_Service_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Term Of Service"),
+        title: const Text("Term Of Service"),
       ),
       body: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: ListView.builder(
           itemCount: itemData.length,
           itemBuilder: (context, index) {
             return Container(
-              margin: EdgeInsets.only(bottom: 10.0),
+              margin: const EdgeInsets.only(bottom: 10.0),
               child: ExpansionPanelList(
-                animationDuration: Duration(milliseconds: 500),
+                animationDuration: const Duration(milliseconds: 500),
                 dividerColor: Colors.red,
-                expandedHeaderPadding: EdgeInsets.only(bottom: 0.0),
+                expandedHeaderPadding: const EdgeInsets.only(bottom: 0.0),
                 elevation: 1,
                 children: [
                   ExpansionPanel(
                     headerBuilder: (BuildContext context, bool isExpanded) {
                       return Container(
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         child: Text(
                           itemData[index].headerItem,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 18,
                           ),
                         ),
                       );
                     },
                     body: Container(
-                      padding: EdgeInsets.only(left: 10, right: 10, bottom: 20),
+                      padding: const EdgeInsets.only(
+                          left: 10, right: 10, bottom: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -177,7 +180,7 @@ class ItemModel {
   String discription;
 
   ItemModel({
-    this.expanded: false,
+    this.expanded = false,
     required this.headerItem,
     required this.discription,
   });

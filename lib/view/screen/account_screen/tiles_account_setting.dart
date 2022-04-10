@@ -5,7 +5,8 @@ class TilesAccountSetting extends StatelessWidget {
   final IconData? settingImg;
   final String? title;
   final String? name;
-  TilesAccountSetting(this.settingImg, this.title, this.name);
+  const TilesAccountSetting(this.settingImg, this.title, this.name, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class TilesAccountSetting extends StatelessWidget {
               size: 40.0,
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -42,8 +43,8 @@ class TilesAccountSetting extends StatelessWidget {
                 ],
               ),
             ),
-            Spacer(),
-            Icon(
+            const Spacer(),
+            const Icon(
               Icons.edit,
               color: Colors.black54,
               size: 25,

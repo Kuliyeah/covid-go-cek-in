@@ -1,9 +1,14 @@
+import 'package:covid_go_cek_in/models/Kasus.dart';
 import 'package:flutter/material.dart';
 import '../../../constant/constant.dart';
+import 'package:intl/intl.dart' as intl;
+import 'dart:convert';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatelessWidget {
   // final List<Users> cases;
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +32,15 @@ Widget _buildContent(BuildContext context) {
             decoration: BoxDecoration(
                 color: lighterGreenColor,
                 // color: Colors.blue,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30))),
             child: Padding(
-              padding: EdgeInsets.fromLTRB(30, 20, 30, 30),
+              padding: const EdgeInsets.fromLTRB(30, 20, 30, 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Material(
                     elevation: 5.0,
                     shadowColor: textColor.withOpacity(0.2),
@@ -45,28 +50,29 @@ Widget _buildContent(BuildContext context) {
                       decoration: InputDecoration(
                           hintText: 'Bandung, Jawa Barat',
                           hintStyle: TextStyle(fontSize: 15, color: bodyColor),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: Colors.white, width: 0.0)),
+                          focusedBorder: const OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 0.0)),
                           prefixIcon: Icon(Icons.pin_drop, color: bodyColor),
                           suffixIcon: Material(
                             elevation: 5.0,
                             color: Colors.green.shade400,
                             shadowColor: mainColor,
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(15.0),
                               bottomRight: Radius.circular(15.0),
                             ),
-                            child: Icon(Icons.search, color: Colors.white),
+                            child:
+                                const Icon(Icons.search, color: Colors.white),
                           ),
-                          contentPadding: EdgeInsets.only(top: 15.0),
+                          contentPadding: const EdgeInsets.only(top: 15.0),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15.0),
-                              borderSide:
-                                  BorderSide(color: Colors.white, width: 3.0))),
+                              borderSide: const BorderSide(
+                                  color: Colors.white, width: 3.0))),
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Text(
                     "Kasus",
                     textAlign: TextAlign.left,
@@ -75,78 +81,24 @@ Widget _buildContent(BuildContext context) {
                         fontSize: 22,
                         color: textColor),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Row(
                     children: <Widget>[
                       Text(
                         "Update 3 Maret 2021",
                         style: TextStyle(color: bodyColor),
                       ),
-                      Spacer(),
-                      Text(
+                      const Spacer(),
+                      const Text(
                         "Lihat Detail >",
                         style: TextStyle(
                             color: Colors.green, fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                      color: Colors.white,
-                      child: Padding(
-                        padding: EdgeInsets.all(15),
-                        child: Row(
-                          children: <Widget>[
-                            Spacer(),
-                            Column(
-                              children: <Widget>[
-                                Text("36 rb",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: dangerColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 30)),
-                                Text("Meninggal",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: dangerColor, fontSize: 15))
-                              ],
-                            ),
-                            Spacer(),
-                            Column(
-                              children: <Widget>[
-                                Text("1,6 jt",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: warningColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 30)),
-                                Text("Kasus",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: warningColor, fontSize: 15))
-                              ],
-                            ),
-                            Spacer(),
-                            Column(
-                              children: <Widget>[
-                                Text("1,3 jt",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.green,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 30)),
-                                Text("Sembuh",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.green, fontSize: 15))
-                              ],
-                            ),
-                            Spacer(),
-                          ],
-                        ),
-                      )),
-                  SizedBox(
+                  const SizedBox(height: 20),
+                  const KasusContainer(),
+                  const SizedBox(
                     height: 20,
                   ),
                   Text(
@@ -157,18 +109,18 @@ Widget _buildContent(BuildContext context) {
                         fontSize: 22,
                         color: textColor),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  NewsTiles("adas", "Daerah 1", "Melonjaknya kasus Covid19"),
-                  SizedBox(
+                  const NewsTiles("Daerah 1", "Melonjaknya kasus Covid19"),
+                  const SizedBox(
                     height: 10,
                   ),
-                  NewsTiles("adas", "Daerah 2", "Melonjaknya kasus Covid19"),
-                  SizedBox(
+                  const NewsTiles("Daerah 2", "Melonjaknya kasus Covid19"),
+                  const SizedBox(
                     height: 10,
                   ),
-                  NewsTiles("adas", "Daerah 3", "Melonjaknya kasus Covid19"),
+                  const NewsTiles("Daerah 3", "Melonjaknya kasus Covid19"),
                 ],
               ),
             ),
@@ -179,12 +131,123 @@ Widget _buildContent(BuildContext context) {
   );
 }
 
-class NewsTiles extends StatelessWidget {
-  String _description;
-  String _imgUrl;
-  String _title;
+const String apiUrl = "https://covid19.mathdro.id/api/countries/idn";
+Future<Kasus> fetchPost() async {
+  final response = await http.get(Uri.parse(apiUrl));
 
-  NewsTiles(this._imgUrl, this._title, this._description);
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return Kasus.fromJson(jsonDecode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load album');
+  }
+}
+
+class KasusContainer extends StatefulWidget {
+  const KasusContainer({Key? key}) : super(key: key);
+
+  @override
+  KasusContainerState createState() => KasusContainerState();
+}
+
+class KasusContainerState extends State<KasusContainer> {
+  late Future<Kasus> futurePost;
+  @override
+  void initState() {
+    super.initState();
+    futurePost = fetchPost();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<Kasus>(
+      future: futurePost,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Container(
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Row(
+                children: <Widget>[
+                  const Spacer(),
+                  Column(
+                    children: <Widget>[
+                      Text(
+                        intl.NumberFormat.decimalPattern()
+                            .format(snapshot.data!.deaths),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: dangerColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30),
+                      ),
+                      const SizedBox(height: 5),
+                      Text("Meninggal",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: dangerColor, fontSize: 15))
+                    ],
+                  ),
+                  const Spacer(),
+                  Column(
+                    children: <Widget>[
+                      Text(
+                        intl.NumberFormat.decimalPattern()
+                            .format(snapshot.data!.confirmeds),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: warningColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30),
+                      ),
+                      const SizedBox(height: 5),
+                      Text("Kasus",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: warningColor, fontSize: 15))
+                    ],
+                  ),
+                  const Spacer(),
+                  Column(
+                    children: <Widget>[
+                      Text(
+                        intl.NumberFormat.decimalPattern()
+                            .format(snapshot.data!.recovereds),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30),
+                      ),
+                      const SizedBox(height: 5),
+                      const Text("Sembuh",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.green, fontSize: 15))
+                    ],
+                  ),
+                  const Spacer(),
+                ],
+              ),
+            ),
+          );
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+        return const CircularProgressIndicator();
+      },
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class NewsTiles extends StatelessWidget {
+  final String _description;
+  // final String _imgUrl;
+  final String _title;
+
+  const NewsTiles(this._title, this._description, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -194,18 +257,18 @@ class NewsTiles extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(10)),
       child: Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Row(
           children: [
             Container(
               width: 84,
               height: 84,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0xFFFDB8B8),
               ),
-              child: Image(image: AssetImage('assets/img/virus.png')),
+              child: const Image(image: AssetImage('assets/img/virus.png')),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Padding(
@@ -216,14 +279,14 @@ class NewsTiles extends StatelessWidget {
                 children: [
                   Text(
                     _title,
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   Text(
                     _description,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 10,
                       color: Color(0xFF888888),
                     ),
@@ -238,4 +301,3 @@ class NewsTiles extends StatelessWidget {
     );
   }
 }
-

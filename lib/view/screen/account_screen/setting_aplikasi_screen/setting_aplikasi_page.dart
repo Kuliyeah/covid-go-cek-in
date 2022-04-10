@@ -2,13 +2,14 @@ import "package:flutter/material.dart";
 import 'package:covid_go_cek_in/constant/constant.dart';
 
 class SettingAplikasiPage extends StatefulWidget {
-  SettingAplikasiPage({Key? key}) : super(key: key);
+  const SettingAplikasiPage({Key? key}) : super(key: key);
 
   @override
   State<SettingAplikasiPage> createState() => _SettingAplikasiPageState();
 }
 
 class _SettingAplikasiPageState extends State<SettingAplikasiPage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: lighterGreenColor,
@@ -16,7 +17,7 @@ class _SettingAplikasiPageState extends State<SettingAplikasiPage> {
       body: _buildContent(context),
       appBar: AppBar(
         elevation: 0,
-        title: Text(
+        title: const Text(
           "Pengaturan Apikasi",
         ),
       ),
@@ -31,7 +32,7 @@ class _SettingAplikasiPageState extends State<SettingAplikasiPage> {
           children: <Widget>[
             GestureDetector(
               child: Row(
-                children: <Widget>[
+                children: const <Widget>[
                   Padding(
                     padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
                     child: Icon(
@@ -53,10 +54,10 @@ class _SettingAplikasiPageState extends State<SettingAplikasiPage> {
                 ],
               ),
             ),
-            Divider(color: Colors.black45),
+            const Divider(color: Colors.black45),
             GestureDetector(
               child: Row(
-                children: <Widget>[
+                children: const <Widget>[
                   Padding(
                     padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
                     child: Icon(
@@ -78,10 +79,10 @@ class _SettingAplikasiPageState extends State<SettingAplikasiPage> {
                 ],
               ),
             ),
-            Divider(color: Colors.black45),
+            const Divider(color: Colors.black45),
             GestureDetector(
               child: Row(
-                children: <Widget>[
+                children: const <Widget>[
                   Padding(
                     padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
                     child: Icon(
@@ -103,10 +104,10 @@ class _SettingAplikasiPageState extends State<SettingAplikasiPage> {
                 ],
               ),
             ),
-            Divider(color: Colors.black45),
+            const Divider(color: Colors.black45),
             GestureDetector(
               child: Row(
-                children: <Widget>[
+                children: const <Widget>[
                   Padding(
                     padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
                     child: Icon(
@@ -128,10 +129,10 @@ class _SettingAplikasiPageState extends State<SettingAplikasiPage> {
                 ],
               ),
             ),
-            Divider(color: Colors.black45),
+            const Divider(color: Colors.black45),
             GestureDetector(
               child: Row(
-                children: <Widget>[
+                children: const <Widget>[
                   Padding(
                     padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
                     child: Icon(
@@ -153,7 +154,7 @@ class _SettingAplikasiPageState extends State<SettingAplikasiPage> {
                 ],
               ),
             ),
-            Divider(color: Colors.black45),
+            const Divider(color: Colors.black45),
           ],
         ),
       ),

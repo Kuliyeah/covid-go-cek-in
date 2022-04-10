@@ -5,6 +5,8 @@ import 'tiles_account_setting.dart';
 import '../main_screen.dart';
 
 class AkunContainer extends StatelessWidget {
+  const AkunContainer({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +23,7 @@ Widget _buildContent(BuildContext context) {
     child: Column(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(top: 45, left: 30, right: 30),
+          padding: const EdgeInsets.only(top: 45, left: 30, right: 30),
           child: Row(
             children: <Widget>[
               GestureDetector(
@@ -34,10 +36,11 @@ Widget _buildContent(BuildContext context) {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => MainScreen()));
+                          builder: (BuildContext context) =>
+                              const MainScreen()));
                 },
               ),
-              Spacer(),
+              const Spacer(),
               GestureDetector(
                 child: Icon(
                   Icons.settings_outlined,
@@ -48,7 +51,8 @@ Widget _buildContent(BuildContext context) {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => AkunSetting()));
+                          builder: (BuildContext context) =>
+                              const AkunSetting()));
                 },
               ),
             ],
@@ -78,24 +82,25 @@ Widget _buildContent(BuildContext context) {
         _buildMargin(70),
         Container(
           height: 440,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               color: Colors.white,
               // color: Colors.blue,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30), topRight: Radius.circular(30))),
           child: Padding(
-            padding: EdgeInsets.fromLTRB(40, 40, 40, 30),
+            padding: const EdgeInsets.fromLTRB(40, 40, 40, 30),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                TilesAccountSetting(Icons.person, 'Nama', 'Gilang Gumelar'),
+                const TilesAccountSetting(
+                    Icons.person, 'Nama', 'Gilang Gumelar'),
                 _buildMargin(20),
                 Container(
                   height: 1,
                   color: textColor,
                 ),
                 _buildMargin(30),
-                TilesAccountSetting(
+                const TilesAccountSetting(
                     Icons.mail_outline, 'E-Mail', 'gilanggumelar@gmail.com'),
                 _buildMargin(20),
                 Container(
@@ -103,7 +108,7 @@ Widget _buildContent(BuildContext context) {
                   color: textColor,
                 ),
                 _buildMargin(30),
-                TilesAccountSetting(
+                const TilesAccountSetting(
                     Icons.phone, 'Nomor Telepon', 'gilanggumelar@gmail.com'),
                 _buildMargin(20),
                 Container(
@@ -111,7 +116,7 @@ Widget _buildContent(BuildContext context) {
                   color: textColor,
                 ),
                 _buildMargin(30),
-                TilesAccountSetting(Icons.pin_drop_outlined, 'Alamat',
+                const TilesAccountSetting(Icons.pin_drop_outlined, 'Alamat',
                     'gilanggumelar@gmail.com'),
                 _buildMargin(20),
                 Container(

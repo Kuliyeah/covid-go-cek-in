@@ -3,6 +3,8 @@ import '../login_screen/login_page.dart';
 import '../register_screen/register_page_bio.dart';
 
 class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
+
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
@@ -26,7 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
-          padding: EdgeInsets.all(40.0),
+          padding: const EdgeInsets.all(40.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -41,14 +43,15 @@ class _RegisterPageState extends State<RegisterPage> {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       width: 0,
                       style: BorderStyle.none,
                     ),
                   ),
-                  contentPadding: EdgeInsets.only(left: 25),
+                  contentPadding: const EdgeInsets.only(left: 25),
                   hintText: "Username",
-                  hintStyle: TextStyle(fontSize: 15, color: Colors.black45),
+                  hintStyle:
+                      const TextStyle(fontSize: 15, color: Colors.black45),
                   filled: true,
                   fillColor: Colors.white,
                 ),
@@ -60,14 +63,15 @@ class _RegisterPageState extends State<RegisterPage> {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       width: 0,
                       style: BorderStyle.none,
                     ),
                   ),
-                  contentPadding: EdgeInsets.only(left: 25),
+                  contentPadding: const EdgeInsets.only(left: 25),
                   hintText: "Password",
-                  hintStyle: TextStyle(fontSize: 15, color: Colors.black45),
+                  hintStyle:
+                      const TextStyle(fontSize: 15, color: Colors.black45),
                   filled: true,
                   fillColor: Colors.white,
                 ),
@@ -78,14 +82,15 @@ class _RegisterPageState extends State<RegisterPage> {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       width: 0,
                       style: BorderStyle.none,
                     ),
                   ),
-                  contentPadding: EdgeInsets.only(left: 25),
+                  contentPadding: const EdgeInsets.only(left: 25),
                   hintText: "Konfirmasi Password",
-                  hintStyle: TextStyle(fontSize: 15, color: Colors.black45),
+                  hintStyle:
+                      const TextStyle(fontSize: 15, color: Colors.black45),
                   filled: true,
                   fillColor: Colors.white,
                 ),
@@ -96,11 +101,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 45,
                 // ignore: deprecated_member_use
                 child: RaisedButton(
-                  child: Text("Selanjutnya",
+                  child: const Text("Selanjutnya",
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   color: Colors.green,
                   textColor: Colors.white,
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   onPressed: () {
                     Navigator.push(
@@ -114,7 +119,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               _buildMargin(30),
               GestureDetector(
-                child: Text(
+                child: const Text(
                   "Kembali",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -124,8 +129,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => LoginPage()));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()));
                 },
               )
             ],

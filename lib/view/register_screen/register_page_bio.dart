@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../screen/main_screen.dart';
 import '../register_screen/register_page.dart';
 
+// ignore: constant_identifier_names
 enum Kelamin { Pria, Wanita }
 
 Kelamin _kelaminChecked = Kelamin.Pria;
@@ -30,7 +31,7 @@ Widget _buildContent(BuildContext context, String username, String password) {
     child: SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Container(
-        padding: EdgeInsets.all(40.0),
+        padding: const EdgeInsets.all(40.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -42,14 +43,14 @@ Widget _buildContent(BuildContext context, String username, String password) {
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     width: 0,
                     style: BorderStyle.none,
                   ),
                 ),
-                contentPadding: EdgeInsets.only(left: 25),
+                contentPadding: const EdgeInsets.only(left: 25),
                 hintText: "Nama Lengkap",
-                hintStyle: TextStyle(fontSize: 15, color: Colors.black45),
+                hintStyle: const TextStyle(fontSize: 15, color: Colors.black45),
                 filled: true,
                 fillColor: Colors.white,
               ),
@@ -59,14 +60,14 @@ Widget _buildContent(BuildContext context, String username, String password) {
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     width: 0,
                     style: BorderStyle.none,
                   ),
                 ),
-                contentPadding: EdgeInsets.only(left: 25),
+                contentPadding: const EdgeInsets.only(left: 25),
                 hintText: "No. Telp",
-                hintStyle: TextStyle(fontSize: 15, color: Colors.black45),
+                hintStyle: const TextStyle(fontSize: 15, color: Colors.black45),
                 filled: true,
                 fillColor: Colors.white,
               ),
@@ -76,14 +77,14 @@ Widget _buildContent(BuildContext context, String username, String password) {
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     width: 0,
                     style: BorderStyle.none,
                   ),
                 ),
-                contentPadding: EdgeInsets.only(left: 25),
+                contentPadding: const EdgeInsets.only(left: 25),
                 hintText: "NIK",
-                hintStyle: TextStyle(fontSize: 15, color: Colors.black45),
+                hintStyle: const TextStyle(fontSize: 15, color: Colors.black45),
                 filled: true,
                 fillColor: Colors.white,
               ),
@@ -123,14 +124,14 @@ Widget _buildContent(BuildContext context, String username, String password) {
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     width: 0,
                     style: BorderStyle.none,
                   ),
                 ),
-                contentPadding: EdgeInsets.only(left: 25),
+                contentPadding: const EdgeInsets.only(left: 25),
                 hintText: "Tanggal Lahir",
-                hintStyle: TextStyle(fontSize: 15, color: Colors.black45),
+                hintStyle: const TextStyle(fontSize: 15, color: Colors.black45),
                 filled: true,
                 fillColor: Colors.white,
               ),
@@ -141,14 +142,14 @@ Widget _buildContent(BuildContext context, String username, String password) {
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     width: 0,
                     style: BorderStyle.none,
                   ),
                 ),
-                contentPadding: EdgeInsets.only(left: 25, top: 50),
+                contentPadding: const EdgeInsets.only(left: 25, top: 50),
                 hintText: "Alamat",
-                hintStyle: TextStyle(fontSize: 15, color: Colors.black45),
+                hintStyle: const TextStyle(fontSize: 15, color: Colors.black45),
                 filled: true,
                 fillColor: Colors.white,
               ),
@@ -158,14 +159,14 @@ Widget _buildContent(BuildContext context, String username, String password) {
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     width: 0,
                     style: BorderStyle.none,
                   ),
                 ),
-                contentPadding: EdgeInsets.only(left: 25),
+                contentPadding: const EdgeInsets.only(left: 25),
                 hintText: "Email",
-                hintStyle: TextStyle(fontSize: 15, color: Colors.black45),
+                hintStyle: const TextStyle(fontSize: 15, color: Colors.black45),
                 filled: true,
                 fillColor: Colors.white,
               ),
@@ -176,22 +177,23 @@ Widget _buildContent(BuildContext context, String username, String password) {
               height: 45,
               // ignore: deprecated_member_use
               child: RaisedButton(
-                child: Text("Daftar"),
+                child: const Text("Daftar"),
                 color: Colors.green,
                 textColor: Colors.white,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 onPressed: () {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => MainScreen()));
+                          builder: (BuildContext context) =>
+                              const MainScreen()));
                 },
               ),
             ),
             _buildMargin(30),
             GestureDetector(
-              child: Text(
+              child: const Text(
                 "Kembali",
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -204,7 +206,8 @@ Widget _buildContent(BuildContext context, String username, String password) {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => RegisterPage()));
+                        builder: (BuildContext context) =>
+                            const RegisterPage()));
               },
             )
           ],

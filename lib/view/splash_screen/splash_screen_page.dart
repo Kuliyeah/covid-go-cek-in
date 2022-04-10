@@ -5,12 +5,14 @@ import '../login_screen/login_page.dart';
 
 // https://rushabhshah065.medium.com/splash-screen-flutter-create-customize-splash-screen-for-flutter-android-ios-a380a199793c
 class SplashScreenPage extends StatefulWidget {
+  const SplashScreenPage({Key? key}) : super(key: key);
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreenPage> {
-  String _versionName = 'Versi 1.0.0';
+  final String _versionName = 'Versi 1.0.0';
   final splashDelay = 5;
 
   @override
@@ -25,8 +27,10 @@ class _SplashScreenState extends State<SplashScreenPage> {
   }
 
   void navigationPage() {
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext context) => LoginPage()));
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) => const LoginPage()));
   }
 
   @override
@@ -42,19 +46,18 @@ class _SplashScreenState extends State<SplashScreenPage> {
               children: <Widget>[
                 Expanded(
                   flex: 7,
-                  child: Container(
-                      child: Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Image.asset(
                         'assets/img/icon.png',
                         scale: 1.5,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10.0),
                       ),
                     ],
-                  )),
+                  ),
                 ),
                 Expanded(
                   child: Column(
@@ -63,13 +66,14 @@ class _SplashScreenState extends State<SplashScreenPage> {
                         height: 10,
                       ),
                       Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              _versionName,
-                              style: TextStyle(color: mainColor),
-                            ),
-                          ])
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            _versionName,
+                            style: TextStyle(color: mainColor),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),
