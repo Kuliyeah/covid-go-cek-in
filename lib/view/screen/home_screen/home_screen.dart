@@ -83,21 +83,6 @@ Widget _buildContent(BuildContext context) {
                         color: textColor),
                   ),
                   const SizedBox(height: 10),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        "Update 3 Maret 2021",
-                        style: TextStyle(color: bodyColor),
-                      ),
-                      const Spacer(),
-                      const Text(
-                        "Lihat Detail >",
-                        style: TextStyle(
-                            color: Colors.green, fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 20),
                   const KasusContainer(),
                   const SizedBox(
                     height: 20,
@@ -135,15 +120,118 @@ Widget _buildContent(BuildContext context) {
 const String apiUrl = "https://covid19.mathdro.id/api/countries/idn";
 Future<Kasus> fetchPost() async {
   final response = await http.get(Uri.parse(apiUrl));
-
   if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
     return Kasus.fromJson(jsonDecode(response.body));
   } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
     throw Exception('Failed to load album');
+  }
+}
+
+class DetailKasus extends StatefulWidget {
+  const DetailKasus({Key? key}) : super(key: key);
+
+  @override
+  DetailKasusState createState() => DetailKasusState();
+}
+
+class DetailKasusState extends State<DetailKasus> {
+  late Future<Kasus> futurePost;
+  @override
+  void initState() {
+    super.initState();
+    futurePost = fetchPost();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 350.0,
+      width: 300.0,
+      child: FutureBuilder<Kasus>(
+        future: futurePost,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Column(
+              children: <Widget>[
+                const SizedBox(height: 10),
+                Column(
+                  children: <Widget>[
+                    Text(
+                      intl.NumberFormat.decimalPattern()
+                          .format(snapshot.data!.deaths),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: dangerColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 50),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      "Meninggal",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: dangerColor, fontSize: 25),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Column(
+                  children: <Widget>[
+                    Text(
+                      intl.NumberFormat.decimalPattern()
+                          .format(snapshot.data!.confirmeds),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: warningColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 50),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      "kasus",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: warningColor, fontSize: 25),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Column(
+                  children: <Widget>[
+                    Text(
+                      intl.NumberFormat.decimalPattern()
+                          .format(snapshot.data!.recovereds),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 50),
+                    ),
+                    const SizedBox(height: 5),
+                    const Text(
+                      "sembuh",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.green, fontSize: 25),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  "Pembaruan Terakhir",
+                  style: TextStyle(fontSize: 15),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  snapshot.data!.lastUpdate.toString(),
+                  style: TextStyle(fontSize: 15, color: bodyColor),
+                )
+              ],
+            );
+          } else if (snapshot.hasError) {
+            return Text('${snapshot.error}');
+          }
+          return const CircularProgressIndicator();
+        },
+      ),
+    );
   }
 }
 
@@ -168,74 +256,111 @@ class KasusContainerState extends State<KasusContainer> {
       future: futurePost,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return Container(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(15),
-              child: Row(
+          return Column(
+            children: <Widget>[
+              Row(
                 children: <Widget>[
-                  const Spacer(),
-                  Column(
-                    children: <Widget>[
-                      Text(
-                        intl.NumberFormat.decimalPattern()
-                            .format(snapshot.data!.deaths),
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: dangerColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30),
-                      ),
-                      const SizedBox(height: 5),
-                      Text("Meninggal",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: dangerColor, fontSize: 15))
-                    ],
+                  Text(
+                    "Update " + snapshot.data!.lastUpdate.toString(),
+                    style: TextStyle(color: bodyColor),
                   ),
                   const Spacer(),
-                  Column(
-                    children: <Widget>[
-                      Text(
-                        intl.NumberFormat.decimalPattern()
-                                .format(snapshot.data!.confirmeds)
-                                .substring(0, 3) +
-                            " jt",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: warningColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30),
-                      ),
-                      const SizedBox(height: 5),
-                      Text("Kasus",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: warningColor, fontSize: 15))
-                    ],
-                  ),
-                  const Spacer(),
-                  Column(
-                    children: <Widget>[
-                      Text(
-                        intl.NumberFormat.decimalPattern()
-                                .format(snapshot.data!.recovereds)
-                                .substring(0, 3) +
-                            " jt",
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30),
-                      ),
-                      const SizedBox(height: 5),
-                      const Text("Sembuh",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.green, fontSize: 15))
-                    ],
-                  ),
-                  const Spacer(),
+                  GestureDetector(
+                    child: const Text(
+                      "Lihat Detail >",
+                      style: TextStyle(
+                          color: Colors.green, fontWeight: FontWeight.bold),
+                    ),
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const AlertDialog(
+                            title: Text('Detail Kasus Covid-19'),
+                            content: DetailKasus(),
+                          );
+                        },
+                      );
+                    },
+                  )
                 ],
               ),
-            ),
+              const SizedBox(height: 20),
+              Container(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Row(
+                    children: <Widget>[
+                      const Spacer(),
+                      Column(
+                        children: <Widget>[
+                          Text(
+                            intl.NumberFormat.decimalPattern()
+                                    .format(snapshot.data!.deaths)
+                                    .substring(0, 3) +
+                                " k",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: dangerColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30),
+                          ),
+                          const SizedBox(height: 5),
+                          Text("Meninggal",
+                              textAlign: TextAlign.center,
+                              style:
+                                  TextStyle(color: dangerColor, fontSize: 15))
+                        ],
+                      ),
+                      const Spacer(),
+                      Column(
+                        children: <Widget>[
+                          Text(
+                            intl.NumberFormat.decimalPattern()
+                                    .format(snapshot.data!.confirmeds)
+                                    .substring(0, 3) +
+                                " jt",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: warningColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30),
+                          ),
+                          const SizedBox(height: 5),
+                          Text("Kasus",
+                              textAlign: TextAlign.center,
+                              style:
+                                  TextStyle(color: warningColor, fontSize: 15))
+                        ],
+                      ),
+                      const Spacer(),
+                      Column(
+                        children: <Widget>[
+                          Text(
+                            intl.NumberFormat.decimalPattern()
+                                    .format(snapshot.data!.recovereds)
+                                    .substring(0, 3) +
+                                " jt",
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30),
+                          ),
+                          const SizedBox(height: 5),
+                          const Text("Sembuh",
+                              textAlign: TextAlign.center,
+                              style:
+                                  TextStyle(color: Colors.green, fontSize: 15))
+                        ],
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           );
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
