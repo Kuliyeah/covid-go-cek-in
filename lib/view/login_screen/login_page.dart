@@ -5,6 +5,7 @@ import '../lupa_password_screen/lupa_password_page.dart';
 import '../register_screen/register_page.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:crypto/crypto.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
@@ -21,6 +22,9 @@ class LoginPage extends StatefulWidget {
 final usernameController = TextEditingController();
 final passwordController = TextEditingController();
 
+late SharedPreferences logindata;
+late bool newuser;
+
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
@@ -34,6 +38,21 @@ class _LoginPageState extends State<LoginPage> {
         child: _buildContent(context),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkAlreadyLogin();
+  }
+
+  void checkAlreadyLogin() async {
+    logindata = await SharedPreferences.getInstance();
+    newuser = (logindata.getBool('login') ?? true);
+    if (newuser == false) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const MainScreen()));
+    }
   }
 
   Widget _buildContent(BuildContext context) {
@@ -136,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
 
                     // Ini pake IPV4, jadi klo beda pc gk bisa
                     String url =
-                        'http://192.168.0.18:8787/v1/pengunjung/login/' +
+                        'http://192.168.0.16:8787/v1/pengunjung/login/' +
                             username;
                     var response = await http.get(url);
                     var decodedData = jsonDecode(response.body);
@@ -146,6 +165,9 @@ class _LoginPageState extends State<LoginPage> {
                           decodedData['data']['usernamePengunjung']) {
                         if (md5.convert(utf8.encode(password)).toString() ==
                             decodedData['data']['passwordPengunjung']) {
+                          logindata.setBool('login', false);
+                          logindata.setString('username', username);
+
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(

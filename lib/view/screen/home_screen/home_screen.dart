@@ -8,7 +8,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class HomePage extends StatelessWidget {
-  // final List<Users> cases;
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -31,11 +30,12 @@ Widget _buildContent(BuildContext context) {
           Image.asset('assets/img/header_home.png'),
           Container(
             decoration: BoxDecoration(
-                color: lighterGreenColor,
-                // color: Colors.blue,
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30))),
+              color: lighterGreenColor,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+            ),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(30, 20, 30, 30),
               child: Column(
@@ -49,28 +49,30 @@ Widget _buildContent(BuildContext context) {
                     child: TextFormField(
                       autofocus: false,
                       decoration: InputDecoration(
-                          hintText: 'Bandung, Jawa Barat',
-                          hintStyle: TextStyle(fontSize: 15, color: bodyColor),
-                          focusedBorder: const OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.white, width: 0.0)),
-                          prefixIcon: Icon(Icons.pin_drop, color: bodyColor),
-                          suffixIcon: Material(
-                            elevation: 5.0,
-                            color: Colors.green.shade400,
-                            shadowColor: mainColor,
-                            borderRadius: const BorderRadius.only(
-                              topRight: Radius.circular(15.0),
-                              bottomRight: Radius.circular(15.0),
-                            ),
-                            child:
-                                const Icon(Icons.search, color: Colors.white),
+                        hintText: 'Bandung, Jawa Barat',
+                        hintStyle: TextStyle(fontSize: 15, color: bodyColor),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.white, width: 0.0),
+                        ),
+                        prefixIcon: Icon(Icons.pin_drop, color: bodyColor),
+                        suffixIcon: Material(
+                          elevation: 5.0,
+                          color: Colors.green.shade400,
+                          shadowColor: mainColor,
+                          borderRadius: const BorderRadius.only(
+                            topRight: Radius.circular(15.0),
+                            bottomRight: Radius.circular(15.0),
                           ),
-                          contentPadding: const EdgeInsets.only(top: 15.0),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                              borderSide: const BorderSide(
-                                  color: Colors.white, width: 3.0))),
+                          child: const Icon(Icons.search, color: Colors.white),
+                        ),
+                        contentPadding: const EdgeInsets.only(top: 15.0),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                          borderSide:
+                              const BorderSide(color: Colors.white, width: 3.0),
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 30),
@@ -136,6 +138,7 @@ class DetailKasus extends StatefulWidget {
 
 class DetailKasusState extends State<DetailKasus> {
   late Future<Kasus> futurePost;
+
   @override
   void initState() {
     super.initState();
