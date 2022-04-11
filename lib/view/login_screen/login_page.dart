@@ -1,10 +1,10 @@
 import 'dart:convert';
-
 import 'package:covid_go_cek_in/view/screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import '../lupa_password_screen/lupa_password_page.dart';
 import '../register_screen/register_page.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
+import 'package:crypto/crypto.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
@@ -134,6 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                     String username = usernameController.text;
                     String password = passwordController.text;
 
+                    // Ini pake IPV4, jadi klo beda pc gk bisa
                     String url =
                         'http://192.168.0.18:8787/v1/pengunjung/login/' +
                             username;
@@ -143,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                     if (decodedData != null) {
                       if (username ==
                           decodedData['data']['usernamePengunjung']) {
-                        if (password ==
+                        if (md5.convert(utf8.encode(password)).toString() ==
                             decodedData['data']['passwordPengunjung']) {
                           Navigator.pushReplacement(
                             context,
