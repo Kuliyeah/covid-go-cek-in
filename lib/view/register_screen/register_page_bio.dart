@@ -27,6 +27,8 @@ class RegisterPageBio extends StatelessWidget {
 }
 
 Widget _buildContent(BuildContext context, String username, String password) {
+    TextEditingController namaController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
   return Center(
     child: SingleChildScrollView(
       scrollDirection: Axis.vertical,

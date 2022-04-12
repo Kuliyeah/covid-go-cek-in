@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:covid_go_cek_in/helperurl.dart';
 import 'package:covid_go_cek_in/view/screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import '../lupa_password_screen/lupa_password_page.dart';
@@ -154,10 +155,8 @@ class _LoginPageState extends State<LoginPage> {
                     String password = passwordController.text;
 
                     // Ini pake IPV4, jadi klo beda pc gk bisa
-                    String url =
-                        'http://192.168.0.16:8787/v1/pengunjung/login/' +
-                            username;
-                    var response = await http.get(url);
+                    String url = MyUrl().getUrl();
+                    var response = await http.get("$url/v1/pengunjung/login/" + username);
                     var decodedData = jsonDecode(response.body);
 
                     if (decodedData != null) {
