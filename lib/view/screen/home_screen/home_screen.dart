@@ -148,7 +148,7 @@ class DetailKasusState extends State<DetailKasus> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 350.0,
+      height: 400.0,
       width: 300.0,
       child: FutureBuilder<Kasus>(
         future: futurePost,

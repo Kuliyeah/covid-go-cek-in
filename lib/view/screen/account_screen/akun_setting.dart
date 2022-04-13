@@ -225,10 +225,21 @@ Widget _buildContent(BuildContext context) {
               ],
             ),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => const LoginPage()));
+              logindata.setBool('login', true);
+
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const LoginPage(),
+                ),
+              );
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Berhasil logout"),
+                  duration: Duration(milliseconds: 1000),
+                ),
+              );
             },
           ),
         ],

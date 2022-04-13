@@ -1,5 +1,4 @@
 import 'package:covid_go_cek_in/constant/constant.dart';
-import 'package:covid_go_cek_in/view/login_screen/login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'akun_setting.dart';
 import 'package:flutter/material.dart';
@@ -42,30 +41,6 @@ class AkunContainerState extends State<AkunContainer> {
               padding: const EdgeInsets.only(top: 45, left: 30, right: 30),
               child: Row(
                 children: <Widget>[
-                  GestureDetector(
-                    child: Icon(
-                      Icons.arrow_back,
-                      color: textColor,
-                      size: 35,
-                    ),
-                    onTap: () {
-                      logindata.setBool('login', true);
-
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => const LoginPage(),
-                        ),
-                      );
-
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Berhasil logout"),
-                          duration: Duration(milliseconds: 1000),
-                        ),
-                      );
-                    },
-                  ),
                   const Spacer(),
                   GestureDetector(
                     child: Icon(
@@ -75,10 +50,12 @@ class AkunContainerState extends State<AkunContainer> {
                     ),
                     onTap: () {
                       Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  const AkunSetting()));
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const AkunSetting(),
+                        ),
+                      );
                     },
                   ),
                 ],

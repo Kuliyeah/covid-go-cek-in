@@ -44,11 +44,24 @@ class TilesAccountSetting extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            const Icon(
-              Icons.edit,
-              color: Colors.black54,
-              size: 25,
-            ),
+            GestureDetector(
+              child: const Icon(
+                Icons.edit,
+                color: Colors.black54,
+                size: 25,
+              ),
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const AlertDialog(
+                      title: Text('Ganti Data'),
+                      content: DetailKasus(),
+                    );
+                  },
+                );
+              },
+            )
           ],
         ),
       ],
@@ -60,4 +73,44 @@ Widget _buildMargin(double n) {
   return SizedBox(
     height: n,
   );
+}
+
+class DetailKasus extends StatefulWidget {
+  const DetailKasus({Key? key}) : super(key: key);
+
+  @override
+  DetailKasusState createState() => DetailKasusState();
+}
+
+class DetailKasusState extends State<DetailKasus> {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 125.0,
+      width: 300.0,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: <Widget>[
+          TextFormField(
+            decoration: const InputDecoration(
+              hintText: "Nama Lengkap",
+              hintStyle: TextStyle(fontSize: 15, color: Colors.black45),
+            ),
+          ),
+          _buildMargin(20),
+          ButtonTheme(
+            minWidth: 100.0,
+            height: 35,
+            // ignore: deprecated_member_use
+            child: RaisedButton(
+              child: const Text("Perbarui"),
+              color: Colors.green,
+              textColor: Colors.white,
+              onPressed: () {},
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
