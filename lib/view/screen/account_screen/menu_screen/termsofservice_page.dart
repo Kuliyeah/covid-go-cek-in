@@ -3,6 +3,8 @@ import '../akun_setting.dart';
 import 'package:flutter/material.dart';
 
 class TermsPage extends StatelessWidget {
+  const TermsPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,11 +13,11 @@ class TermsPage extends StatelessWidget {
       body: _buildContent(context),
       appBar: AppBar(
         elevation: 0,
-        title: Text(
+        title: const Text(
           "Terms of Service",
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             _goBack(context);
           },
@@ -26,8 +28,10 @@ class TermsPage extends StatelessWidget {
 }
 
 _goBack(BuildContext context) {
-  Navigator.pushReplacement(context,
-      MaterialPageRoute(builder: (BuildContext context) => AkunSetting()));
+  Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+          builder: (BuildContext context) => const AkunSetting()));
 }
 
 Widget _buildContent(BuildContext context) {
@@ -35,92 +39,92 @@ Widget _buildContent(BuildContext context) {
     scrollDirection: Axis.vertical,
     child: SafeArea(
         child: Padding(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("Versi yang terinstal 1.0.2"),
+          const Text("Versi yang terinstal 1.0.2"),
           _buildMargin(5),
-          Divider(color: Colors.black45),
+          const Divider(color: Colors.black45),
           _buildMargin(10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
+              const Text(
                 "Versi 1.0.2",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               _buildMargin(5),
-              Text("Target API Level: 30 (Android 11)"),
+              const Text("Target API Level: 30 (Android 11)"),
               _buildMargin(5),
-              Text("Minimum API Level: 21 (Lolipop)"),
+              const Text("Minimum API Level: 21 (Lolipop)"),
               _buildMargin(5),
-              Text("Tanggal Rilis: 24 Maret 2022"),
+              const Text("Tanggal Rilis: 24 Maret 2022"),
               _buildMargin(10),
-              Text(
+              const Text(
                 "Release Notes:",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               _buildMargin(5),
-              Text("- Penambahan fitur lihat dan edit profile"),
+              const Text("- Penambahan fitur lihat dan edit profile"),
               _buildMargin(5),
-              Text("- Penambahan fitur riwayat check-in"),
+              const Text("- Penambahan fitur riwayat check-in"),
               _buildMargin(5),
-              Text("- Penambahan fitur berita"),
+              const Text("- Penambahan fitur berita"),
               _buildMargin(5),
-              Text("- Fix bug lihat berita"),
+              const Text("- Fix bug lihat berita"),
               _buildMargin(30),
             ],
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
+              const Text(
                 "Versi 1.0.1",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               _buildMargin(5),
-              Text("Target API Level: 30 (Android 11)"),
+              const Text("Target API Level: 30 (Android 11)"),
               _buildMargin(5),
-              Text("Minimum API Level: 21 (Lolipop)"),
+              const Text("Minimum API Level: 21 (Lolipop)"),
               _buildMargin(5),
-              Text("Tanggal Rilis: 20 Maret 2022"),
+              const Text("Tanggal Rilis: 20 Maret 2022"),
               _buildMargin(10),
-              Text(
+              const Text(
                 "Release Notes:",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               _buildMargin(5),
-              Text("- Fix bug login"),
+              const Text("- Fix bug login"),
               _buildMargin(5),
-              Text("- Fix bug daftar akun"),
+              const Text("- Fix bug daftar akun"),
               _buildMargin(30),
             ],
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
+              const Text(
                 "Versi 1.0.0",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               _buildMargin(5),
-              Text("Target API Level: 30 (Android 11)"),
+              const Text("Target API Level: 30 (Android 11)"),
               _buildMargin(5),
-              Text("Minimum API Level: 21 (Lolipop)"),
+              const Text("Minimum API Level: 21 (Lolipop)"),
               _buildMargin(5),
-              Text("Tanggal Rilis: 20 Maret 2022"),
+              const Text("Tanggal Rilis: 20 Maret 2022"),
               _buildMargin(10),
-              Text(
+              const Text(
                 "Release Notes:",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               _buildMargin(5),
-              Text("- Penambahan fitur login"),
+              const Text("- Penambahan fitur login"),
               _buildMargin(5),
-              Text("- Penambahan fitur daftar akun"),
+              const Text("- Penambahan fitur daftar akun"),
               _buildMargin(5),
-              Text("- Penambahan fitur scan check-in"),
+              const Text("- Penambahan fitur scan check-in"),
               _buildMargin(30),
             ],
           )

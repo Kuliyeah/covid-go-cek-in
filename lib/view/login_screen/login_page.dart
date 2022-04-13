@@ -1,18 +1,33 @@
+import 'dart:convert';
+import 'package:covid_go_cek_in/helperurl.dart';
 import 'package:covid_go_cek_in/view/screen/main_screen.dart';
 import 'package:flutter/material.dart';
-import '../screen/home_screen/home_screen.dart';
 import '../lupa_password_screen/lupa_password_page.dart';
 import '../register_screen/register_page.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
+import 'package:crypto/crypto.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:http/http.dart' as http;
 
 bool _showPassword = false;
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
+final usernameController = TextEditingController();
+final passwordController = TextEditingController();
+
+late SharedPreferences logindata;
+late bool newuser;
+
 class _LoginPageState extends State<LoginPage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green.shade50,
@@ -26,12 +41,27 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  @override
+  void initState() {
+    super.initState();
+    checkAlreadyLogin();
+  }
+
+  void checkAlreadyLogin() async {
+    logindata = await SharedPreferences.getInstance();
+    newuser = (logindata.getBool('login') ?? true);
+    if (newuser == false) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const MainScreen()));
+    }
+  }
+
   Widget _buildContent(BuildContext context) {
     return Center(
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
-          padding: EdgeInsets.all(40.0),
+          padding: const EdgeInsets.all(40.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -41,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 150,
               ),
               _buildMargin(30),
-              Align(
+              const Align(
                   alignment: Alignment.topLeft,
                   child: Text(
                     "Login",
@@ -53,23 +83,26 @@ class _LoginPageState extends State<LoginPage> {
                   )),
               _buildMargin(20),
               TextFormField(
+                controller: usernameController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       width: 0,
                       style: BorderStyle.none,
                     ),
                   ),
-                  contentPadding: EdgeInsets.only(left: 25),
+                  contentPadding: const EdgeInsets.only(left: 25),
                   hintText: "Username",
-                  hintStyle: TextStyle(fontSize: 15, color: Colors.black45),
+                  hintStyle:
+                      const TextStyle(fontSize: 15, color: Colors.black45),
                   filled: true,
                   fillColor: Colors.white,
                 ),
               ),
               _buildMargin(20),
               TextFormField(
+                controller: passwordController,
                 obscureText: !_showPassword,
                 decoration: InputDecoration(
                   suffixIcon: IconButton(
@@ -87,14 +120,15 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       width: 0,
                       style: BorderStyle.none,
                     ),
                   ),
-                  contentPadding: EdgeInsets.only(left: 25),
+                  contentPadding: const EdgeInsets.only(left: 25),
                   hintText: "Password",
-                  hintStyle: TextStyle(fontSize: 15, color: Colors.black45),
+                  hintStyle:
+                      const TextStyle(fontSize: 15, color: Colors.black45),
                   filled: true,
                   fillColor: Colors.white,
                 ),
@@ -105,18 +139,66 @@ class _LoginPageState extends State<LoginPage> {
                 height: 45,
                 // ignore: deprecated_member_use
                 child: RaisedButton(
-                  child: Text("Masuk",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  child: const Text(
+                    "Masuk",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   color: Colors.green,
                   textColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                MainScreen()));
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                  ),
+                  onPressed: () async {
+                    String username = usernameController.text;
+                    String password = passwordController.text;
+
+                    // Ini pake IPV4, jadi klo beda pc gk bisa
+                    String url = MyUrl().getUrl();
+                    var response = await http.get("$url/v1/pengunjung/login/" + username);
+                    var decodedData = jsonDecode(response.body);
+
+                    if (decodedData != null) {
+                      if (username ==
+                          decodedData['data']['usernamePengunjung']) {
+                        if (md5.convert(utf8.encode(password)).toString() ==
+                            decodedData['data']['passwordPengunjung']) {
+                          logindata.setBool('login', false);
+                          logindata.setString('username', username);
+
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const MainScreen(),
+                            ),
+                          );
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Selamat datang " +
+                                  decodedData['data']['namaPengunjung']),
+                              duration: const Duration(milliseconds: 1000),
+                            ),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Password tidak sesuai"),
+                              duration: Duration(milliseconds: 1000),
+                            ),
+                          );
+                        }
+                      }
+                    } else if (decodedData == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Akun tidak terdaftar"),
+                          duration: Duration(milliseconds: 1000),
+                        ),
+                      );
+                    }
                   },
                 ),
               ),
@@ -124,7 +206,7 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Belum Punya Akun?",
                     style: TextStyle(
                       fontSize: 15,
@@ -132,7 +214,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   GestureDetector(
-                    child: Text(
+                    child: const Text(
                       "  Daftar Disini!",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -145,14 +227,14 @@ class _LoginPageState extends State<LoginPage> {
                           context,
                           MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  RegisterPage()));
+                                  const RegisterPage()));
                     },
                   )
                 ],
               ),
               _buildMargin(20),
               GestureDetector(
-                child: Text(
+                child: const Text(
                   "Lupa Password",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -166,7 +248,7 @@ class _LoginPageState extends State<LoginPage> {
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              LupaPasswordPage()));
+                              const LupaPasswordPage()));
                 },
               )
             ],

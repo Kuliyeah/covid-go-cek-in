@@ -3,7 +3,7 @@ import '../../../../constant/constant.dart';
 
 class VisitorPage extends StatelessWidget {
   // final List<Users> cases;
-  VisitorPage({Key? key}) : super(key: key);
+  const VisitorPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,95 +26,113 @@ Widget _buildContent(BuildContext context) {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: const <Widget>[
                     Text(
                       "ABATA COFFEE",
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900),
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.w900),
                     ),
                     Text("Jl. in aja dulu, Gg. Cocok yaudah")
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 IconButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.close),
+                  icon: const Icon(Icons.close),
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 36,
             ),
             Row(
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: const <Widget>[
                     Text(
                       "Pengujung",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
                     ),
                     Text("3 Maret 2021")
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 Text(
                   "9/30",
                   style: TextStyle(
-                      color: mainColor, fontSize: 18, fontWeight: FontWeight.bold),
+                      color: mainColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
                 ),
               ],
             ),
-            SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Row(
               children: [
                 Visitors("abasdasds", "09:30"),
-                Spacer(),
+                const Spacer(),
                 Visitors("abasdasds", "09:30"),
               ],
             ),
-            SizedBox(height: 8,),
+            const SizedBox(
+              height: 8,
+            ),
             Row(
               children: [
                 Visitors("abasdasds", "09:30"),
-                Spacer(),
+                const Spacer(),
                 Visitors("abasdasds", "09:30"),
               ],
             ),
-            SizedBox(height: 8,),
+            const SizedBox(
+              height: 8,
+            ),
             Row(
               children: [
                 Visitors("abasdasds", "09:30"),
-                Spacer(),
+                const Spacer(),
                 Visitors("abasdasds", "09:30"),
               ],
             ),
-            SizedBox(height: 8,),
+            const SizedBox(
+              height: 8,
+            ),
             Row(
               children: [
                 Visitors("abasdasds", "09:30"),
-                Spacer(),
+                const Spacer(),
                 Visitors("abasdasds", "09:30"),
               ],
             ),
-            SizedBox(height: 8,),
+            const SizedBox(
+              height: 8,
+            ),
             Row(
               children: [
                 Visitors("abasdasds", "09:30"),
-                Spacer(),
+                const Spacer(),
                 Visitors("abasdasds", "09:30"),
               ],
             ),
-            SizedBox(height: 8,),
+            const SizedBox(
+              height: 8,
+            ),
             Row(
               children: [
                 Visitors("abasdasds", "09:30"),
-                Spacer(),
+                const Spacer(),
                 Visitors("abasdasds", "09:30"),
               ],
             ),
-            SizedBox(height: 8,),
+            const SizedBox(
+              height: 8,
+            ),
           ],
         ),
       ),
@@ -122,10 +140,11 @@ Widget _buildContent(BuildContext context) {
   );
 }
 
+// ignore: must_be_immutable
 class Visitors extends StatelessWidget {
   String nama;
   String jam;
-  Visitors(this.nama, this.jam);
+  Visitors(this.nama, this.jam, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -146,12 +165,15 @@ class Visitors extends StatelessWidget {
               width: 70,
               height: 70,
             ),
-            Spacer(),
+            const Spacer(),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(nama, style: TextStyle(fontWeight: FontWeight.bold),),
+                Text(
+                  nama,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
                 Text(jam),
               ],
             )

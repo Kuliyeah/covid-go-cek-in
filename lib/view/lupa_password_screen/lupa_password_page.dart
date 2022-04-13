@@ -3,6 +3,8 @@ import '../screen/main_screen.dart';
 import '../login_screen/login_page.dart';
 
 class LupaPasswordPage extends StatelessWidget {
+  const LupaPasswordPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +20,7 @@ Widget _buildContent(BuildContext context) {
     child: SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Container(
-        padding: EdgeInsets.all(40.0),
+        padding: const EdgeInsets.all(40.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -28,7 +30,7 @@ Widget _buildContent(BuildContext context) {
               height: 150,
             ),
             _buildMargin(30),
-            Align(
+            const Align(
                 alignment: Alignment.topLeft,
                 child: Text(
                   "Lupa Akun",
@@ -43,14 +45,14 @@ Widget _buildContent(BuildContext context) {
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     width: 0,
                     style: BorderStyle.none,
                   ),
                 ),
-                contentPadding: EdgeInsets.only(left: 25),
+                contentPadding: const EdgeInsets.only(left: 25),
                 hintText: "Username",
-                hintStyle: TextStyle(fontSize: 15, color: Colors.black45),
+                hintStyle: const TextStyle(fontSize: 15, color: Colors.black45),
                 filled: true,
                 fillColor: Colors.white,
               ),
@@ -61,23 +63,24 @@ Widget _buildContent(BuildContext context) {
               height: 45,
               // ignore: deprecated_member_use
               child: RaisedButton(
-                child: Text("Pulihkan Akun",
+                child: const Text("Pulihkan Akun",
                     style: TextStyle(fontWeight: FontWeight.bold)),
                 color: Colors.green,
                 textColor: Colors.white,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 onPressed: () {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => MainScreen()));
+                          builder: (BuildContext context) =>
+                              const MainScreen()));
                 },
               ),
             ),
             _buildMargin(20),
             GestureDetector(
-              child: Text(
+              child: const Text(
                 "Kembali",
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -90,7 +93,7 @@ Widget _buildContent(BuildContext context) {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => LoginPage()));
+                        builder: (BuildContext context) => const LoginPage()));
               },
             )
           ],

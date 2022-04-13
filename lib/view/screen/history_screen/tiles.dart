@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class Tiles extends StatelessWidget {
-  String _namaTempat;
-  String _alamat;
-  String _tanggalKunjungan;
-  String _jamKunjungan;
+  final String _namaTempat;
+  final String _alamat;
+  final String _tanggalKunjungan;
+  final String _jamKunjungan;
 
-  Tiles(this._namaTempat, this._alamat, this._tanggalKunjungan,
-      this._jamKunjungan);
+  const Tiles(this._namaTempat, this._alamat, this._tanggalKunjungan,
+      this._jamKunjungan,
+      {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class Tiles extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(4)),
       child: Padding(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         child: Row(
           children: [
             Column(
@@ -26,27 +28,28 @@ class Tiles extends StatelessWidget {
               children: [
                 Text(
                   _namaTempat,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-                Spacer(),
+                const Spacer(),
                 Text(
                   _alamat,
-                  style: TextStyle(fontSize: 12),
+                  style: const TextStyle(fontSize: 12),
                 )
               ],
             ),
-            Spacer(),
+            const Spacer(),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
                   _tanggalKunjungan,
-                  style: TextStyle(fontSize: 14),
+                  style: const TextStyle(fontSize: 14),
                 ),
-                Spacer(),
+                const Spacer(),
                 Text(
                   _jamKunjungan,
-                  style: TextStyle(fontSize: 12),
+                  style: const TextStyle(fontSize: 12),
                 )
               ],
             ),

@@ -9,6 +9,8 @@ import 'setting_aplikasi_screen/setting_aplikasi_page.dart';
 import '../history_screen/history_page.dart';
 
 class AkunSetting extends StatelessWidget {
+  const AkunSetting({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,11 +19,11 @@ class AkunSetting extends StatelessWidget {
       body: _buildContent(context),
       appBar: AppBar(
         elevation: 0,
-        title: Text(
+        title: const Text(
           "Pengaturan",
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             _goBack(context);
           },
@@ -33,7 +35,7 @@ class AkunSetting extends StatelessWidget {
 
 _goBack(BuildContext context) {
   Navigator.pushReplacement(context,
-      MaterialPageRoute(builder: (BuildContext context) => MainScreen()));
+      MaterialPageRoute(builder: (BuildContext context) => const MainScreen()));
 }
 
 Widget _buildContent(BuildContext context) {
@@ -44,7 +46,7 @@ Widget _buildContent(BuildContext context) {
         children: <Widget>[
           GestureDetector(
             child: Row(
-              children: <Widget>[
+              children: const <Widget>[
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
                   child: Icon(
@@ -69,13 +71,13 @@ Widget _buildContent(BuildContext context) {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => HistoryPage()));
+                      builder: (BuildContext context) => const HistoryPage()));
             },
           ),
-          Divider(color: Colors.black45),
+          const Divider(color: Colors.black45),
           GestureDetector(
             child: Row(
-              children: <Widget>[
+              children: const <Widget>[
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
                   child: Icon(
@@ -101,13 +103,13 @@ Widget _buildContent(BuildContext context) {
                   context,
                   MaterialPageRoute(
                       builder: (BuildContext context) =>
-                          SettingAplikasiPage()));
+                          const SettingAplikasiPage()));
             },
           ),
-          Divider(color: Colors.black45),
+          const Divider(color: Colors.black45),
           GestureDetector(
             child: Row(
-              children: <Widget>[
+              children: const <Widget>[
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
                   child: Icon(
@@ -132,13 +134,13 @@ Widget _buildContent(BuildContext context) {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => LogPage()));
+                      builder: (BuildContext context) => const LogPage()));
             },
           ),
-          Divider(color: Colors.black45),
+          const Divider(color: Colors.black45),
           GestureDetector(
             child: Row(
-              children: <Widget>[
+              children: const <Widget>[
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
                   child: Icon(
@@ -164,13 +166,13 @@ Widget _buildContent(BuildContext context) {
                   context,
                   MaterialPageRoute(
                       builder: (BuildContext context) =>
-                          Term_Of_Service_Page()));
+                          const Term_Of_Service_Page()));
             },
           ),
-          Divider(color: Colors.black45),
+          const Divider(color: Colors.black45),
           GestureDetector(
             child: Row(
-              children: <Widget>[
+              children: const <Widget>[
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
                   child: Icon(
@@ -195,13 +197,13 @@ Widget _buildContent(BuildContext context) {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => Bantuan_page()));
+                      builder: (BuildContext context) => const Bantuan_page()));
             },
           ),
-          Divider(color: Colors.black45),
+          const Divider(color: Colors.black45),
           GestureDetector(
             child: Row(
-              children: <Widget>[
+              children: const <Widget>[
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
                   child: Icon(
@@ -226,7 +228,7 @@ Widget _buildContent(BuildContext context) {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => LoginPage()));
+                      builder: (BuildContext context) => const LoginPage()));
             },
           ),
         ],

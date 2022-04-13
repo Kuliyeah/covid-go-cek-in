@@ -7,16 +7,18 @@ import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'home_screen/home_screen.dart';
 
 class MainScreen extends StatefulWidget {
+  const MainScreen({Key? key}) : super(key: key);
+
   @override
-  MainScreenState createState() => new MainScreenState();
+  MainScreenState createState() => MainScreenState();
 }
 
 class MainScreenState extends State<MainScreen> {
   int currentIndex = 1;
   final List<Widget> viewContainer = [
-    ScanPage(),
-    HomePage(),
-    AkunContainer()
+    const ScanPage(),
+    const HomePage(),
+    const AkunContainer()
   ];
 
   @override
@@ -36,29 +38,31 @@ class MainScreenState extends State<MainScreen> {
         child: viewContainer[currentIndex],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.history),
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => HistoryPage()));
+        child: const Icon(Icons.history),
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const HistoryPage()));
         },
       ),
-      bottomNavigationBar: new BottomNavigationBar(
-          onTap: onTabTapped, // new
-          currentIndex: currentIndex,
-          fixedColor: mainColor,
-          items: [
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.qr_code),
-              label: "Pindai",
-            ),
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.home),
-              label: "Beranda",
-            ),
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.person),
-              label: "Akun",
-            )
-          ]),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: onTabTapped, // new
+        currentIndex: currentIndex,
+        fixedColor: mainColor,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.qr_code),
+            label: "Pindai",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Beranda",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: "Akun",
+          )
+        ],
+      ),
     );
   }
 }
