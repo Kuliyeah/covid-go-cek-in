@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'visitor_screen/visitor_page.dart';
 
 // https://medium.com/flutterdevs/scanning-generating-qr-code-in-flutter-3d5251a61244
@@ -11,7 +11,7 @@ class ScanPage extends StatefulWidget {
 }
 
 class _ScanPageState extends State<ScanPage> {
-  final String _data = "";
+  String _data = "";
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +30,15 @@ class _ScanPageState extends State<ScanPage> {
           onPressed: () async {
             await FlutterBarcodeScanner.scanBarcode(
                     "#000000", "Cancle", true, ScanMode.QR)
-                .then((value) => setState(() => _data = value));
-            Navigator.push(context, MaterialPageRoute(builder: (context) => VisitorPage()));
+                .then(
+              (value) => setState(() => _data = value),
+            );
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => VisitorPage(),
+              ),
+            );
           },
         ),
       ),
