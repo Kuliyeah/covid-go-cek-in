@@ -21,9 +21,9 @@ class _ScanPageState extends State<ScanPage> {
         child: TextButton(
           child: (_data !="")? Text(_data, style: TextStyle(fontSize: 24),):Text("Pindai Sekarang", style: TextStyle(fontSize: 24)),
           onPressed: () async {
-            // await FlutterBarcodeScanner.scanBarcode(
-            //         "#000000", "Cancle", true, ScanMode.QR)
-            //     .then((value) => setState(() => _data = value));
+            await FlutterBarcodeScanner.scanBarcode(
+                    "#000000", "Cancle", true, ScanMode.QR)
+                .then((value) => setState(() => _data = value));
             Navigator.push(context, MaterialPageRoute(builder: (context) => VisitorPage()));
           },
         ),
