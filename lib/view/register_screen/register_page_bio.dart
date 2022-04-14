@@ -1,11 +1,19 @@
+import 'package:covid_go_cek_in/models/Pengunjung.dart';
+import 'package:covid_go_cek_in/view/login_screen/login_page.dart';
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'dart:async';
 import '../screen/main_screen.dart';
 import '../register_screen/register_page.dart';
+import 'package:covid_go_cek_in/helperurl.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:http/http.dart' as http;
 
 // ignore: constant_identifier_names
 enum Kelamin { Pria, Wanita }
 
-Kelamin _kelaminChecked = Kelamin.Pria;
+// Kelamin _kelaminChecked = Kelamin.Pria;
 
 // ignore: must_be_immutable
 class RegisterPageBio extends StatelessWidget {
@@ -27,8 +35,30 @@ class RegisterPageBio extends StatelessWidget {
 }
 
 Widget _buildContent(BuildContext context, String username, String password) {
-    TextEditingController namaController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
+  TextEditingController namaController = TextEditingController();
+  TextEditingController noHpController = TextEditingController();
+  TextEditingController nikController = TextEditingController();
+  Kelamin? _gender = Kelamin.Pria;
+  TextEditingController ttlController = TextEditingController();
+  TextEditingController alamatController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  int umur = 18;
+
+  Future insertPengunjung() async {
+    String url = MyUrl().getUrl();
+    final response = await http.post("$url/v1/pengunjung", body: {
+      "usernamePengunjung": username,
+      "passwordPengunjung": password,
+      "namaPengunjung": namaController.text,
+      "nikPengunjung": nikController.text,
+      "alamatPengunjung": alamatController.text,
+      "noHpPengunjung": noHpController.text,
+      "umurPengunjung": "18",
+      "jenisKelaminPengunjung": _gender.toString().split('.').last,
+      "statusKesehatan": "Negatif",
+    });
+  }
+
   return Center(
     child: SingleChildScrollView(
       scrollDirection: Axis.vertical,
@@ -42,6 +72,7 @@ Widget _buildContent(BuildContext context, String username, String password) {
             Text(password),
             _buildMargin(20),
             TextFormField(
+              controller: namaController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -59,6 +90,7 @@ Widget _buildContent(BuildContext context, String username, String password) {
             ),
             _buildMargin(20),
             TextFormField(
+              controller: noHpController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -76,6 +108,7 @@ Widget _buildContent(BuildContext context, String username, String password) {
             ),
             _buildMargin(20),
             TextFormField(
+              controller: nikController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -100,9 +133,10 @@ Widget _buildContent(BuildContext context, String username, String password) {
                       // ignore: missing_required_param
                       leading: Radio<Kelamin>(
                           value: Kelamin.Pria,
-                          groupValue: _kelaminChecked,
+                          groupValue: _gender,
                           activeColor: Colors.green,
-                          onChanged: (value) {
+                          onChanged: (Kelamin? value) {
+                            _gender = value;
                             //do your operation while chaning value
                           }),
                     )),
@@ -114,15 +148,17 @@ Widget _buildContent(BuildContext context, String username, String password) {
                       // ignore: missing_required_param
                       leading: Radio<Kelamin>(
                           value: Kelamin.Wanita,
-                          groupValue: _kelaminChecked,
+                          groupValue: _gender,
                           activeColor: Colors.green,
                           onChanged: (value) {
+                            _gender = value;
                             //do your operation while chaning value
                           }),
                     )),
               ],
             ),
             TextFormField(
+              controller: ttlController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -140,6 +176,7 @@ Widget _buildContent(BuildContext context, String username, String password) {
             ),
             _buildMargin(20),
             TextField(
+              controller: alamatController,
               maxLines: 6,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
@@ -158,6 +195,7 @@ Widget _buildContent(BuildContext context, String username, String password) {
             ),
             _buildMargin(20),
             TextFormField(
+              controller: emailController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -184,12 +222,17 @@ Widget _buildContent(BuildContext context, String username, String password) {
                 textColor: Colors.white,
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                onPressed: () {
+                onPressed: () async {
+                  insertPengunjung();
+                  // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  //   content: Text("Berhasil Daftar Akun"),
+                  //   duration: Duration(milliseconds: 1000),
+                  // ));
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              const MainScreen()));
+                              const LoginPage()));
                 },
               ),
             ),
