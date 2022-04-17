@@ -1,11 +1,16 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:covid_go_cek_in/models/Pengunjung.dart';
 import 'package:covid_go_cek_in/view/login_screen/login_page.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
+import 'package:intl/intl.dart';
 import 'dart:async';
+import 'dart:convert';
+import 'package:crypto/crypto.dart';
 import '../screen/main_screen.dart';
 import '../register_screen/register_page.dart';
 import 'package:covid_go_cek_in/helperurl.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
@@ -16,7 +21,7 @@ enum Kelamin { Pria, Wanita }
 // Kelamin _kelaminChecked = Kelamin.Pria;
 
 // ignore: must_be_immutable
-class RegisterPageBio extends StatelessWidget {
+class RegisterPageBio extends StatefulWidget {
   String username;
   String password;
 
@@ -25,11 +30,16 @@ class RegisterPageBio extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<RegisterPageBio> createState() => _RegisterPageBioState();
+}
+
+class _RegisterPageBioState extends State<RegisterPageBio> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green.shade50,
       resizeToAvoidBottomInset: false,
-      body: _buildContent(context, username, password),
+      body: _buildContent(context, widget.username, widget.password),
     );
   }
 }
@@ -39,21 +49,28 @@ Widget _buildContent(BuildContext context, String username, String password) {
   TextEditingController noHpController = TextEditingController();
   TextEditingController nikController = TextEditingController();
   Kelamin? _gender = Kelamin.Pria;
-  TextEditingController ttlController = TextEditingController();
+  DateTime ttlController = DateTime.now();
+
   TextEditingController alamatController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  int umur = 18;
+
+  String age() {
+    DateTime ttl = DateFormat("yyyy-MM-dd").parse(ttlController.toString());
+    DateTime today = DateTime.now();
+    int umur = today.year - ttl.year;
+    return umur.toString();
+  }
 
   Future insertPengunjung() async {
     String url = MyUrl().getUrl();
     final response = await http.post("$url/v1/pengunjung", body: {
       "usernamePengunjung": username,
-      "passwordPengunjung": password,
+      "passwordPengunjung": md5.convert(utf8.encode(password)).toString(),
       "namaPengunjung": namaController.text,
       "nikPengunjung": nikController.text,
       "alamatPengunjung": alamatController.text,
       "noHpPengunjung": noHpController.text,
-      "umurPengunjung": "18",
+      "umurPengunjung": age(),
       "jenisKelaminPengunjung": _gender.toString().split('.').last,
       "statusKesehatan": "Negatif",
     });
@@ -68,8 +85,8 @@ Widget _buildContent(BuildContext context, String username, String password) {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(username),
-            Text(password),
+            // Text(username),
+            // Text(password),
             _buildMargin(20),
             TextFormField(
               controller: namaController,
@@ -124,56 +141,123 @@ Widget _buildContent(BuildContext context, String username, String password) {
                 fillColor: Colors.white,
               ),
             ),
-            Row(
+            Column(
               children: <Widget>[
-                Expanded(
-                    flex: 5,
-                    child: ListTile(
-                      title: const Text('Pria', style: TextStyle(fontSize: 15)),
-                      // ignore: missing_required_param
-                      leading: Radio<Kelamin>(
-                          value: Kelamin.Pria,
-                          groupValue: _gender,
-                          activeColor: Colors.green,
-                          onChanged: (Kelamin? value) {
-                            _gender = value;
-                            //do your operation while chaning value
-                          }),
-                    )),
-                Expanded(
-                    flex: 7,
-                    child: ListTile(
-                      title:
-                          const Text('Wanita', style: TextStyle(fontSize: 15)),
-                      // ignore: missing_required_param
-                      leading: Radio<Kelamin>(
-                          value: Kelamin.Wanita,
-                          groupValue: _gender,
-                          activeColor: Colors.green,
-                          onChanged: (value) {
-                            _gender = value;
-                            //do your operation while chaning value
-                          }),
-                    )),
+                RadioListTile<Kelamin>(
+                  title: const Text(
+                    "Pria",
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  value: Kelamin.Pria,
+                  groupValue: _gender,
+                  // activeColor: Colors.green,
+                  onChanged: (Kelamin? value) {
+                    setState(() {
+                      _gender = value;
+                    });
+                  },
+                ),
+
+                RadioListTile<Kelamin>(
+                  title: const Text(
+                    "Wanita",
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  value: Kelamin.Wanita,
+                  groupValue: _gender,
+                  // activeColor: Colors.green,
+                  onChanged: (Kelamin? value) {
+                    setState(() {
+                      _gender = value;
+                    });
+                  },
+                ),
+                // Expanded(
+                //     flex: 5,
+                //     child: ListTile(
+                //       title: const Text('Pria', style: TextStyle(fontSize: 15)),
+                //       // ignore: missing_required_param
+                //       leading: Radio<Kelamin>(
+                //           value: Kelamin.Pria,
+                //           groupValue: _gender,
+                //           activeColor: Colors.green,
+                //           onChanged: (Kelamin? value) {
+                //             _gender = value;
+                //             //do your operation while chaning value
+                //           }),
+                //     )),
+                // Expanded(
+                //     flex: 7,
+                //     child: ListTile(
+                //       title:
+                //           const Text('Wanita', style: TextStyle(fontSize: 15)),
+                //       // ignore: missing_required_param
+                //       leading: Radio<Kelamin>(
+                //           value: Kelamin.Wanita,
+                //           groupValue: _gender,
+                //           activeColor: Colors.green,
+                //           onChanged: (value) {
+                //             _gender = value;
+                //             //do your operation while chaning value
+                //           }),
+                //     )),
               ],
             ),
-            TextFormField(
-              controller: ttlController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: const BorderSide(
-                    width: 0,
-                    style: BorderStyle.none,
-                  ),
+            Row(children: <Widget>[
+              Container(
+                margin: const EdgeInsets.only(left: 14.0, right: 160.0),
+                child: const Text(
+                  "Tanggal Lahir",
+                  style: TextStyle(fontSize: 15.0),
                 ),
-                contentPadding: const EdgeInsets.only(left: 25),
-                hintText: "Tanggal Lahir",
-                hintStyle: const TextStyle(fontSize: 15, color: Colors.black45),
-                filled: true,
-                fillColor: Colors.white,
               ),
-            ),
+              ButtonTheme(
+                minWidth: 15.0,
+                height: 40.0,
+                child: RaisedButton(
+                  color: Colors.green,
+                  onPressed: () {
+                    DatePicker.showDatePicker(context,
+                        showTitleActions: true,
+                        minTime: DateTime(1900, 1, 1),
+                        maxTime: DateTime.now(), onChanged: (date) {
+                      ttlController = DateFormat("yyyy-MM-dd").parse(date.toString());
+                    },
+                        onConfirm: (date) {},
+                        currentTime: DateTime.now(),
+                        locale: LocaleType.en);
+                  },
+                  child: const Icon(Icons.date_range_outlined),
+                ),
+              ),
+            ]),
+            // onTap: () => showDialog(
+            //       context: context,
+            //       builder: (BuildContext context) => Container( padding: const EdgeInsets.all(40.0), color: Colors.white,
+            //         child: SfDateRangePicker(
+            //           selectionMode: DateRangePickerSelectionMode.single,
+            //           controller: ttlController,
+            //         ),
+            //       ),
+            //     )
+
+            // TextFormField(
+            //   controller: ttlController,
+            //   decoration: InputDecoration(
+            //     border: OutlineInputBorder(
+            //       borderRadius: BorderRadius.circular(20),
+            //       borderSide: const BorderSide(
+            //         width: 0,
+            //         style: BorderStyle.none,
+            //       ),
+            //     ),
+            //     contentPadding: const EdgeInsets.only(left: 25),
+            //     hintText: "Tanggal Lahir",
+            //     hintStyle: const TextStyle(fontSize: 15, color: Colors.black45),
+            //     filled: true,
+            //     fillColor: Colors.white,
+            //   ),
+            // ),
             _buildMargin(20),
             TextField(
               controller: alamatController,
@@ -215,7 +299,6 @@ Widget _buildContent(BuildContext context, String username, String password) {
             ButtonTheme(
               minWidth: 100.0,
               height: 45,
-              // ignore: deprecated_member_use
               child: RaisedButton(
                 child: const Text("Daftar"),
                 color: Colors.green,
@@ -224,10 +307,10 @@ Widget _buildContent(BuildContext context, String username, String password) {
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 onPressed: () async {
                   insertPengunjung();
-                  // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  //   content: Text("Berhasil Daftar Akun"),
-                  //   duration: Duration(milliseconds: 1000),
-                  // ));
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Berhasil Daftar Akun"),
+                    duration: Duration(milliseconds: 1000),
+                  ));
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
@@ -261,6 +344,8 @@ Widget _buildContent(BuildContext context, String username, String password) {
     ),
   );
 }
+
+void setState(Null Function() param0) {}
 
 Widget _buildMargin(double n) {
   return SizedBox(
