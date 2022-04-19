@@ -29,14 +29,14 @@ class _ScanPageState extends State<ScanPage> {
               : const Text("Pindai Sekarang", style: TextStyle(fontSize: 24)),
           onPressed: () async {
             await FlutterBarcodeScanner.scanBarcode(
-                    "#000000", "Cancle", true, ScanMode.QR)
+                    "#000000", "Cancel", true, ScanMode.QR)
                 .then(
               (value) => setState(() => _data = value),
             );
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => VisitorPage(),
+                builder: (context) => const VisitorPage(),
               ),
             );
           },

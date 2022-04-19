@@ -1,13 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:covid_go_cek_in/models/Pengunjung.dart';
 import 'package:covid_go_cek_in/view/login_screen/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
-import '../screen/main_screen.dart';
 import '../register_screen/register_page.dart';
 import 'package:covid_go_cek_in/helperurl.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -17,8 +15,6 @@ import 'package:http/http.dart' as http;
 
 // ignore: constant_identifier_names
 enum Kelamin { Pria, Wanita }
-
-// Kelamin _kelaminChecked = Kelamin.Pria;
 
 // ignore: must_be_immutable
 class RegisterPageBio extends StatefulWidget {
@@ -63,7 +59,7 @@ Widget _buildContent(BuildContext context, String username, String password) {
 
   Future insertPengunjung() async {
     String url = MyUrl().getUrl();
-    final response = await http.post("$url/v1/pengunjung", body: {
+    await http.post("$url/v1/pengunjung", body: {
       "usernamePengunjung": username,
       "passwordPengunjung": md5.convert(utf8.encode(password)).toString(),
       "namaPengunjung": namaController.text,
@@ -142,6 +138,7 @@ Widget _buildContent(BuildContext context, String username, String password) {
               ),
             ),
             Column(
+              mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 RadioListTile<Kelamin>(
                   title: const Text(
@@ -150,14 +147,12 @@ Widget _buildContent(BuildContext context, String username, String password) {
                   ),
                   value: Kelamin.Pria,
                   groupValue: _gender,
-                  // activeColor: Colors.green,
                   onChanged: (Kelamin? value) {
                     setState(() {
                       _gender = value;
                     });
                   },
                 ),
-
                 RadioListTile<Kelamin>(
                   title: const Text(
                     "Wanita",
@@ -165,72 +160,45 @@ Widget _buildContent(BuildContext context, String username, String password) {
                   ),
                   value: Kelamin.Wanita,
                   groupValue: _gender,
-                  // activeColor: Colors.green,
                   onChanged: (Kelamin? value) {
                     setState(() {
                       _gender = value;
                     });
                   },
                 ),
-                // Expanded(
-                //     flex: 5,
-                //     child: ListTile(
-                //       title: const Text('Pria', style: TextStyle(fontSize: 15)),
-                //       // ignore: missing_required_param
-                //       leading: Radio<Kelamin>(
-                //           value: Kelamin.Pria,
-                //           groupValue: _gender,
-                //           activeColor: Colors.green,
-                //           onChanged: (Kelamin? value) {
-                //             _gender = value;
-                //             //do your operation while chaning value
-                //           }),
-                //     )),
-                // Expanded(
-                //     flex: 7,
-                //     child: ListTile(
-                //       title:
-                //           const Text('Wanita', style: TextStyle(fontSize: 15)),
-                //       // ignore: missing_required_param
-                //       leading: Radio<Kelamin>(
-                //           value: Kelamin.Wanita,
-                //           groupValue: _gender,
-                //           activeColor: Colors.green,
-                //           onChanged: (value) {
-                //             _gender = value;
-                //             //do your operation while chaning value
-                //           }),
-                //     )),
               ],
             ),
-            Row(children: <Widget>[
-              Container(
-                margin: const EdgeInsets.only(left: 14.0, right: 160.0),
-                child: const Text(
-                  "Tanggal Lahir",
-                  style: TextStyle(fontSize: 15.0),
+            Row(
+              children: <Widget>[
+                Container(
+                  margin: const EdgeInsets.only(left: 14.0, right: 160.0),
+                  child: const Text(
+                    "Tanggal Lahir",
+                    style: TextStyle(fontSize: 15.0),
+                  ),
                 ),
-              ),
-              ButtonTheme(
-                minWidth: 15.0,
-                height: 40.0,
-                child: RaisedButton(
-                  color: Colors.green,
-                  onPressed: () {
-                    DatePicker.showDatePicker(context,
-                        showTitleActions: true,
-                        minTime: DateTime(1900, 1, 1),
-                        maxTime: DateTime.now(), onChanged: (date) {
-                      ttlController = DateFormat("yyyy-MM-dd").parse(date.toString());
+                ButtonTheme(
+                  minWidth: 15.0,
+                  height: 40.0,
+                  child: RaisedButton(
+                    color: Colors.white,
+                    onPressed: () {
+                      DatePicker.showDatePicker(context,
+                          showTitleActions: true,
+                          minTime: DateTime(1900, 1, 1),
+                          maxTime: DateTime.now(), onChanged: (date) {
+                        ttlController =
+                            DateFormat("yyyy-MM-dd").parse(date.toString());
+                      },
+                          onConfirm: (date) {},
+                          currentTime: DateTime.now(),
+                          locale: LocaleType.en);
                     },
-                        onConfirm: (date) {},
-                        currentTime: DateTime.now(),
-                        locale: LocaleType.en);
-                  },
-                  child: const Icon(Icons.date_range_outlined),
+                    child: const Icon(Icons.date_range_outlined),
+                  ),
                 ),
-              ),
-            ]),
+              ],
+            ),
             // onTap: () => showDialog(
             //       context: context,
             //       builder: (BuildContext context) => Container( padding: const EdgeInsets.all(40.0), color: Colors.white,
@@ -312,10 +280,11 @@ Widget _buildContent(BuildContext context, String username, String password) {
                     duration: Duration(milliseconds: 1000),
                   ));
                   Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const LoginPage()));
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => const LoginPage(),
+                    ),
+                  );
                 },
               ),
             ),
@@ -332,10 +301,11 @@ Widget _buildContent(BuildContext context, String username, String password) {
               ),
               onTap: () {
                 Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            const RegisterPage()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => const RegisterPage(),
+                  ),
+                );
               },
             )
           ],
