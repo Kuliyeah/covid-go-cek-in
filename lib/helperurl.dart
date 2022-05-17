@@ -1,5 +1,5 @@
 class MyUrl {
-  String url = "http://10.120.195.184:8787";
+  String url = "http://192.168.0.12:8787";
 
   String getUrl() {
     return url;
