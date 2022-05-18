@@ -1,5 +1,5 @@
 import 'package:covid_go_cek_in/constant/constant.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:covid_go_cek_in/view/screen/main_screen.dart';
 import 'akun_setting.dart';
 import 'package:flutter/material.dart';
 import 'tiles_account_setting.dart';
@@ -11,23 +11,7 @@ class AkunContainer extends StatefulWidget {
   AkunContainerState createState() => AkunContainerState();
 }
 
-late SharedPreferences logindata;
-var username = "user";
-
 class AkunContainerState extends State<AkunContainer> {
-  @override
-  void initState() {
-    super.initState();
-    initial();
-  }
-
-  void initial() async {
-    logindata = await SharedPreferences.getInstance();
-    setState(() {
-      username = logindata.getString('username').toString();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,19 +54,19 @@ class AkunContainerState extends State<AkunContainer> {
             ),
             _buildMargin(20),
             Text(
-              "Your Name Here",
+              decodedData['data']['namaPengunjung'],
               style: TextStyle(
                   fontSize: 20, color: textColor, fontWeight: FontWeight.bold),
             ),
             _buildMargin(10),
             Text(
-              "11451923344275628849",
+              decodedData['data']['nikPengunjung'],
               style: TextStyle(
                 fontSize: 15,
                 color: textColor,
               ),
             ),
-            _buildMargin(70),
+            _buildMargin(50),
             Container(
               height: 440,
               decoration: const BoxDecoration(
@@ -96,32 +80,32 @@ class AkunContainerState extends State<AkunContainer> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    const TilesAccountSetting(
-                        Icons.person, 'Nama', 'Gilang Gumelar'),
+                    TilesAccountSetting(Icons.abc, 'Username',
+                        decodedData['data']['usernamePengunjung']),
                     _buildMargin(20),
                     Container(
                       height: 1,
                       color: textColor,
                     ),
                     _buildMargin(30),
-                    const TilesAccountSetting(Icons.mail_outline, 'E-Mail',
-                        'gilanggumelar@gmail.com'),
+                    TilesAccountSetting(Icons.person, 'Nama',
+                        decodedData['data']['namaPengunjung']),
                     _buildMargin(20),
                     Container(
                       height: 1,
                       color: textColor,
                     ),
                     _buildMargin(30),
-                    const TilesAccountSetting(Icons.phone, 'Nomor Telepon',
-                        'gilanggumelar@gmail.com'),
+                    TilesAccountSetting(Icons.phone, 'Nomor Telepon',
+                        decodedData['data']['noHpPengunjung']),
                     _buildMargin(20),
                     Container(
                       height: 1,
                       color: textColor,
                     ),
                     _buildMargin(30),
-                    const TilesAccountSetting(Icons.pin_drop_outlined, 'Alamat',
-                        'gilanggumelar@gmail.com'),
+                    TilesAccountSetting(Icons.pin_drop_outlined, 'Alamat',
+                        decodedData['data']['alamatPengunjung']),
                     _buildMargin(20),
                     Container(
                       height: 1,
