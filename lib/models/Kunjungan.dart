@@ -1,36 +1,30 @@
 // ignore_for_file: file_names
 
-class Mitra {
-  Mitra({
-    required this.idMitra,
+int i = 0;
+int count = 0;
+
+class Kunjungan {
+  Kunjungan({
     required this.namaMitra,
     required this.alamatMitra,
-    required this.noHpMitra,
-    required this.jenisUsaha,
-    required this.deskripsi,
-    required this.fotoUsaha,
-    required this.status,
+    required this.tanggal,
+    required this.num_row,
   });
 
-  final int? idMitra;
   final String? namaMitra;
   final String? alamatMitra;
-  final String? noHpMitra;
-  final String? jenisUsaha;
-  final String? deskripsi;
-  final String? fotoUsaha;
-  final String? status;
+  final String? tanggal;
+  final int? num_row;
 
-  factory Mitra.fromJson(Map<String, dynamic> json) {
-    return Mitra(
-      idMitra: json['data']['idMitra'],
-      namaMitra: json['data']['namaMitra'],
-      alamatMitra: json['data']['alamatMitra'],
-      noHpMitra: json['data']['noHpMitra'],
-      jenisUsaha: json['data']['jenisUsaha'],
-      deskripsi: json['data']['deskripsi'],
-      fotoUsaha: json['data']['fotoUsaha'],
-      status: json['data']['fotoUsaha'],
+  factory Kunjungan.fromJson(Map<String, dynamic> json) {
+    // ignore: unused_local_variable
+    count = json['data'][i]['num_row'];
+    i++;
+    return Kunjungan(
+      namaMitra: json['data'][count]['namaMitra'],
+      alamatMitra: json['data'][count]['alamatMitra'],
+      tanggal: json['data'][count]['tanggal'],
+      num_row: json['data'][count]['num_row'] + 1,
     );
   }
 }

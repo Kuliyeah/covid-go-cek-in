@@ -5,10 +5,8 @@ class Tiles extends StatelessWidget {
   final String _namaTempat;
   final String _alamat;
   final String _tanggalKunjungan;
-  final String _jamKunjungan;
 
   const Tiles(this._namaTempat, this._alamat, this._tanggalKunjungan,
-      this._jamKunjungan,
       {Key? key})
       : super(key: key);
 
@@ -46,11 +44,6 @@ class Tiles extends StatelessWidget {
                   _tanggalKunjungan,
                   style: const TextStyle(fontSize: 14),
                 ),
-                const Spacer(),
-                Text(
-                  _jamKunjungan,
-                  style: const TextStyle(fontSize: 12),
-                )
               ],
             ),
           ],
