@@ -32,12 +32,15 @@ class TilesAccountSetting extends StatelessWidget {
                     ),
                   ),
                   _buildMargin(5),
-                  Text(
-                    '$name',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: textColor,
-                      fontWeight: FontWeight.w600,
+                  SizedBox(
+                    width: 225,
+                    child: Text(
+                      '$name',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: textColor,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ],
