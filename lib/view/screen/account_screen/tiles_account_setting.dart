@@ -57,9 +57,9 @@ class TilesAccountSetting extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return const AlertDialog(
-                      title: Text('Ganti Data'),
-                      content: DetailKasus(),
+                    return AlertDialog(
+                      title: Text('$title'),
+                      content: DetailKasus(data: '$name', field: '$title'),
                     );
                   },
                 );
@@ -79,7 +79,10 @@ Widget _buildMargin(double n) {
 }
 
 class DetailKasus extends StatefulWidget {
-  const DetailKasus({Key? key}) : super(key: key);
+  final String data, field;
+
+  const DetailKasus({Key? key, required this.data, required this.field})
+      : super(key: key);
 
   @override
   DetailKasusState createState() => DetailKasusState();
@@ -95,9 +98,10 @@ class DetailKasusState extends State<DetailKasus> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           TextFormField(
-            decoration: const InputDecoration(
-              hintText: "Nama Lengkap",
-              hintStyle: TextStyle(fontSize: 15, color: Colors.black45),
+            initialValue: widget.data,
+            decoration: InputDecoration(
+              hintText: "Ketik " + widget.field + " baru",
+              hintStyle: const TextStyle(fontSize: 15, color: Colors.black45),
             ),
           ),
           _buildMargin(20),
