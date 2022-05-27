@@ -47,24 +47,25 @@ class TilesAccountSetting extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            GestureDetector(
-              child: const Icon(
-                Icons.edit,
-                color: Colors.black54,
-                size: 25,
+            if ('$title' != "Username")
+              GestureDetector(
+                child: const Icon(
+                  Icons.edit,
+                  color: Colors.black54,
+                  size: 25,
+                ),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('$title'),
+                        content: DetailKasus(data: '$name', field: '$title'),
+                      );
+                    },
+                  );
+                },
               ),
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('$title'),
-                      content: DetailKasus(data: '$name', field: '$title'),
-                    );
-                  },
-                );
-              },
-            )
           ],
         ),
       ],
