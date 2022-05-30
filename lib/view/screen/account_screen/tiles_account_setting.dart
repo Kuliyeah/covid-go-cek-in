@@ -1,5 +1,13 @@
+import 'package:covid_go_cek_in/helperurl.dart';
+import 'package:covid_go_cek_in/view/login_screen/login_page.dart';
+import 'package:covid_go_cek_in/view/screen/account_screen/akun_container.dart';
+import 'package:covid_go_cek_in/view/screen/home_screen/home_screen.dart';
+import 'package:covid_go_cek_in/view/screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_go_cek_in/constant/constant.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:http/http.dart' as http;
 
 class TilesAccountSetting extends StatelessWidget {
   final IconData? settingImg;
@@ -90,6 +98,24 @@ class DetailKasus extends StatefulWidget {
 }
 
 class DetailKasusState extends State<DetailKasus> {
+  TextEditingController textController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    textController.text = widget.data;
+  }
+
+  Future updateData(String field, String data) async {
+    String url = MyUrl().getUrl();
+    await http.put(
+      "$url/v1/pengunjung/$data/" + logindata.getString('username').toString(),
+      body: {
+        field: textController.text,
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -99,7 +125,7 @@ class DetailKasusState extends State<DetailKasus> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           TextFormField(
-            initialValue: widget.data,
+            controller: textController,
             decoration: InputDecoration(
               hintText: "Ketik " + widget.field + " baru",
               hintStyle: const TextStyle(fontSize: 15, color: Colors.black45),
@@ -114,7 +140,28 @@ class DetailKasusState extends State<DetailKasus> {
               child: const Text("Perbarui"),
               color: Colors.green,
               textColor: Colors.white,
-              onPressed: () {},
+              onPressed: () async {
+                if (widget.field == "Nama") {
+                  updateData("namaPengunjung", "editnama");
+                } else if (widget.field == "Alamat") {
+                  updateData("alamatPengunjung", "editalamat");
+                } else {
+                  updateData("noHpPengunjung", "edittelp");
+                }
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text("Data berhasil diperbarui"),
+                    duration: Duration(milliseconds: 1000),
+                  ),
+                );
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => const MainScreen(),
+                  ),
+                );
+              },
             ),
           ),
         ],
