@@ -1,7 +1,5 @@
 import 'package:covid_go_cek_in/helperurl.dart';
 import 'package:covid_go_cek_in/view/login_screen/login_page.dart';
-import 'package:covid_go_cek_in/view/screen/account_screen/akun_container.dart';
-import 'package:covid_go_cek_in/view/screen/home_screen/home_screen.dart';
 import 'package:covid_go_cek_in/view/screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_go_cek_in/constant/constant.dart';
