@@ -39,7 +39,7 @@ class TilesAccountSetting extends StatelessWidget {
                   ),
                   _buildMargin(5),
                   SizedBox(
-                    width: 225,
+                    width: 200,
                     child: Text(
                       '$name',
                       style: TextStyle(
@@ -139,26 +139,28 @@ class DetailKasusState extends State<DetailKasus> {
               color: Colors.green,
               textColor: Colors.white,
               onPressed: () async {
-                if (widget.field == "Nama") {
-                  updateData("namaPengunjung", "editnama");
-                } else if (widget.field == "Alamat") {
-                  updateData("alamatPengunjung", "editalamat");
-                } else {
-                  updateData("noHpPengunjung", "edittelp");
-                }
+                setState(() {
+                  if (widget.field == "Nama") {
+                    updateData("namaPengunjung", "editnama");
+                  } else if (widget.field == "Alamat") {
+                    updateData("alamatPengunjung", "editalamat");
+                  } else {
+                    updateData("noHpPengunjung", "edittelp");
+                  }
 
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text("Data berhasil diperbarui"),
-                    duration: Duration(milliseconds: 1000),
-                  ),
-                );
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => const MainScreen(),
-                  ),
-                );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text("Data berhasil diperbarui"),
+                      duration: Duration(milliseconds: 1000),
+                    ),
+                  );
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => const MainScreen(),
+                    ),
+                  );
+                });
               },
             ),
           ),
