@@ -246,10 +246,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const LupaPasswordPage()));
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          const LupaPasswordPage(),
+                    ),
+                  );
                 },
               )
             ],
