@@ -156,7 +156,8 @@ class _LoginPageState extends State<LoginPage> {
 
                     // Ini pake IPV4, jadi klo beda pc gk bisa
                     String url = MyUrl().getUrl();
-                    var response = await http.get("$url/v1/pengunjung/login/" + username);
+                    var response =
+                        await http.get("$url/v1/pengunjung/login/" + username);
                     var decodedData = jsonDecode(response.body);
 
                     if (decodedData != null) {

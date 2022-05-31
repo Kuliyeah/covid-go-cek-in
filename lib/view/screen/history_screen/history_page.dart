@@ -29,10 +29,9 @@ class HistoryPageState extends State<HistoryPage> {
 
   String apiUrl = MyUrl().getUrl() + "/v1/kunjungan/9";
   Future<List<dynamic>> _fecthDataUsers() async {
-    if (searchBarController.text != null) {
+    if (searchBarController.text != "") {
       apiUrl = MyUrl().getUrl() + "/v1/kunjungan/9/" + searchBarController.text;
     }
-    print(apiUrl);
     var result = await http.get(apiUrl);
     return json.decode(result.body)['data'];
   }
