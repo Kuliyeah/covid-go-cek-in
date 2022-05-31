@@ -34,6 +34,7 @@ class _RegisterPageBioState extends State<RegisterPageBio> {
   TextEditingController nikController = TextEditingController();
   TextEditingController alamatController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  TextEditingController tglLahirController = TextEditingController();
 
   DateTime ttlController = DateTime.now();
   Kelamin? _gender = Kelamin.Pria;
@@ -165,13 +166,29 @@ class _RegisterPageBioState extends State<RegisterPageBio> {
                 ),
                 Row(
                   children: <Widget>[
-                    Container(
-                      margin: const EdgeInsets.only(left: 14.0, right: 160.0),
-                      child: const Text(
-                        "Tanggal Lahir",
-                        style: TextStyle(fontSize: 15.0),
+                    SizedBox(
+                      width: 250,
+                      child: TextFormField(
+                        controller: tglLahirController,
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: const BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                          contentPadding: const EdgeInsets.only(left: 25),
+                          hintText: "Tanggal Lahir",
+                          hintStyle: const TextStyle(
+                              fontSize: 15, color: Colors.black45),
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
                       ),
                     ),
+                    const Spacer(),
                     ButtonTheme(
                       minWidth: 15.0,
                       height: 40.0,
@@ -184,8 +201,12 @@ class _RegisterPageBioState extends State<RegisterPageBio> {
                               maxTime: DateTime.now(), onChanged: (date) {
                             ttlController =
                                 DateFormat("yyyy-MM-dd").parse(date.toString());
+                          }, onConfirm: (date) {
+                            setState(() {
+                              tglLahirController.text =
+                                  date.toString().substring(0, 10);
+                            });
                           },
-                              onConfirm: (date) {},
                               currentTime: DateTime.now(),
                               locale: LocaleType.en);
                         },

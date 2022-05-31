@@ -118,7 +118,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     var response = await http.get(
                         "$url/v1/pengunjung/login/" + usernameController.text);
                     var decodedData = jsonDecode(response.body);
-                    print(decodedData);
 
                     if (decodedData['success'] == true) {
                       ScaffoldMessenger.of(context).showSnackBar(
