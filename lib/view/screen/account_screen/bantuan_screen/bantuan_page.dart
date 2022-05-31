@@ -12,39 +12,43 @@ class Bantuan_page extends StatefulWidget {
 class _Bantuan_pageState extends State<Bantuan_page> {
   List<ItemModel> itemData = <ItemModel>[
     ItemModel(
-      headerItem: 'Bantuan 1',
-      discription:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus sagittis tincidunt. Pellentesque vel eleifend risus, non bibendum erat. Fusce aliquet congue risus at lobortis.",
+      widget: Icon(Icons.list),
+      headerItem: 'Daftar',
+      discription: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("1. Masukkan data username yang ingin dibuat"),
+          Text("2. Masukkan password dan confirmation password yang ingin dibuat"),
+          Text("3. Masukkan data diri"),
+          Text("4. Silakan Login ke aplikasi"),
+        ],
+      ),
     ),
     ItemModel(
-      headerItem: 'Bantuan 2',
-      discription:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus sagittis tincidunt. Pellentesque vel eleifend risus, non bibendum erat. Fusce aliquet congue risus at lobortis.",
+      widget: Icon(Icons.login),
+      headerItem: 'Login',
+      discription: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("1. Masukkan data username yang sudah dibuat"),
+          Text("2. Masukkan password dan confirmation password yang sudah dibuat"),
+        ],
+      ),
     ),
     ItemModel(
-      headerItem: 'Bantuan 3',
-      discription:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus sagittis tincidunt. Pellentesque vel eleifend risus, non bibendum erat. Fusce aliquet congue risus at lobortis.",
-    ),
-    ItemModel(
-      headerItem: 'Bantuan 4',
-      discription:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus sagittis tincidunt. Pellentesque vel eleifend risus, non bibendum erat. Fusce aliquet congue risus at lobortis.",
-    ),
-    ItemModel(
-      headerItem: 'Bantuan 4',
-      discription:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus sagittis tincidunt. Pellentesque vel eleifend risus, non bibendum erat. Fusce aliquet congue risus at lobortis.",
-    ),
-    ItemModel(
-      headerItem: 'Bantuan 4',
-      discription:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus sagittis tincidunt. Pellentesque vel eleifend risus, non bibendum erat. Fusce aliquet congue risus at lobortis.",
-    ),
-    ItemModel(
-      headerItem: 'Bantuan 4',
-      discription:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus sagittis tincidunt. Pellentesque vel eleifend risus, non bibendum erat. Fusce aliquet congue risus at lobortis.",
+      widget: Icon(Icons.qr_code),
+      headerItem: 'Scan QR',
+      discription: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("1. Buka fitur Scan QR"),
+          Text("2. Arahkan kamera pada kode QR yang disediakan oleh tempat"),
+          Text("3. Maka secara otomatis Anda akan terdata di aplikasi"),
+        ],
+      ),
     ),
   ];
   @override
@@ -70,30 +74,24 @@ class _Bantuan_pageState extends State<Bantuan_page> {
                     headerBuilder: (BuildContext context, bool isExpanded) {
                       return Container(
                         padding: const EdgeInsets.all(10),
-                        child: Text(
-                          itemData[index].headerItem,
-                          style: const TextStyle(
-                            fontSize: 18,
-                          ),
+                        child: Row(
+                          children: [
+                            itemData[index].widget,
+                            SizedBox(width: 8,),
+                            Text(
+                              itemData[index].headerItem,
+                              style: const TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
                         ),
                       );
                     },
                     body: Container(
                       padding: const EdgeInsets.only(
                           left: 10, right: 10, bottom: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            itemData[index].discription,
-                            style: TextStyle(
-                              color: Colors.grey[700],
-                              fontSize: 15,
-                              height: 1.3,
-                            ),
-                          ),
-                        ],
-                      ),
+                      child: itemData[index].discription
                     ),
                     isExpanded: itemData[index].expanded,
                   )
@@ -114,11 +112,13 @@ class _Bantuan_pageState extends State<Bantuan_page> {
 
 class ItemModel {
   bool expanded;
+  Widget widget;
   String headerItem;
-  String discription;
+  Widget discription;
 
   ItemModel({
     this.expanded = false,
+    required this.widget,
     required this.headerItem,
     required this.discription,
   });
