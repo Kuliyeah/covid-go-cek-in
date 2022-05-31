@@ -16,16 +16,23 @@ class HistoryPage extends StatefulWidget {
   HistoryPageState createState() => HistoryPageState();
 }
 
+TextEditingController searchBarController = TextEditingController();
+
 class HistoryPageState extends State<HistoryPage> {
   late Future<Kunjungan> futurePost;
 
   @override
   void initState() {
     super.initState();
+    searchBarController.text = "";
   }
 
   String apiUrl = MyUrl().getUrl() + "/v1/kunjungan/9";
   Future<List<dynamic>> _fecthDataUsers() async {
+    if (searchBarController.text != null) {
+      apiUrl = MyUrl().getUrl() + "/v1/kunjungan/9/" + searchBarController.text;
+    }
+    print(apiUrl);
     var result = await http.get(apiUrl);
     return json.decode(result.body)['data'];
   }
@@ -46,23 +53,37 @@ class HistoryPageState extends State<HistoryPage> {
                 shadowColor: Colors.black38,
                 borderRadius: BorderRadius.circular(15.0),
                 child: TextFormField(
+                  onChanged: ((value) {
+                    setState(() {
+                      _fecthDataUsers();
+                    });
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Data berhasil diperbarui"),
+                        duration: Duration(milliseconds: 1000),
+                      ),
+                    );
+                  }),
+                  controller: searchBarController,
                   autofocus: false,
                   decoration: InputDecoration(
-                    hintText: 'Cari riwayat tempat',
+                    hintText: 'Masukan nama, alamat atau tanggal kunjungan',
                     hintStyle:
                         const TextStyle(fontSize: 15, color: Colors.black45),
                     focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white, width: 0.0),
                     ),
-                    suffixIcon: Material(
-                      elevation: 5.0,
-                      color: Colors.green.shade400,
-                      shadowColor: Colors.green,
-                      borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(15.0),
-                        bottomRight: Radius.circular(15.0),
+                    suffixIcon: GestureDetector(
+                      child: Material(
+                        elevation: 5.0,
+                        color: Colors.green.shade400,
+                        shadowColor: Colors.green,
+                        borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(15.0),
+                          bottomRight: Radius.circular(15.0),
+                        ),
+                        child: const Icon(Icons.search, color: Colors.white),
                       ),
-                      child: const Icon(Icons.search, color: Colors.white),
                     ),
                     contentPadding: const EdgeInsets.only(top: 15.0, left: 20),
                     enabledBorder: OutlineInputBorder(

@@ -8,13 +8,11 @@ class Kunjungan {
     required this.namaMitra,
     required this.alamatMitra,
     required this.tanggal,
-    required this.numRow,
   });
 
   final String? namaMitra;
   final String? alamatMitra;
   final String? tanggal;
-  final int? numRow;
 
   factory Kunjungan.fromJson(Map<String, dynamic> json) {
     count = json['data'][i]['num_row'];
@@ -23,7 +21,6 @@ class Kunjungan {
       namaMitra: json['data'][count]['namaMitra'],
       alamatMitra: json['data'][count]['alamatMitra'],
       tanggal: json['data'][count]['tanggal'],
-      numRow: json['data'][count]['num_row'] + 1,
     );
   }
 }
