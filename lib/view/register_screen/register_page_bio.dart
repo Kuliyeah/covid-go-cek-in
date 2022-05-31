@@ -34,6 +34,7 @@ class _RegisterPageBioState extends State<RegisterPageBio> {
   TextEditingController nikController = TextEditingController();
   TextEditingController alamatController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+
   DateTime ttlController = DateTime.now();
   Kelamin? _gender = Kelamin.Pria;
   String url = MyUrl().getUrl();

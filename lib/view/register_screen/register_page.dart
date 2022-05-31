@@ -1,6 +1,12 @@
+import 'dart:convert';
+
+import 'package:covid_go_cek_in/helperurl.dart';
 import 'package:flutter/material.dart';
 import '../login_screen/login_page.dart';
 import '../register_screen/register_page_bio.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:http/http.dart' as http;
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -20,9 +26,10 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Widget _buildContent(BuildContext context) {
-    // this allows us to access the TextField text
     TextEditingController usernameController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
+
+    String url = MyUrl().getUrl();
 
     return Center(
       child: SingleChildScrollView(
@@ -107,13 +114,30 @@ class _RegisterPageState extends State<RegisterPage> {
                   textColor: Colors.white,
                   shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
-                  onPressed: () {
-                    Navigator.push(
+                  onPressed: () async {
+                    var response = await http.get(
+                        "$url/v1/pengunjung/login/" + usernameController.text);
+                    var decodedData = jsonDecode(response.body);
+                    print(decodedData);
+
+                    if (decodedData['success'] == true) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                              "Username sudah terdaftar, silakan ganti username lain"),
+                          duration: Duration(milliseconds: 1000),
+                        ),
+                      );
+                    } else {
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => RegisterPageBio(
-                                username: usernameController.text,
-                                password: passwordController.text)));
+                          builder: (context) => RegisterPageBio(
+                              username: usernameController.text,
+                              password: passwordController.text),
+                        ),
+                      );
+                    }
                   },
                 ),
               ),
@@ -130,9 +154,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 onTap: () {
                   Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginPage()));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPage(),
+                    ),
+                  );
                 },
               )
             ],
