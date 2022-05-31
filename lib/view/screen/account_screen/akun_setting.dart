@@ -5,7 +5,6 @@ import 'menu_screen/log_page.dart';
 import 'term_of_service_screen/term_of_service_page.dart';
 import 'package:flutter/material.dart';
 import 'bantuan_screen/bantuan_page.dart';
-import 'setting_aplikasi_screen/setting_aplikasi_page.dart';
 import '../history_screen/history_page.dart';
 
 class AkunSetting extends StatelessWidget {
@@ -72,38 +71,6 @@ Widget _buildContent(BuildContext context) {
                   context,
                   MaterialPageRoute(
                       builder: (BuildContext context) => const HistoryPage()));
-            },
-          ),
-          const Divider(color: Colors.black45),
-          GestureDetector(
-            child: Row(
-              children: const <Widget>[
-                Padding(
-                  padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
-                  child: Icon(
-                    Icons.settings_outlined,
-                    color: Color.fromARGB(255, 41, 52, 61),
-                    size: 35,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
-                  child: Text(
-                    "Pengaturan Aplikasi",
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Color.fromARGB(255, 41, 52, 61),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          const SettingAplikasiPage()));
             },
           ),
           const Divider(color: Colors.black45),
