@@ -25,7 +25,7 @@ late dynamic decodedData;
 class MainScreenState extends State<MainScreen> {
   int currentIndex = 1;
   final List<Widget> viewContainer = [
-    const ScanPage(),
+    const HistoryPage(),
     const HomePage(),
     const AkunContainer()
   ];
@@ -60,10 +60,10 @@ class MainScreenState extends State<MainScreen> {
         child: viewContainer[currentIndex],
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.history),
+        child: const Icon(Icons.qr_code),
         onPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const HistoryPage()));
+              MaterialPageRoute(builder: (context) => const ScanPage()));
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -72,8 +72,8 @@ class MainScreenState extends State<MainScreen> {
         fixedColor: mainColor,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.qr_code),
-            label: "Pindai",
+            icon: Icon(Icons.history),
+            label: "History",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
