@@ -18,6 +18,11 @@ dependencies:
   shared_preferences: ^2.0.13
   syncfusion_flutter_datepicker: ^20.1.48
   flutter_datetime_picker: ^1.5.0
+  firebase_core: ^1.17.1
+  firebase_core_web: ^1.6.4
+  firebase_messaging: ^11.4.1
+  flutter_local_notifications: ^9.5.3+1
+  get_it: ^7.2.0
 
 dev_dependencies:
   flutter_lints: ^1.0.4

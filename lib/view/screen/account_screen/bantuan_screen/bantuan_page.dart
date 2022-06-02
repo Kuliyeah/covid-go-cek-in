@@ -12,12 +12,12 @@ class Bantuan_page extends StatefulWidget {
 class _Bantuan_pageState extends State<Bantuan_page> {
   List<ItemModel> itemData = <ItemModel>[
     ItemModel(
-      widget: Icon(Icons.list),
+      widget: const Icon(Icons.list),
       headerItem: 'Daftar',
       discription: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: const [
           Text("1. Masukkan data username yang ingin dibuat"),
           Text("2. Masukkan password dan confirmation password yang ingin dibuat"),
           Text("3. Masukkan data diri"),
@@ -26,24 +26,24 @@ class _Bantuan_pageState extends State<Bantuan_page> {
       ),
     ),
     ItemModel(
-      widget: Icon(Icons.login),
+      widget: const Icon(Icons.login),
       headerItem: 'Login',
       discription: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: const [
           Text("1. Masukkan data username yang sudah dibuat"),
           Text("2. Masukkan password dan confirmation password yang sudah dibuat"),
         ],
       ),
     ),
     ItemModel(
-      widget: Icon(Icons.qr_code),
+      widget: const Icon(Icons.qr_code),
       headerItem: 'Scan QR',
       discription: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: const [
           Text("1. Buka fitur Scan QR"),
           Text("2. Arahkan kamera pada kode QR yang disediakan oleh tempat"),
           Text("3. Maka secara otomatis Anda akan terdata di aplikasi"),
@@ -77,7 +77,7 @@ class _Bantuan_pageState extends State<Bantuan_page> {
                         child: Row(
                           children: [
                             itemData[index].widget,
-                            SizedBox(width: 8,),
+                            const SizedBox(width: 8,),
                             Text(
                               itemData[index].headerItem,
                               style: const TextStyle(

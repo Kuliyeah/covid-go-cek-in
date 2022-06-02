@@ -2,11 +2,18 @@
 
 import 'package:flutter/material.dart';
 
+
+
+
+
 String ANIMATED_SPLASH = '/SplashScreen',
     HOME_SCREEN = '/HomeScreen',
     PHOTO_CONTAINER_SCREEN = '/PhotoContainerScreen',
     VIDEO_CONTAINER_SCREEN = '/VideoContainerScreen',
     ALBUM_CONTAINER_SCREEN = '/AlbumContainerScreen';
+
+
+
 
 Color mainColor = const Color(0xFF5DD482);
 Color splashBgColor = const Color(0xFFCAFFDA);

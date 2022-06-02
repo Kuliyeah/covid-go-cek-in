@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "708461629044",
+    "project_id": "covid-go-check-in",
+    "storage_bucket": "covid-go-check-in.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708461629044:android:c150970e1cdfa2a40e0b21",
+        "android_client_info": {
+          "package_name": "com.lovanto.covid_go_cek_in"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "708461629044-7imdekb0re1b1lggs8gcjr743tqh21ql.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMQzvwifeVn7zLLn0OTnVET2xBDThlT9k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708461629044-7imdekb0re1b1lggs8gcjr743tqh21ql.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

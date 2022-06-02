@@ -1,9 +1,13 @@
 import 'dart:async';
 import 'package:covid_go_cek_in/constant/constant.dart';
+import 'package:covid_go_cek_in/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import '../login_screen/login_page.dart';
+import 'package:covid_go_cek_in/service/push_notification.dart';
 
-// https://rushabhshah065.medium.com/splash-screen-flutter-create-customize-splash-screen-for-flutter-android-ios-a380a199793c
+PushNotification push = PushNotification();
+
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({Key? key}) : super(key: key);
 
@@ -18,10 +22,13 @@ class _SplashScreenState extends State<SplashScreenPage> {
   @override
   void initState() {
     super.initState();
+    push.listenMessage(channel,flutterLocalNotificationsPlugin);
+    push.msgOpenedApp();
     _loadWidget();
   }
 
   _loadWidget() async {
+    
     var _duration = Duration(seconds: splashDelay);
     return Timer(_duration, navigationPage);
   }

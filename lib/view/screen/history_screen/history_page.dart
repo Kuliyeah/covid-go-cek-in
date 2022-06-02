@@ -56,12 +56,12 @@ class HistoryPageState extends State<HistoryPage> {
                     setState(() {
                       _fecthDataUsers();
                     });
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Data berhasil diperbarui"),
-                        duration: Duration(milliseconds: 1000),
-                      ),
-                    );
+                    // // ScaffoldMessenger.of(context).showSnackBar(
+                    // //   const SnackBar(
+                    // //     content: Text("Data berhasil diperbarui"),
+                    // //     duration: Duration(milliseconds: 1000),
+                    // //   ),
+                    // );
                   }),
                   controller: searchBarController,
                   autofocus: false,

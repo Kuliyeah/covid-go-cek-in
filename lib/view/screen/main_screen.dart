@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'account_screen/akun_container.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'home_screen/home_screen.dart';
+import './scan_screen/visitor_screen/visitor_page.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
@@ -73,6 +74,12 @@ class MainScreenState extends State<MainScreen> {
             SnackBar(
               content: Text("Selamat datang " + _data.toString()),
               duration: const Duration(milliseconds: 1000),
+            ),
+          );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const VisitorPage(),
             ),
           );
         },
