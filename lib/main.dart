@@ -11,7 +11,6 @@ import 'service/push_notification.dart';
 import 'view/screen/main_screen.dart';
 import 'view/splash_screen/splash_screen_page.dart';
 import 'constant/constant.dart';
-import 'view/screen/scan_screen/scan_page.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -53,7 +52,6 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         HOME_SCREEN: (BuildContext context) => const MainScreen(),
         ANIMATED_SPLASH: (BuildContext context) => const SplashScreenPage(),
-        PHOTO_CONTAINER_SCREEN: (BuildContext context) => const ScanPage(),
         VIDEO_CONTAINER_SCREEN: (BuildContext context) => const MainScreen(),
       },
     );
