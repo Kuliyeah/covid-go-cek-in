@@ -68,7 +68,6 @@ class AkunContainerState extends State<AkunContainer> {
             ),
             _buildMargin(50),
             Container(
-              height: 450,
               decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
