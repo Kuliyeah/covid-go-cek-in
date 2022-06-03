@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -54,11 +56,6 @@ void listenMessage(AndroidNotificationChannel? channel,
 void msgOpenedApp() {
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
     print('A new onMessageOpenedApp event was published!');
-    // Navigator.pushNamed(
-    //   context,
-    //   '/message',
-    //   arguments: MessageArguments(message, true),
-    // );
   });
 }
 }
