@@ -29,6 +29,10 @@ class RegisterPageBio extends StatefulWidget {
 }
 
 class _RegisterPageBioState extends State<RegisterPageBio> {
+  @override
+  void initState(){
+    super.initState();
+  }
   TextEditingController namaController = TextEditingController();
   TextEditingController noHpController = TextEditingController();
   TextEditingController nikController = TextEditingController();

@@ -8,7 +8,6 @@ import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:crypto/crypto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
 
@@ -44,7 +43,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-    
     super.initState();
     checkAlreadyLogin();
   }

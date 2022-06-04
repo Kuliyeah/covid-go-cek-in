@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:covid_go_cek_in/constant/constant.dart';
-import 'package:covid_go_cek_in/main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import '../login_screen/login_page.dart';
 import 'package:covid_go_cek_in/service/push_notification.dart';
 
@@ -22,8 +20,6 @@ class _SplashScreenState extends State<SplashScreenPage> {
   @override
   void initState() {
     super.initState();
-    push.listenMessage(channel,flutterLocalNotificationsPlugin);
-    push.msgOpenedApp();
     _loadWidget();
   }
 
