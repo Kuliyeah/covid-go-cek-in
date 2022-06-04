@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:covid_go_cek_in/constant/constant.dart';
 import 'package:covid_go_cek_in/helperurl.dart';
 import 'package:covid_go_cek_in/models/Kunjungan.dart';
+import 'package:covid_go_cek_in/view/login_screen/login_page.dart';
 import 'package:flutter/material.dart';
 import 'tiles.dart';
 
@@ -27,10 +28,15 @@ class HistoryPageState extends State<HistoryPage> {
     searchBarController.text = "";
   }
 
-  String apiUrl = MyUrl().getUrl() + "/v1/kunjungan/9";
+  String apiUrl =
+      MyUrl().getUrl() + "/v1/kunjungan/" + logindata.getInt('id').toString();
   Future<List<dynamic>> _fecthDataUsers() async {
     if (searchBarController.text != "") {
-      apiUrl = MyUrl().getUrl() + "/v1/kunjungan/9/" + searchBarController.text;
+      apiUrl = MyUrl().getUrl() +
+          "/v1/kunjungan/" +
+          logindata.getInt('id').toString() +
+          "/" +
+          searchBarController.text;
     }
     var result = await http.get(apiUrl);
     return json.decode(result.body)['data'];
