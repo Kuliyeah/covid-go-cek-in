@@ -13,8 +13,7 @@ class Tiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: 70,
+      height: 80,
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(4)),
       child: Padding(
@@ -30,10 +29,13 @@ class Tiles extends StatelessWidget {
                       fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 const Spacer(),
-                Text(
-                  _alamat,
-                  style: const TextStyle(fontSize: 12),
-                )
+                SizedBox(
+                  width: 200,
+                  child: Text(
+                    _alamat,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                ),
               ],
             ),
             const Spacer(),
