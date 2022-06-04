@@ -56,12 +56,6 @@ class HistoryPageState extends State<HistoryPage> {
                     setState(() {
                       _fecthDataUsers();
                     });
-                    // // ScaffoldMessenger.of(context).showSnackBar(
-                    // //   const SnackBar(
-                    // //     content: Text("Data berhasil diperbarui"),
-                    // //     duration: Duration(milliseconds: 1000),
-                    // //   ),
-                    // );
                   }),
                   controller: searchBarController,
                   autofocus: false,
@@ -100,7 +94,7 @@ class HistoryPageState extends State<HistoryPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   SizedBox(
-                    height: 510,
+                    height: MediaQuery.of(context).size.height - 250,
                     child: FutureBuilder<List<dynamic>>(
                       future: _fecthDataUsers(),
                       builder: (BuildContext context, AsyncSnapshot snapshot) {
