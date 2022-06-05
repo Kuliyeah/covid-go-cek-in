@@ -8,7 +8,6 @@ import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:crypto/crypto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
 
@@ -25,6 +24,7 @@ final usernameController = TextEditingController();
 final passwordController = TextEditingController();
 
 late SharedPreferences logindata;
+late SharedPreferences checkInData;
 late bool newuser;
 
 class _LoginPageState extends State<LoginPage> {
@@ -44,13 +44,13 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-    
     super.initState();
     checkAlreadyLogin();
   }
 
   void checkAlreadyLogin() async {
     logindata = await SharedPreferences.getInstance();
+    checkInData = await SharedPreferences.getInstance();
     newuser = (logindata.getBool('login') ?? true);
     if (newuser == false) {
       Navigator.pushReplacement(
@@ -167,7 +167,10 @@ class _LoginPageState extends State<LoginPage> {
                           decodedData['data']['usernamePengunjung']) {
                         if (md5.convert(utf8.encode(password)).toString() ==
                             decodedData['data']['passwordPengunjung']) {
+                          checkInData.setBool('checkIn', false);
                           logindata.setBool('login', false);
+                          logindata.setInt(
+                              'id', decodedData['data']['idPengunjung']);
                           logindata.setString('username', username);
 
                           Navigator.pushReplacement(
