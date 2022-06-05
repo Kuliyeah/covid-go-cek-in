@@ -44,7 +44,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    checkAlreadyLogin();
+    setState(() {
+      checkAlreadyLogin();
+    });
   }
 
   void checkAlreadyLogin() async {
