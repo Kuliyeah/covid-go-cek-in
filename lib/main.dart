@@ -2,6 +2,7 @@
 
 import 'dart:async';
 
+import 'package:covid_go_cek_in/view/screen/notification_screen.dart/notification_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +12,10 @@ import 'service/push_notification.dart';
 import 'view/screen/main_screen.dart';
 import 'view/splash_screen/splash_screen_page.dart';
 import 'constant/constant.dart';
+import 'service/message.dart';
 
 AndroidNotificationChannel? channel;
 FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
-PushNotification push = PushNotification();
 
 Future<void> messageHandlerForeground() async {
   await Firebase.initializeApp();
@@ -24,14 +25,10 @@ Future<void> messageHandlerForeground() async {
     badge: true,
     sound: true,
   );
-  FirebaseMessaging.onMessage.listen(
-    (RemoteMessage message) {
-      PushNotification.showNotification(message);
-      print("Message: ${message.messageId}");
-      print("Message-title: ${message.notification}");
-      print("Message: ${message.data}");
-    },
-  );
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    PushNotification.showNotification(message);
+    print("Message: ${message.messageId}");
+  });
 }
 
 Future<void> messageHandlerBackground(RemoteMessage message) async {
@@ -46,14 +43,6 @@ void main() async {
   messageHandlerForeground();
   FirebaseMessaging.onBackgroundMessage(messageHandlerBackground);
   runApp(const MyApp());
-}
-
-AndroidNotificationChannel? getChannel() {
-  return channel;
-}
-
-FlutterLocalNotificationsPlugin? getNotif() {
-  return flutterLocalNotificationsPlugin;
 }
 
 class MyApp extends StatelessWidget {
@@ -88,8 +77,22 @@ class _MyHomeAppState extends State<MyHomeApp> {
     super.initState();
     messageHandlerForeground();
     FirebaseMessaging.onBackgroundMessage(messageHandlerBackground);
-
     _loadWidget();
+  }
+
+  Future<void> msgOpenedOnApp() async {
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      Navigator.pushNamed(context, MESSAGE_CATCH,
+          arguments: MessageArguments(message, true));
+    });
+    navigateToNotif();
+  }
+
+  void navigateToNotif() {
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) => const MyNotification()));
   }
 
   _loadWidget() async {
