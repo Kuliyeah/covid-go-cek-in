@@ -46,7 +46,7 @@ class AkunContainerState extends State<AkunContainer> {
               ),
             ),
             _buildMargin(20),
-            Image.asset('assets/img/avatar/avatar_13.png', height: 150),
+            Image.asset('assets/img/avatar.png', height: 150),
             _buildMargin(15),
             Text(
               "Ganti Avatar",
