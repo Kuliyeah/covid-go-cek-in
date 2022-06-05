@@ -1,47 +1,62 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'visitor_screen/visitor_page.dart';
+// ignore_for_file: avoid_print
 
-// https://medium.com/flutterdevs/scanning-generating-qr-code-in-flutter-3d5251a61244
-class ScanPage extends StatefulWidget {
-  const ScanPage({Key? key}) : super(key: key);
+import 'dart:convert';
+import 'package:covid_go_cek_in/helperurl.dart';
+import 'package:covid_go_cek_in/view/login_screen/login_page.dart';
 
-  @override
-  _ScanPageState createState() => _ScanPageState();
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:http/http.dart' as http;
+
+String url = MyUrl().getUrl();
+
+bool validationData(String data) {
+  String getData = data.substring(0, 7);
+  if (getData == "gocekin") return true;
+  return false;
 }
 
-class _ScanPageState extends State<ScanPage> {
-  String _data = "";
+String getIDMitraFromScanner(String data) {
+  late String dataAsli = data;
+  const start = "-";
+  const end = ".";
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Pindai", style: TextStyle(fontSize: 24)),
-      ),
-      body: Center(
-        child: TextButton(
-          child: (_data != "")
-              ? Text(
-                  _data,
-                  style: const TextStyle(fontSize: 24),
-                )
-              : const Text("Pindai Sekarang", style: TextStyle(fontSize: 24)),
-          onPressed: () async {
-            await FlutterBarcodeScanner.scanBarcode(
-                    "#000000", "Cancel", true, ScanMode.QR)
-                .then(
-              (value) => setState(() => _data = value),
-            );
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const VisitorPage(),
-              ),
-            );
-          },
-        ),
-      ),
-    );
-  }
+  final startIndex = dataAsli.indexOf(start);
+  final endIndex = dataAsli.indexOf(end, startIndex + start.length);
+  dataAsli = dataAsli.substring(startIndex + start.length, endIndex);
+
+  return dataAsli;
+}
+
+Future insertPengunjung(int idPengunjung, int idMitra) async {
+  await http.post(
+    "$url/v1/kunjungan",
+    body: {
+      "idPengunjung": idPengunjung.toString(),
+      "idMitra": idMitra.toString(),
+      "tanggal": DateTime.now().toString().substring(0, 10),
+      "checkin": "Yes",
+      "checkout": "No",
+      "statusKunjungan": "Selesai",
+    },
+  );
+}
+
+void checkIn(String data) async {
+  var response = await http.get("$url/v1/mitra/" + data);
+  var decodedData = jsonDecode(response.body);
+
+  checkInData.setBool('checkIn', true);
+  checkInData.setInt('idMitra', decodedData['data']['idMitra']);
+  checkInData.setString('namaMitra', decodedData['data']['namaMitra']);
+  checkInData.setString('alamatMitra', decodedData['data']['alamatMitra']);
+
+  insertPengunjung(
+    int.parse(logindata.getInt('id').toString()),
+    decodedData['data']['idMitra'],
+  );
+}
+
+bool checkInValidation() {
+  checkInData.setBool('checkIn', true);
+  return true;
 }

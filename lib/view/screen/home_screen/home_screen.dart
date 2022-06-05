@@ -1,4 +1,6 @@
 import 'package:covid_go_cek_in/models/Kasus.dart';
+import 'package:covid_go_cek_in/view/login_screen/login_page.dart';
+import 'package:covid_go_cek_in/view/screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import '../../../constant/constant.dart';
 import 'package:intl/intl.dart' as intl;
@@ -18,6 +20,69 @@ class HomePage extends StatelessWidget {
       body: _buildContent(context),
     );
   }
+}
+
+Widget alreadyCheckin(BuildContext context) {
+  if (checkInData.getBool('checkIn') == true) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          "Status Check-in",
+          textAlign: TextAlign.left,
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 22, color: textColor),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          checkInData.getString('namaMitra').toString(),
+          style: const TextStyle(fontSize: 16),
+        ),
+        const SizedBox(height: 5),
+        Text(
+          checkInData.getString('alamatMitra').toString(),
+          style: const TextStyle(fontSize: 14),
+        ),
+        const SizedBox(height: 10),
+        FractionallySizedBox(
+          widthFactor: 1,
+          // ignore: deprecated_member_use
+          child: RaisedButton(
+            child: const Text(
+              "Check-out",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            color: Colors.red,
+            textColor: Colors.white,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+            onPressed: () {
+              checkInData.setBool('checkIn', false);
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Berhasil Check-out"),
+                  duration: Duration(milliseconds: 1000),
+                ),
+              );
+
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const MainScreen(),
+                ),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 30),
+      ],
+    );
+  }
+  return const SizedBox.shrink();
 }
 
 Widget _buildContent(BuildContext context) {
@@ -42,40 +107,7 @@ Widget _buildContent(BuildContext context) {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   const SizedBox(height: 10),
-                  Material(
-                    elevation: 5.0,
-                    shadowColor: textColor.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(15.0),
-                    child: TextFormField(
-                      autofocus: false,
-                      decoration: InputDecoration(
-                        hintText: 'Bandung, Jawa Barat',
-                        hintStyle: TextStyle(fontSize: 15, color: bodyColor),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.white, width: 0.0),
-                        ),
-                        prefixIcon: Icon(Icons.pin_drop, color: bodyColor),
-                        suffixIcon: Material(
-                          elevation: 5.0,
-                          color: Colors.green.shade400,
-                          shadowColor: mainColor,
-                          borderRadius: const BorderRadius.only(
-                            topRight: Radius.circular(15.0),
-                            bottomRight: Radius.circular(15.0),
-                          ),
-                          child: const Icon(Icons.search, color: Colors.white),
-                        ),
-                        contentPadding: const EdgeInsets.only(top: 15.0),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                          borderSide:
-                              const BorderSide(color: Colors.white, width: 3.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 30),
+                  alreadyCheckin(context),
                   Text(
                     "Kasus",
                     textAlign: TextAlign.left,

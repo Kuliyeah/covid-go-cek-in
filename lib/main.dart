@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -9,7 +11,6 @@ import 'service/push_notification.dart';
 import 'view/screen/main_screen.dart';
 import 'view/splash_screen/splash_screen_page.dart';
 import 'constant/constant.dart';
-import 'view/screen/scan_screen/scan_page.dart';
 
 AndroidNotificationChannel? channel;
 FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
@@ -66,7 +67,6 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         HOME_SCREEN: (BuildContext context) => const MainScreen(),
         ANIMATED_SPLASH: (BuildContext context) => const SplashScreenPage(),
-        PHOTO_CONTAINER_SCREEN: (BuildContext context) => const ScanPage(),
         VIDEO_CONTAINER_SCREEN: (BuildContext context) => const MainScreen(),
       },
     );

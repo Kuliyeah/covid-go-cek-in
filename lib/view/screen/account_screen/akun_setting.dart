@@ -192,7 +192,7 @@ Widget _buildContent(BuildContext context) {
               ],
             ),
             onTap: () {
-              logindata.setBool('login', true);
+              logindata.clear();
 
               Navigator.pushReplacement(
                 context,
