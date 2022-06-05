@@ -15,7 +15,9 @@ class Tiles extends StatelessWidget {
     return Container(
       height: 80,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(4)),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(4),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Row(
@@ -26,7 +28,9 @@ class Tiles extends StatelessWidget {
                 Text(
                   _namaTempat,
                   style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const Spacer(),
                 SizedBox(

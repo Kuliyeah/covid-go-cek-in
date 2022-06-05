@@ -66,7 +66,10 @@ class TilesAccountSetting extends StatelessWidget {
                     builder: (BuildContext context) {
                       return AlertDialog(
                         title: Text('$title'),
-                        content: DetailKasus(data: '$name', field: '$title'),
+                        content: DetailKasus(
+                          data: '$name',
+                          field: '$title',
+                        ),
                       );
                     },
                   );
@@ -88,8 +91,11 @@ Widget _buildMargin(double n) {
 class DetailKasus extends StatefulWidget {
   final String data, field;
 
-  const DetailKasus({Key? key, required this.data, required this.field})
-      : super(key: key);
+  const DetailKasus({
+    Key? key,
+    required this.data,
+    required this.field,
+  }) : super(key: key);
 
   @override
   DetailKasusState createState() => DetailKasusState();
@@ -106,11 +112,12 @@ class DetailKasusState extends State<DetailKasus> {
 
   Future updateData(String field, String data) async {
     String url = MyUrl().getUrl();
+    String urlPengunjung = "$url/v1/pengunjung/$data/" +
+        logindata.getString('username').toString();
+
     await http.put(
-      "$url/v1/pengunjung/$data/" + logindata.getString('username').toString(),
-      body: {
-        field: textController.text,
-      },
+      urlPengunjung,
+      body: {field: textController.text},
     );
   }
 
@@ -126,7 +133,10 @@ class DetailKasusState extends State<DetailKasus> {
             controller: textController,
             decoration: InputDecoration(
               hintText: "Ketik " + widget.field + " baru",
-              hintStyle: const TextStyle(fontSize: 15, color: Colors.black45),
+              hintStyle: const TextStyle(
+                fontSize: 15,
+                color: Colors.black45,
+              ),
             ),
           ),
           _buildMargin(20),
@@ -139,28 +149,31 @@ class DetailKasusState extends State<DetailKasus> {
               color: Colors.green,
               textColor: Colors.white,
               onPressed: () async {
-                setState(() {
-                  if (widget.field == "Nama") {
-                    updateData("namaPengunjung", "editnama");
-                  } else if (widget.field == "Alamat") {
-                    updateData("alamatPengunjung", "editalamat");
-                  } else {
-                    updateData("noHpPengunjung", "edittelp");
-                  }
+                setState(
+                  () {
+                    if (widget.field == "Nama") {
+                      updateData("namaPengunjung", "editnama");
+                    } else if (widget.field == "Alamat") {
+                      updateData("alamatPengunjung", "editalamat");
+                    } else {
+                      updateData("noHpPengunjung", "edittelp");
+                    }
 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text("Data berhasil diperbarui"),
-                      duration: Duration(milliseconds: 1000),
-                    ),
-                  );
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => const MainScreen(),
-                    ),
-                  );
-                });
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Data berhasil diperbarui"),
+                        duration: Duration(milliseconds: 1000),
+                      ),
+                    );
+
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => const MainScreen(),
+                      ),
+                    );
+                  },
+                );
               },
             ),
           ),

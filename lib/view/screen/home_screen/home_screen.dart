@@ -31,7 +31,10 @@ Widget alreadyCheckin(BuildContext context) {
           "Status Check-in",
           textAlign: TextAlign.left,
           style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 22, color: textColor),
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
+            color: textColor,
+          ),
         ),
         const SizedBox(height: 10),
         Text(
@@ -196,15 +199,19 @@ class DetailKasusState extends State<DetailKasus> {
                           .format(snapshot.data!.deaths),
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: dangerColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 50),
+                        color: dangerColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 50,
+                      ),
                     ),
                     const SizedBox(height: 5),
                     Text(
                       "Meninggal",
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: dangerColor, fontSize: 25),
+                      style: TextStyle(
+                        color: dangerColor,
+                        fontSize: 25,
+                      ),
                     )
                   ],
                 ),
@@ -216,15 +223,19 @@ class DetailKasusState extends State<DetailKasus> {
                           .format(snapshot.data!.confirmeds),
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: warningColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 50),
+                        color: warningColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 50,
+                      ),
                     ),
                     const SizedBox(height: 5),
                     Text(
                       "kasus",
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: warningColor, fontSize: 25),
+                      style: TextStyle(
+                        color: warningColor,
+                        fontSize: 25,
+                      ),
                     )
                   ],
                 ),
@@ -244,7 +255,10 @@ class DetailKasusState extends State<DetailKasus> {
                     const Text(
                       "sembuh",
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.green, fontSize: 25),
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontSize: 25,
+                      ),
                     )
                   ],
                 ),
@@ -256,7 +270,10 @@ class DetailKasusState extends State<DetailKasus> {
                 const SizedBox(height: 5),
                 Text(
                   snapshot.data!.lastUpdate.toString(),
-                  style: TextStyle(fontSize: 15, color: bodyColor),
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: bodyColor,
+                  ),
                 )
               ],
             );
@@ -310,7 +327,9 @@ class KasusContainerState extends State<KasusContainer> {
                     child: const Text(
                       "Lihat Detail >",
                       style: TextStyle(
-                          color: Colors.green, fontWeight: FontWeight.bold),
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     onTap: () {
                       showDialog(
@@ -343,15 +362,20 @@ class KasusContainerState extends State<KasusContainer> {
                                 " k",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: dangerColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30),
+                              color: dangerColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30,
+                            ),
                           ),
                           const SizedBox(height: 5),
-                          Text("Meninggal",
-                              textAlign: TextAlign.center,
-                              style:
-                                  TextStyle(color: dangerColor, fontSize: 15))
+                          Text(
+                            "Meninggal",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: dangerColor,
+                              fontSize: 15,
+                            ),
+                          )
                         ],
                       ),
                       const Spacer(),
@@ -364,15 +388,20 @@ class KasusContainerState extends State<KasusContainer> {
                                 " jt",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: warningColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30),
+                              color: warningColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30,
+                            ),
                           ),
                           const SizedBox(height: 5),
-                          Text("Kasus",
-                              textAlign: TextAlign.center,
-                              style:
-                                  TextStyle(color: warningColor, fontSize: 15))
+                          Text(
+                            "Kasus",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: warningColor,
+                              fontSize: 15,
+                            ),
+                          )
                         ],
                       ),
                       const Spacer(),
@@ -385,15 +414,20 @@ class KasusContainerState extends State<KasusContainer> {
                                 " jt",
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                                color: Colors.green,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30),
+                              color: Colors.green,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30,
+                            ),
                           ),
                           const SizedBox(height: 5),
-                          const Text("Sembuh",
-                              textAlign: TextAlign.center,
-                              style:
-                                  TextStyle(color: Colors.green, fontSize: 15))
+                          const Text(
+                            "Sembuh",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.green,
+                              fontSize: 15,
+                            ),
+                          )
                         ],
                       ),
                       const Spacer(),
@@ -421,7 +455,6 @@ class KasusContainerState extends State<KasusContainer> {
 // ignore: must_be_immutable
 class NewsTiles extends StatelessWidget {
   final String _description;
-  // final String _imgUrl;
   final String _title;
 
   const NewsTiles(this._title, this._description, {Key? key}) : super(key: key);
@@ -432,7 +465,9 @@ class NewsTiles extends StatelessWidget {
       width: double.infinity,
       height: 84,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(10)),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Row(

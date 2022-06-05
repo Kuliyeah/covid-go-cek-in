@@ -19,7 +19,8 @@ class _Bantuan_pageState extends State<Bantuan_page> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
           Text("1. Masukkan data username yang ingin dibuat"),
-          Text("2. Masukkan password dan confirmation password yang ingin dibuat"),
+          Text(
+              "2. Masukkan password dan confirmation password yang ingin dibuat"),
           Text("3. Masukkan data diri"),
           Text("4. Silakan Login ke aplikasi"),
         ],
@@ -33,7 +34,8 @@ class _Bantuan_pageState extends State<Bantuan_page> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
           Text("1. Masukkan data username yang sudah dibuat"),
-          Text("2. Masukkan password dan confirmation password yang sudah dibuat"),
+          Text(
+              "2. Masukkan password dan confirmation password yang sudah dibuat"),
         ],
       ),
     ),
@@ -51,6 +53,7 @@ class _Bantuan_pageState extends State<Bantuan_page> {
       ),
     ),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +80,9 @@ class _Bantuan_pageState extends State<Bantuan_page> {
                         child: Row(
                           children: [
                             itemData[index].widget,
-                            const SizedBox(width: 8,),
+                            const SizedBox(
+                              width: 8,
+                            ),
                             Text(
                               itemData[index].headerItem,
                               style: const TextStyle(
@@ -89,10 +94,9 @@ class _Bantuan_pageState extends State<Bantuan_page> {
                       );
                     },
                     body: Container(
-                      padding: const EdgeInsets.only(
-                          left: 10, right: 10, bottom: 20),
-                      child: itemData[index].discription
-                    ),
+                        padding: const EdgeInsets.only(
+                            left: 10, right: 10, bottom: 20),
+                        child: itemData[index].discription),
                     isExpanded: itemData[index].expanded,
                   )
                 ],

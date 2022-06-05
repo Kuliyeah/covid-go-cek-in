@@ -52,18 +52,21 @@ class _RegisterPageBioState extends State<RegisterPageBio> {
   }
 
   Future insertPengunjung() async {
-    await http.post("$url/v1/pengunjung", body: {
-      "usernamePengunjung": widget.username,
-      "passwordPengunjung":
-          md5.convert(utf8.encode(widget.password)).toString(),
-      "namaPengunjung": namaController.text,
-      "nikPengunjung": nikController.text,
-      "alamatPengunjung": alamatController.text,
-      "noHpPengunjung": noHpController.text,
-      "umurPengunjung": age(),
-      "jenisKelaminPengunjung": _gender.toString().split('.').last,
-      "statusKesehatan": "Negatif",
-    });
+    await http.post(
+      "$url/v1/pengunjung",
+      body: {
+        "usernamePengunjung": widget.username,
+        "passwordPengunjung":
+            md5.convert(utf8.encode(widget.password)).toString(),
+        "namaPengunjung": namaController.text,
+        "nikPengunjung": nikController.text,
+        "alamatPengunjung": alamatController.text,
+        "noHpPengunjung": noHpController.text,
+        "umurPengunjung": age(),
+        "jenisKelaminPengunjung": _gender.toString().split('.').last,
+        "statusKesehatan": "Negatif",
+      },
+    );
   }
 
   @override
@@ -93,8 +96,10 @@ class _RegisterPageBioState extends State<RegisterPageBio> {
                     ),
                     contentPadding: const EdgeInsets.only(left: 25),
                     hintText: "Nama Lengkap",
-                    hintStyle:
-                        const TextStyle(fontSize: 15, color: Colors.black45),
+                    hintStyle: const TextStyle(
+                      fontSize: 15,
+                      color: Colors.black45,
+                    ),
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -112,8 +117,10 @@ class _RegisterPageBioState extends State<RegisterPageBio> {
                     ),
                     contentPadding: const EdgeInsets.only(left: 25),
                     hintText: "No. Telp",
-                    hintStyle:
-                        const TextStyle(fontSize: 15, color: Colors.black45),
+                    hintStyle: const TextStyle(
+                      fontSize: 15,
+                      color: Colors.black45,
+                    ),
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -131,8 +138,10 @@ class _RegisterPageBioState extends State<RegisterPageBio> {
                     ),
                     contentPadding: const EdgeInsets.only(left: 25),
                     hintText: "NIK",
-                    hintStyle:
-                        const TextStyle(fontSize: 15, color: Colors.black45),
+                    hintStyle: const TextStyle(
+                      fontSize: 15,
+                      color: Colors.black45,
+                    ),
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -186,7 +195,9 @@ class _RegisterPageBioState extends State<RegisterPageBio> {
                           contentPadding: const EdgeInsets.only(left: 25),
                           hintText: "Tanggal Lahir",
                           hintStyle: const TextStyle(
-                              fontSize: 15, color: Colors.black45),
+                            fontSize: 15,
+                            color: Colors.black45,
+                          ),
                           filled: true,
                           fillColor: Colors.white,
                         ),
@@ -199,20 +210,24 @@ class _RegisterPageBioState extends State<RegisterPageBio> {
                       child: RaisedButton(
                         color: Colors.white,
                         onPressed: () {
-                          DatePicker.showDatePicker(context,
-                              showTitleActions: true,
-                              minTime: DateTime(1900, 1, 1),
-                              maxTime: DateTime.now(), onChanged: (date) {
-                            ttlController =
-                                DateFormat("yyyy-MM-dd").parse(date.toString());
-                          }, onConfirm: (date) {
-                            setState(() {
-                              tglLahirController.text =
-                                  date.toString().substring(0, 10);
-                            });
-                          },
-                              currentTime: DateTime.now(),
-                              locale: LocaleType.en);
+                          DatePicker.showDatePicker(
+                            context,
+                            showTitleActions: true,
+                            minTime: DateTime(1900, 1, 1),
+                            maxTime: DateTime.now(),
+                            currentTime: DateTime.now(),
+                            locale: LocaleType.en,
+                            onChanged: (date) {
+                              ttlController = DateFormat("yyyy-MM-dd")
+                                  .parse(date.toString());
+                            },
+                            onConfirm: (date) {
+                              setState(() {
+                                tglLahirController.text =
+                                    date.toString().substring(0, 10);
+                              });
+                            },
+                          );
                         },
                         child: const Icon(Icons.date_range_outlined),
                       ),
@@ -231,10 +246,15 @@ class _RegisterPageBioState extends State<RegisterPageBio> {
                         style: BorderStyle.none,
                       ),
                     ),
-                    contentPadding: const EdgeInsets.only(left: 25, top: 50),
+                    contentPadding: const EdgeInsets.only(
+                      left: 25,
+                      top: 50,
+                    ),
                     hintText: "Alamat",
-                    hintStyle:
-                        const TextStyle(fontSize: 15, color: Colors.black45),
+                    hintStyle: const TextStyle(
+                      fontSize: 15,
+                      color: Colors.black45,
+                    ),
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -252,8 +272,10 @@ class _RegisterPageBioState extends State<RegisterPageBio> {
                     ),
                     contentPadding: const EdgeInsets.only(left: 25),
                     hintText: "Email",
-                    hintStyle:
-                        const TextStyle(fontSize: 15, color: Colors.black45),
+                    hintStyle: const TextStyle(
+                      fontSize: 15,
+                      color: Colors.black45,
+                    ),
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -267,13 +289,18 @@ class _RegisterPageBioState extends State<RegisterPageBio> {
                     color: Colors.green,
                     textColor: Colors.white,
                     shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                    ),
                     onPressed: () async {
                       insertPengunjung();
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Berhasil Daftar Akun"),
-                        duration: Duration(milliseconds: 1000),
-                      ));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Berhasil Daftar Akun"),
+                          duration: Duration(milliseconds: 1000),
+                        ),
+                      );
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(

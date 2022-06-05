@@ -57,8 +57,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   contentPadding: const EdgeInsets.only(left: 25),
                   hintText: "Username",
-                  hintStyle:
-                      const TextStyle(fontSize: 15, color: Colors.black45),
+                  hintStyle: const TextStyle(
+                    fontSize: 15,
+                    color: Colors.black45,
+                  ),
                   filled: true,
                   fillColor: Colors.white,
                 ),
@@ -77,8 +79,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   contentPadding: const EdgeInsets.only(left: 25),
                   hintText: "Password",
-                  hintStyle:
-                      const TextStyle(fontSize: 15, color: Colors.black45),
+                  hintStyle: const TextStyle(
+                    fontSize: 15,
+                    color: Colors.black45,
+                  ),
                   filled: true,
                   fillColor: Colors.white,
                 ),
@@ -96,8 +100,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   contentPadding: const EdgeInsets.only(left: 25),
                   hintText: "Konfirmasi Password",
-                  hintStyle:
-                      const TextStyle(fontSize: 15, color: Colors.black45),
+                  hintStyle: const TextStyle(
+                    fontSize: 15,
+                    color: Colors.black45,
+                  ),
                   filled: true,
                   fillColor: Colors.white,
                 ),
@@ -108,22 +114,30 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 45,
                 // ignore: deprecated_member_use
                 child: RaisedButton(
-                  child: const Text("Selanjutnya",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  child: const Text(
+                    "Selanjutnya",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   color: Colors.green,
                   textColor: Colors.white,
                   shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                  ),
                   onPressed: () async {
+                    String urlLogin = "$url/v1/pengunjung/login/";
                     var response = await http.get(
-                        "$url/v1/pengunjung/login/" + usernameController.text);
+                      urlLogin + usernameController.text,
+                    );
                     var decodedData = jsonDecode(response.body);
 
                     if (decodedData['success'] == true) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text(
-                              "Username sudah terdaftar, silakan ganti username lain"),
+                            "Username sudah terdaftar, silakan ganti username lain",
+                          ),
                           duration: Duration(milliseconds: 1000),
                         ),
                       );
@@ -132,8 +146,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => RegisterPageBio(
-                              username: usernameController.text,
-                              password: passwordController.text),
+                            username: usernameController.text,
+                            password: passwordController.text,
+                          ),
                         ),
                       );
                     }

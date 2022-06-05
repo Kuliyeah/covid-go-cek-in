@@ -33,8 +33,12 @@ class AkunSetting extends StatelessWidget {
 }
 
 _goBack(BuildContext context) {
-  Navigator.pushReplacement(context,
-      MaterialPageRoute(builder: (BuildContext context) => const MainScreen()));
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (BuildContext context) => const MainScreen(),
+    ),
+  );
 }
 
 Widget _buildContent(BuildContext context) {
@@ -68,9 +72,11 @@ Widget _buildContent(BuildContext context) {
             ),
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => const HistoryPage()));
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const HistoryPage(),
+                ),
+              );
             },
           ),
           const Divider(color: Colors.black45),
@@ -99,9 +105,11 @@ Widget _buildContent(BuildContext context) {
             ),
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => const LogPage()));
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const LogPage(),
+                ),
+              );
             },
           ),
           const Divider(color: Colors.black45),
@@ -130,10 +138,12 @@ Widget _buildContent(BuildContext context) {
             ),
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          const Term_Of_Service_Page()));
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      const Term_Of_Service_Page(),
+                ),
+              );
             },
           ),
           const Divider(color: Colors.black45),
@@ -162,9 +172,11 @@ Widget _buildContent(BuildContext context) {
             ),
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => const Bantuan_page()));
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const Bantuan_page(),
+                ),
+              );
             },
           ),
           const Divider(color: Colors.black45),

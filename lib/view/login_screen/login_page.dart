@@ -11,6 +11,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
 
+final usernameController = TextEditingController();
+final passwordController = TextEditingController();
+
+late SharedPreferences logindata;
+late SharedPreferences checkInData;
+late bool newuser;
 bool _showPassword = false;
 
 class LoginPage extends StatefulWidget {
@@ -19,13 +25,6 @@ class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
-
-final usernameController = TextEditingController();
-final passwordController = TextEditingController();
-
-late SharedPreferences logindata;
-late SharedPreferences checkInData;
-late bool newuser;
 
 class _LoginPageState extends State<LoginPage> {
   @override
@@ -54,7 +53,11 @@ class _LoginPageState extends State<LoginPage> {
     newuser = (logindata.getBool('login') ?? true);
     if (newuser == false) {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const MainScreen()));
+        context,
+        MaterialPageRoute(
+          builder: (context) => const MainScreen(),
+        ),
+      );
     }
   }
 
@@ -74,15 +77,16 @@ class _LoginPageState extends State<LoginPage> {
               ),
               _buildMargin(30),
               const Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "Login",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: Colors.green,
-                    ),
-                  )),
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Login",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
               _buildMargin(20),
               TextFormField(
                 controller: usernameController,
@@ -230,10 +234,12 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     onTap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  const RegisterPage()));
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const RegisterPage(),
+                        ),
+                      );
                     },
                   )
                 ],

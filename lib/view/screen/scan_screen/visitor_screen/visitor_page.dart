@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../../../constant/constant.dart';
 
 class VisitorPage extends StatelessWidget {
-  // final List<Users> cases;
   const VisitorPage({Key? key}) : super(key: key);
 
   @override
@@ -29,8 +28,10 @@ Widget _buildContent(BuildContext context) {
                   children: const <Widget>[
                     Text(
                       "ABATA COFFEE",
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.w900),
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w900,
+                      ),
                     ),
                     Text("Jl. in aja dulu, Gg. Cocok yaudah")
                   ],
@@ -54,8 +55,10 @@ Widget _buildContent(BuildContext context) {
                   children: const <Widget>[
                     Text(
                       "Pengujung",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w900,
+                      ),
                     ),
                     Text("3 Maret 2021")
                   ],
@@ -64,9 +67,10 @@ Widget _buildContent(BuildContext context) {
                 Text(
                   "9/30",
                   style: TextStyle(
-                      color: mainColor,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
+                    color: mainColor,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -172,7 +176,9 @@ class Visitors extends StatelessWidget {
               children: [
                 Text(
                   nama,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(jam),
               ],

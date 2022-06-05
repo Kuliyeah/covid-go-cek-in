@@ -108,6 +108,7 @@ class _Term_Of_Service_pageState extends State<Term_Of_Service_Page> {
           "Please send your feedback, comments, requests for technical support by email: dzakwandh@cci.id.\n",
     ),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

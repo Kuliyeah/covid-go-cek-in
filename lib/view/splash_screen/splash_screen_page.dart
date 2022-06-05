@@ -30,9 +30,11 @@ class _SplashScreenState extends State<SplashScreenPage> {
 
   void navigationPage() {
     Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (BuildContext context) => const LoginPage()));
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => const LoginPage(),
+      ),
+    );
   }
 
   @override

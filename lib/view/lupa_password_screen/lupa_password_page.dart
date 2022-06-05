@@ -31,15 +31,16 @@ Widget _buildContent(BuildContext context) {
             ),
             _buildMargin(30),
             const Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Lupa Akun",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: Colors.green,
-                  ),
-                )),
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Lupa Akun",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: Colors.green,
+                ),
+              ),
+            ),
             _buildMargin(20),
             TextFormField(
               decoration: InputDecoration(
@@ -68,13 +69,17 @@ Widget _buildContent(BuildContext context) {
                 color: Colors.green,
                 textColor: Colors.white,
                 shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
                 onPressed: () {
                   Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const MainScreen()));
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => const MainScreen(),
+                    ),
+                  );
                 },
               ),
             ),
@@ -91,9 +96,11 @@ Widget _buildContent(BuildContext context) {
               ),
               onTap: () {
                 Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => const LoginPage()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => const LoginPage(),
+                  ),
+                );
               },
             )
           ],

@@ -22,7 +22,11 @@ class AkunContainerState extends State<AkunContainer> {
         child: Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(top: 45, left: 30, right: 30),
+              padding: const EdgeInsets.only(
+                top: 45,
+                left: 30,
+                right: 30,
+              ),
               child: Row(
                 children: <Widget>[
                   const Spacer(),
@@ -46,17 +50,18 @@ class AkunContainerState extends State<AkunContainer> {
               ),
             ),
             _buildMargin(20),
-            Image.asset('assets/img/avatar.png', height: 150),
-            _buildMargin(15),
-            Text(
-              "Ganti Avatar",
-              style: TextStyle(fontSize: 16, color: mainColor),
+            Image.asset(
+              'assets/img/avatar.png',
+              height: 150,
             ),
             _buildMargin(20),
             Text(
               decodedData['data']['namaPengunjung'],
               style: TextStyle(
-                  fontSize: 20, color: textColor, fontWeight: FontWeight.bold),
+                fontSize: 20,
+                color: textColor,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             _buildMargin(10),
             Text(
@@ -69,41 +74,55 @@ class AkunContainerState extends State<AkunContainer> {
             _buildMargin(50),
             Container(
               decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30))),
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+              ),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(40, 40, 40, 30),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    TilesAccountSetting(Icons.abc, 'Username',
-                        decodedData['data']['usernamePengunjung']),
+                    TilesAccountSetting(
+                      Icons.abc,
+                      'Username',
+                      decodedData['data']['usernamePengunjung'],
+                    ),
                     _buildMargin(20),
                     Container(
                       height: 1,
                       color: textColor,
                     ),
                     _buildMargin(30),
-                    TilesAccountSetting(Icons.person, 'Nama',
-                        decodedData['data']['namaPengunjung']),
+                    TilesAccountSetting(
+                      Icons.person,
+                      'Nama',
+                      decodedData['data']['namaPengunjung'],
+                    ),
                     _buildMargin(20),
                     Container(
                       height: 1,
                       color: textColor,
                     ),
                     _buildMargin(30),
-                    TilesAccountSetting(Icons.phone, 'Nomor Telepon',
-                        decodedData['data']['noHpPengunjung']),
+                    TilesAccountSetting(
+                      Icons.phone,
+                      'Nomor Telepon',
+                      decodedData['data']['noHpPengunjung'],
+                    ),
                     _buildMargin(20),
                     Container(
                       height: 1,
                       color: textColor,
                     ),
                     _buildMargin(30),
-                    TilesAccountSetting(Icons.pin_drop_outlined, 'Alamat',
-                        decodedData['data']['alamatPengunjung']),
+                    TilesAccountSetting(
+                      Icons.pin_drop_outlined,
+                      'Alamat',
+                      decodedData['data']['alamatPengunjung'],
+                    ),
                     _buildMargin(20),
                     Container(
                       height: 1,

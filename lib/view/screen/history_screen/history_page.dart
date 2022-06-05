@@ -30,6 +30,7 @@ class HistoryPageState extends State<HistoryPage> {
 
   String apiUrl =
       MyUrl().getUrl() + "/v1/kunjungan/" + logindata.getInt('id').toString();
+
   Future<List<dynamic>> _fecthDataUsers() async {
     if (searchBarController.text != "") {
       apiUrl = MyUrl().getUrl() +
@@ -67,10 +68,15 @@ class HistoryPageState extends State<HistoryPage> {
                   autofocus: false,
                   decoration: InputDecoration(
                     hintText: 'Masukan nama, alamat atau tanggal kunjungan',
-                    hintStyle:
-                        const TextStyle(fontSize: 15, color: Colors.black45),
+                    hintStyle: const TextStyle(
+                      fontSize: 15,
+                      color: Colors.black45,
+                    ),
                     focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white, width: 0.0),
+                      borderSide: BorderSide(
+                        color: Colors.white,
+                        width: 0.0,
+                      ),
                     ),
                     suffixIcon: GestureDetector(
                       child: Material(
@@ -81,21 +87,32 @@ class HistoryPageState extends State<HistoryPage> {
                           topRight: Radius.circular(15.0),
                           bottomRight: Radius.circular(15.0),
                         ),
-                        child: const Icon(Icons.search, color: Colors.white),
+                        child: const Icon(
+                          Icons.search,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                    contentPadding: const EdgeInsets.only(top: 15.0, left: 20),
+                    contentPadding: const EdgeInsets.only(
+                      top: 15.0,
+                      left: 20,
+                    ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
-                      borderSide:
-                          const BorderSide(color: Colors.white, width: 3.0),
+                      borderSide: const BorderSide(
+                        color: Colors.white,
+                        width: 3.0,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
+              padding: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[

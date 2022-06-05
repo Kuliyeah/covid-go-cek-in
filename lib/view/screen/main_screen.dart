@@ -29,7 +29,7 @@ class MainScreenState extends State<MainScreen> {
   final List<Widget> viewContainer = [
     const HistoryPage(),
     const HomePage(),
-    const AkunContainer()
+    const AkunContainer(),
   ];
 
   @override

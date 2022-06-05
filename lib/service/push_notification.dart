@@ -9,7 +9,7 @@ class PushNotification {
     var android = const AndroidInitializationSettings('launch_background');
     var initSettingIoS = const IOSInitializationSettings();
     var initSetting =
-        new InitializationSettings(android: android, iOS: initSettingIoS);
+        InitializationSettings(android: android, iOS: initSettingIoS);
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     flutterLocalNotificationsPlugin?.initialize(initSetting);
 
@@ -26,70 +26,4 @@ class PushNotification {
     await flutterLocalNotificationsPlugin?.show(
         0, event.notification!.title, event.notification!.body, _notifDetai);
   }
-  // Future<void> authorize(RemoteMessage message, AndroidNotificationChannel? channel,
-  //     FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin) async {
-
-  //   if (Platform.isIOS) {
-  //     FirebaseMessaging messaging = FirebaseMessaging.instance;
-
-  //     NotificationSettings settings = await messaging.requestPermission(
-  //       alert: true,
-  //       announcement: false,
-  //       badge: true,
-  //       carPlay: false,
-  //       criticalAlert: false,
-  //       provisional: false,
-  //       sound: true,
-  //     );
-  //     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-  //       print('User granted permission: ${settings.authorizationStatus}');
-  //     } else {
-  //       print('user declined or not accepted');
-  //     }
-  //   }
-  //   if (!kIsWeb) {
-  //     channel = const AndroidNotificationChannel(
-  //       'high_importance_channel', // id
-  //       'High Importance Notifications', // title
-
-  //       importance: Importance.max,
-  //     );
-
-  //     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
-  //     await flutterLocalNotificationsPlugin
-  //         .resolvePlatformSpecificImplementation<
-  //             AndroidFlutterLocalNotificationsPlugin>()
-  //         ?.createNotificationChannel(channel);
-  //     await FirebaseMessaging.instance
-  //         .setForegroundNotificationPresentationOptions(
-  //       alert: true,
-  //       badge: true,
-  //       sound: true,
-  //     );
-  //   }
-
-  // }
-
-  // void listenMessage(AndroidNotificationChannel? channel,
-  //     FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin) {
-  //   FirebaseMessaging.onMessage.listen((message) {
-  //     RemoteNotification? notification = message.notification;
-  //     AndroidNotification? android = message.notification?.android;
-  //     if (notification != null && android != null && !kIsWeb) {
-  //       flutterLocalNotificationsPlugin?.show(
-  //         notification.hashCode,
-  //         notification.title,
-  //         notification.body,
-  //         NotificationDetails(
-  //           android: AndroidNotificationDetails(
-  //             channel!.id,
-  //             channel.name,
-  //             icon: 'launch_background',
-  //           ),
-  //         ),
-  //       );
-  //     }
-  // });
-  // }
 }

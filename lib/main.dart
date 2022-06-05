@@ -24,12 +24,14 @@ Future<void> messageHandlerForeground() async {
     badge: true,
     sound: true,
   );
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    PushNotification.showNotification(message);
-    print("Message: ${message.messageId}");
-    print("Message-title: ${message.notification}");
-    print("Message: ${message.data}");
-  });
+  FirebaseMessaging.onMessage.listen(
+    (RemoteMessage message) {
+      PushNotification.showNotification(message);
+      print("Message: ${message.messageId}");
+      print("Message-title: ${message.notification}");
+      print("Message: ${message.data}");
+    },
+  );
 }
 
 Future<void> messageHandlerBackground(RemoteMessage message) async {
@@ -91,21 +93,21 @@ class _MyHomeAppState extends State<MyHomeApp> {
   }
 
   _loadWidget() async {
-    var _duration = Duration(milliseconds: 10);
+    var _duration = const Duration(milliseconds: 10);
     return Timer(_duration, navigationPage);
   }
 
   void navigationPage() {
     Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (BuildContext context) => const SplashScreenPage()));
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => const SplashScreenPage(),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-
-    );
+    return Container();
   }
 }
