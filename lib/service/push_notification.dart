@@ -1,10 +1,11 @@
 // ignore_for_file: avoid_print
 
 import 'package:covid_go_cek_in/main.dart';
-import 'package:covid_go_cek_in/view/screen/notification_screen.dart/notification_screen.dart';
+import 'package:covid_go_cek_in/view/screen/notification_screen/notification_screen.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:covid_go_cek_in/constant/constant.dart';
 
 class PushNotification {
   static Future<void> showNotification(RemoteMessage event) async {
@@ -65,11 +66,10 @@ class PushNotification {
 
       if (message.notification != null) {
         print("Message: ${message.notification!.title}");
-        Navigator.pushReplacement(
+        Navigator.pushNamed(
           context,
-          MaterialPageRoute(
-            builder: (context) => const MessageView(),
-          ),
+          MESSAGE_VIEW,
+          arguments: MessageCacther(message, true),
         );
       } else {
         print("tidak ada message");
@@ -80,15 +80,26 @@ class PushNotification {
   //untuk memanggil saat terminated
   static Future<void> messageHandlerTerminated(BuildContext context) async {
     FirebaseMessaging.instance.getInitialMessage().then((message) {
-      showNotification(message!);
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const MessageView(),
-        ),
-      );
+      if (message!.notification != null) {
+        Navigator.pushNamed(
+          context,
+          MESSAGE_VIEW,
+          arguments: MessageCacther(message, true),
+        );
+        print(message.notification!.title);
+      }
+    });
+  }
 
-      print(message.notification!.title);
+  static Future<void> openedMessage(BuildContext context) async {
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {
+      if (message.notification != null) {
+        Navigator.pushNamed(
+          context,
+          MESSAGE_VIEW,
+          arguments: MessageCacther(message, true),
+        );
+      }
     });
   }
 

@@ -2,7 +2,7 @@
 
 import 'dart:async';
 
-import 'package:covid_go_cek_in/view/screen/notification_screen.dart/notification_screen.dart';
+import 'package:covid_go_cek_in/view/screen/notification_screen/notification_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         HOME_SCREEN: (BuildContext context) => const MainScreen(),
         ANIMATED_SPLASH: (BuildContext context) => const SplashScreenPage(),
         VIDEO_CONTAINER_SCREEN: (BuildContext context) => const MainScreen(),
-        '/MessageView':(context) => const MessageView(),
+        MESSAGE_VIEW: (BuildContext context) => const MessageView(),
       },
     );
   }
