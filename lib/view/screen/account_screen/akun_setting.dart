@@ -41,6 +41,7 @@ _goBack(BuildContext context) {
   );
 }
 
+final passwordController = TextEditingController();
 Widget _buildContent(BuildContext context) {
   return SingleChildScrollView(
     scrollDirection: Axis.vertical,
@@ -204,12 +205,34 @@ Widget _buildContent(BuildContext context) {
               ],
             ),
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (BuildContext context) => const Bantuan_page(),
-              //   ),
-              // );
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  title: const Text('Change Password'),
+                  content: Container(
+                    height: 100,
+                    child: Column(
+                      children: [
+                        TextField(
+                          controller: passwordController,
+                          autofocus: true,
+                          decoration:
+                              const InputDecoration(hintText: 'New Password'),
+                        ),
+                      ],
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () async {
+                        changeData(passwordController.text);
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text("SUBMIT"),
+                    )
+                  ],
+                ),
+              );
             },
           ),
           const Divider(color: Colors.black45),
@@ -259,3 +282,5 @@ Widget _buildContent(BuildContext context) {
     ),
   );
 }
+
+void changeData(String titleData) async {}
