@@ -1,6 +1,5 @@
 import 'package:covid_go_cek_in/models/Kasus.dart';
 import 'package:covid_go_cek_in/view/login_screen/login_page.dart';
-import 'package:covid_go_cek_in/view/screen/history_screen/tiles.dart';
 import 'package:covid_go_cek_in/view/screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import '../../../constant/constant.dart';
@@ -138,7 +137,7 @@ Widget _buildContent(BuildContext context) {
                   const SizedBox(
                     height: 10,
                   ),
-                  NewsTiles(),
+                  const NewsTiles(),
                 ],
               ),
             ),
@@ -449,17 +448,19 @@ class KasusContainerState extends State<KasusContainer> {
 
 // ignore: must_be_immutable
 class NewsTiles extends StatefulWidget {
+  const NewsTiles({Key? key}) : super(key: key);
+
   @override
   State<NewsTiles> createState() => _NewsTilesState();
 }
 
 class _NewsTilesState extends State<NewsTiles> {
-  List<Map<String, dynamic>> __taskList = [];
-  void _refreshJournals() async {
+  Future<List<dynamic>> _refreshJournals() async {
     final data = await SQLHelper.getItems();
-    __taskList = data;
+    return data.toList();
   }
 
+  @override
   void initState() {
     super.initState();
     _refreshJournals();
@@ -467,58 +468,73 @@ class _NewsTilesState extends State<NewsTiles> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: __taskList.length,
-        itemBuilder: (context, index) => Container(
-              width: double.infinity,
-              height: 84,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 84,
-                      height: 84,
-                      decoration: const BoxDecoration(
-                        color: Color(0xFFFDB8B8),
+    return FutureBuilder<List<dynamic>>(
+      future: _refreshJournals(),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasData) {
+          return Container(
+            height: 200,
+            child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: snapshot.data.length,
+              itemBuilder: (context, index) => Card(
+                margin: const EdgeInsets.only(bottom: 20),
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 84,
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFFDB8B8),
+                        ),
+                        child: const Image(
+                            image: AssetImage('assets/img/virus.png')),
                       ),
-                      child: const Image(
-                          image: AssetImage('assets/img/virus.png')),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            __taskList[index]['place'],
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            __taskList[index]['desc'],
-                            style: const TextStyle(
-                              fontSize: 10,
-                              color: Color(0xFF888888),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              snapshot.data[index]['place'],
+                              style: const TextStyle(fontSize: 16),
                             ),
-                            softWrap: true,
-                          )
-                        ],
-                      ),
-                    )
-                  ],
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            Container(
+                              constraints: const BoxConstraints(maxWidth: 100),
+                              child: Text(
+                                snapshot.data[index]['desc'],
+                                style: const TextStyle(
+                                  fontSize: 10,
+                                  color: Color(0xFF888888),
+                                ),
+                                softWrap: true,
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ));
+            ),
+          );
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
+    );
   }
 }

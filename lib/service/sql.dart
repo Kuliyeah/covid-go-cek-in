@@ -13,7 +13,7 @@ class SQLHelper {
   //connect to database
   static Future<sql.Database> db() async {
     return sql.openDatabase(
-      'news.db',
+      'berita.db',
       version: 1,
       onCreate: (sql.Database database, int version) async {
         await createTables(database);
@@ -26,7 +26,7 @@ class SQLHelper {
     final db = await SQLHelper.db();
 
     final data = {
-      'title': title,
+      'place': title,
       'desc' : desc
     };
     final id = await db.insert('items', data,

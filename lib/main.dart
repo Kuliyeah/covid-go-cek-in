@@ -22,12 +22,13 @@ Future<void> messageHandlerBackground(RemoteMessage message) async {
   print('Handler on Background Message');
 }
 
-
 Future<void> _addItem() async {
-  await SQLHelper.createItem("Bandung", "Bandung adalah kota dengan jumlah covid terbanyak di Indonesia");
+  final data = await SQLHelper.getItems();
+  if (data.length <= 4) {
+    await SQLHelper.createItem("Bandung",
+        "Bandung adalah kota dengan jumlah covid terbanyak di Indonesia");
+  }
 }
-
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
