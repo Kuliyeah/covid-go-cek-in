@@ -186,6 +186,39 @@ Widget _buildContent(BuildContext context) {
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
                   child: Icon(
+                    Icons.key_sharp,
+                    color: Color.fromARGB(255, 41, 52, 61),
+                    size: 35,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
+                  child: Text(
+                    "Change Password",
+                    style: TextStyle(
+                      fontSize: 17,
+                      color: Color.fromARGB(255, 41, 52, 61),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            onTap: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (BuildContext context) => const Bantuan_page(),
+              //   ),
+              // );
+            },
+          ),
+          const Divider(color: Colors.black45),
+          GestureDetector(
+            child: Row(
+              children: const <Widget>[
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
+                  child: Icon(
                     Icons.login_outlined,
                     color: Color.fromARGB(255, 41, 52, 61),
                     size: 35,
