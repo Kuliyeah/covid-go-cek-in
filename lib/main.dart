@@ -12,6 +12,7 @@ import 'service/push_notification.dart';
 import 'view/screen/main_screen.dart';
 import 'view/splash_screen/splash_screen_page.dart';
 import 'constant/constant.dart';
+import 'service/sql.dart';
 
 AndroidNotificationChannel? channel;
 FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
@@ -21,11 +22,19 @@ Future<void> messageHandlerBackground(RemoteMessage message) async {
   print('Handler on Background Message');
 }
 
+
+Future<void> _addItem() async {
+  await SQLHelper.createItem("Bandung", "Bandung adalah kota dengan jumlah covid terbanyak di Indonesia");
+}
+
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await PushNotification.requestPermission();
   FirebaseMessaging.onBackgroundMessage(messageHandlerBackground);
+  await _addItem();
   runApp(const MyApp());
 }
 

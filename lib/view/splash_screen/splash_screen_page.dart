@@ -46,6 +46,7 @@ class _SplashScreenState extends State<SplashScreenPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       routes: {
         MESSAGE_VIEW: (BuildContext context) => const MessageView(),
       },

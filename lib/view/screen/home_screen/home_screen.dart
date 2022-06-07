@@ -1,13 +1,16 @@
 import 'package:covid_go_cek_in/models/Kasus.dart';
 import 'package:covid_go_cek_in/view/login_screen/login_page.dart';
+import 'package:covid_go_cek_in/view/screen/history_screen/tiles.dart';
 import 'package:covid_go_cek_in/view/screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import '../../../constant/constant.dart';
 import 'package:intl/intl.dart' as intl;
 import 'dart:convert';
+import '../../../service/sql.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
+import 'package:covid_go_cek_in/service/sql.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -135,15 +138,7 @@ Widget _buildContent(BuildContext context) {
                   const SizedBox(
                     height: 10,
                   ),
-                  const NewsTiles("Daerah 1", "Melonjaknya kasus Covid19"),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const NewsTiles("Daerah 2", "Melonjaknya kasus Covid19"),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const NewsTiles("Daerah 3", "Melonjaknya kasus Covid19"),
+                  NewsTiles(),
                 ],
               ),
             ),
@@ -453,63 +448,77 @@ class KasusContainerState extends State<KasusContainer> {
 }
 
 // ignore: must_be_immutable
-class NewsTiles extends StatelessWidget {
-  final String _description;
-  final String _title;
+class NewsTiles extends StatefulWidget {
+  @override
+  State<NewsTiles> createState() => _NewsTilesState();
+}
 
-  const NewsTiles(this._title, this._description, {Key? key}) : super(key: key);
+class _NewsTilesState extends State<NewsTiles> {
+  List<Map<String, dynamic>> __taskList = [];
+  void _refreshJournals() async {
+    final data = await SQLHelper.getItems();
+    __taskList = data;
+  }
+
+  void initState() {
+    super.initState();
+    _refreshJournals();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 84,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Row(
-          children: [
-            Container(
-              width: 84,
+    return ListView.builder(
+        itemCount: __taskList.length,
+        itemBuilder: (context, index) => Container(
+              width: double.infinity,
               height: 84,
-              decoration: const BoxDecoration(
-                color: Color(0xFFFDB8B8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
               ),
-              child: const Image(image: AssetImage('assets/img/virus.png')),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    _title,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    _description,
-                    style: const TextStyle(
-                      fontSize: 10,
-                      color: Color(0xFF888888),
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 84,
+                      height: 84,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFFDB8B8),
+                      ),
+                      child: const Image(
+                          image: AssetImage('assets/img/virus.png')),
                     ),
-                    softWrap: true,
-                  )
-                ],
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            __taskList[index]['place'],
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            __taskList[index]['desc'],
+                            style: const TextStyle(
+                              fontSize: 10,
+                              color: Color(0xFF888888),
+                            ),
+                            softWrap: true,
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
-            )
-          ],
-        ),
-      ),
-    );
+            ));
   }
 }
