@@ -1,11 +1,17 @@
+import 'dart:convert';
+
 import 'package:covid_go_cek_in/constant/constant.dart';
+import 'package:covid_go_cek_in/helperurl.dart';
 import 'package:covid_go_cek_in/view/screen/main_screen.dart';
 import 'package:covid_go_cek_in/view/login_screen/login_page.dart';
+import 'package:crypto/crypto.dart';
 import 'menu_screen/log_page.dart';
 import 'term_of_service_screen/term_of_service_page.dart';
 import 'package:flutter/material.dart';
 import 'bantuan_screen/bantuan_page.dart';
 import '../history_screen/history_page.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:http/http.dart' as http;
 
 class AkunSetting extends StatelessWidget {
   const AkunSetting({Key? key}) : super(key: key);
@@ -210,7 +216,7 @@ Widget _buildContent(BuildContext context) {
                 builder: (BuildContext context) => AlertDialog(
                   title: const Text('Change Password'),
                   content: Container(
-                    height: 100,
+                    height: 50,
                     child: Column(
                       children: [
                         TextField(
@@ -225,7 +231,7 @@ Widget _buildContent(BuildContext context) {
                   actions: [
                     TextButton(
                       onPressed: () async {
-                        changeData(passwordController.text);
+                        updateData("passwordPengunjung", "editpassword");
                         Navigator.of(context).pop();
                       },
                       child: const Text("SUBMIT"),
@@ -283,4 +289,12 @@ Widget _buildContent(BuildContext context) {
   );
 }
 
-void changeData(String titleData) async {}
+Future updateData(String field, String data) async {
+  String url = MyUrl().getUrl();
+  String urlPengunjung =
+      "$url/v1/pengunjung/$data/" + logindata.getString('username').toString();
+  await http.put(
+    urlPengunjung,
+    body: {field: md5.convert(utf8.encode(passwordController.text)).toString()},
+  );
+}
