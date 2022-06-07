@@ -7,7 +7,7 @@ String ANIMATED_SPLASH = '/SplashScreen',
     PHOTO_CONTAINER_SCREEN = '/PhotoContainerScreen',
     VIDEO_CONTAINER_SCREEN = '/VideoContainerScreen',
     ALBUM_CONTAINER_SCREEN = '/AlbumContainerScreen',
-    MESSAGE_CATCH = 'MessageCatch';
+    MESSAGE_VIEW = 'MessageView';
 
 Color mainColor = const Color(0xFF5DD482);
 Color splashBgColor = const Color(0xFFCAFFDA);

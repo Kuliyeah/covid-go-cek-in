@@ -1,10 +1,10 @@
 import 'dart:async';
+
+
 import 'package:covid_go_cek_in/constant/constant.dart';
 import 'package:flutter/material.dart';
 import '../login_screen/login_page.dart';
 import 'package:covid_go_cek_in/service/push_notification.dart';
-
-PushNotification push = PushNotification();
 
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({Key? key}) : super(key: key);
@@ -20,6 +20,8 @@ class _SplashScreenState extends State<SplashScreenPage> {
   @override
   void initState() {
     super.initState();
+    PushNotification.messageHandlerForeground(context);
+    PushNotification.messageHandlerTerminated(context);
     _loadWidget();
   }
 

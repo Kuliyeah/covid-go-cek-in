@@ -29,6 +29,7 @@ class MainScreenState extends State<MainScreen> {
   final List<Widget> viewContainer = [
     const HistoryPage(),
     const HomePage(),
+    // const MyNotification(),
     const AkunContainer(),
   ];
 
@@ -125,10 +126,14 @@ class MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.home),
             label: "Beranda",
           ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.notifications),
+          //   label: "Notification",
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: "Akun",
-          )
+          ),
         ],
       ),
     );
