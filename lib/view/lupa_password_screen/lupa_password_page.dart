@@ -1,8 +1,16 @@
-// ignore_for_file: sort_child_properties_last
+// ignore_for_file: sort_child_properties_last, use_build_context_synchronously, prefer_interpolation_to_compose_strings
 
+import 'dart:convert';
+
+import 'package:covid_go_cek_in/helperurl.dart';
+import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
-import '../screen/main_screen.dart';
 import '../login_screen/login_page.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:http/http.dart' as http;
+
+final usernameController = TextEditingController();
+final passwordController = TextEditingController();
 
 class LupaPasswordPage extends StatelessWidget {
   const LupaPasswordPage({Key? key}) : super(key: key);
@@ -27,11 +35,6 @@ Widget _buildContent(BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Image.asset(
-              'assets/img/icon.png',
-              height: 150,
-            ),
-            _buildMargin(30),
             const Align(
               alignment: Alignment.topLeft,
               child: Text(
@@ -45,6 +48,7 @@ Widget _buildContent(BuildContext context) {
             ),
             _buildMargin(20),
             TextFormField(
+              controller: usernameController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -55,6 +59,24 @@ Widget _buildContent(BuildContext context) {
                 ),
                 contentPadding: const EdgeInsets.only(left: 25),
                 hintText: "Username",
+                hintStyle: const TextStyle(fontSize: 15, color: Colors.black45),
+                filled: true,
+                fillColor: Colors.white,
+              ),
+            ),
+            _buildMargin(20),
+            TextFormField(
+              controller: passwordController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: const BorderSide(
+                    width: 0,
+                    style: BorderStyle.none,
+                  ),
+                ),
+                contentPadding: const EdgeInsets.only(left: 25),
+                hintText: "Password Terakhir Yang Di Ingat",
                 hintStyle: const TextStyle(fontSize: 15, color: Colors.black45),
                 filled: true,
                 fillColor: Colors.white,
@@ -75,13 +97,66 @@ Widget _buildContent(BuildContext context) {
                     Radius.circular(10),
                   ),
                 ),
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => const MainScreen(),
-                    ),
-                  );
+                onPressed: () async {
+                  String username = usernameController.text;
+
+                  String url = MyUrl().getUrl();
+                  var response = await http
+                      .get(Uri.parse("$url/v1/pengunjung/login/$username"));
+                  var decodedData = jsonDecode(response.body);
+
+                  if (decodedData != null) {
+                    if (username == decodedData['data']['usernamePengunjung'] ||
+                        username.length ==
+                            decodedData['data']['usernamePengunjung']
+                                .toString()
+                                .length ||
+                        username.substring(0, 3) ==
+                            decodedData['data']['usernamePengunjung']
+                                .toString()
+                                .substring(0, 3) ||
+                        username.substring(3, 6) ==
+                            decodedData['data']['usernamePengunjung']
+                                .toString()
+                                .substring(3, 6)) {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: const Text('Change Password'),
+                          content: SizedBox(
+                            height: 50,
+                            child: Column(
+                              children: [
+                                TextField(
+                                  controller: passwordController,
+                                  autofocus: true,
+                                  decoration: const InputDecoration(
+                                      hintText: 'New Password'),
+                                ),
+                              ],
+                            ),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () async {
+                                updateData(
+                                    "passwordPengunjung", "editpassword");
+                                Navigator.of(context).pop();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content:
+                                        Text("Password berhasil diperbarui"),
+                                    duration: Duration(milliseconds: 1000),
+                                  ),
+                                );
+                              },
+                              child: const Text("SUBMIT"),
+                            )
+                          ],
+                        ),
+                      );
+                    }
+                  }
                 },
               ),
             ),
@@ -115,5 +190,15 @@ Widget _buildContent(BuildContext context) {
 Widget _buildMargin(double n) {
   return SizedBox(
     height: n,
+  );
+}
+
+Future updateData(String field, String data) async {
+  String url = MyUrl().getUrl();
+  String urlPengunjung =
+      "$url/v1/pengunjung/$data/" + logindata.getString('username').toString();
+  await http.put(
+    Uri.parse(urlPengunjung),
+    body: {field: md5.convert(utf8.encode(passwordController.text)).toString()},
   );
 }

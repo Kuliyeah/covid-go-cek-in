@@ -217,7 +217,7 @@ Widget _buildContent(BuildContext context) {
                 context: context,
                 builder: (BuildContext context) => AlertDialog(
                   title: const Text('Change Password'),
-                  content: Container(
+                  content: SizedBox(
                     height: 50,
                     child: Column(
                       children: [
@@ -235,6 +235,12 @@ Widget _buildContent(BuildContext context) {
                       onPressed: () async {
                         updateData("passwordPengunjung", "editpassword");
                         Navigator.of(context).pop();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Password berhasil diperbarui"),
+                            duration: Duration(milliseconds: 1000),
+                          ),
+                        );
                       },
                       child: const Text("SUBMIT"),
                     )
