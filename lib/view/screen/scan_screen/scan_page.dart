@@ -55,8 +55,3 @@ void checkIn(String data) async {
     decodedData['data']['idMitra'],
   );
 }
-
-bool checkInValidation() {
-  checkInData.setBool('checkIn', true);
-  return true;
-}
