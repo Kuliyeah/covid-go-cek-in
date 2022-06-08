@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'package:covid_go_cek_in/models/Kasus.dart';
 import '../../../constant/constant.dart';
 import 'package:covid_go_cek_in/service/kasus_api.dart';

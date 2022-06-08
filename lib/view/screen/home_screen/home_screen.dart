@@ -1,3 +1,5 @@
+// ignore_for_file: sort_child_properties_last
+
 import 'package:flutter/material.dart';
 
 import 'package:covid_go_cek_in/view/login_screen/login_page.dart';

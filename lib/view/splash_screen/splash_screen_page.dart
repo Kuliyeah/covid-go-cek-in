@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers, library_private_types_in_public_api
+
 import 'dart:async';
 
 import 'package:covid_go_cek_in/constant/constant.dart';

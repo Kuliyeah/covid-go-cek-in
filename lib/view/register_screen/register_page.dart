@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, use_build_context_synchronously, sort_child_properties_last
+
 import 'dart:convert';
 
 import 'package:covid_go_cek_in/helperurl.dart';
@@ -128,7 +130,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   onPressed: () async {
                     String urlLogin = "$url/v1/pengunjung/login/";
                     var response = await http.get(
-                      urlLogin + usernameController.text,
+                      Uri.parse(urlLogin + usernameController.text),
                     );
                     var decodedData = jsonDecode(response.body);
 

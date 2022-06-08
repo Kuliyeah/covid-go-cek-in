@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, sort_child_properties_last
 import 'package:covid_go_cek_in/view/login_screen/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -30,9 +30,10 @@ class RegisterPageBio extends StatefulWidget {
 
 class _RegisterPageBioState extends State<RegisterPageBio> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
   }
+
   TextEditingController namaController = TextEditingController();
   TextEditingController noHpController = TextEditingController();
   TextEditingController nikController = TextEditingController();
@@ -53,7 +54,7 @@ class _RegisterPageBioState extends State<RegisterPageBio> {
 
   Future insertPengunjung() async {
     await http.post(
-      "$url/v1/pengunjung",
+      Uri.parse("$url/v1/pengunjung"),
       body: {
         "usernamePengunjung": widget.username,
         "passwordPengunjung":

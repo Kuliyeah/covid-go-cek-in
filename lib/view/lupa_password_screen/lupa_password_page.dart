@@ -1,3 +1,5 @@
+// ignore_for_file: sort_child_properties_last
+
 import 'package:flutter/material.dart';
 import '../screen/main_screen.dart';
 import '../login_screen/login_page.dart';

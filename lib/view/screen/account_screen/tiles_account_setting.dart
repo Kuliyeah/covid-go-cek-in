@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings, sort_child_properties_last
+
 import 'package:covid_go_cek_in/helperurl.dart';
 import 'package:covid_go_cek_in/view/login_screen/login_page.dart';
 import 'package:covid_go_cek_in/view/screen/main_screen.dart';
@@ -116,7 +118,7 @@ class DetailKasusState extends State<DetailKasus> {
         logindata.getString('username').toString();
 
     await http.put(
-      urlPengunjung,
+      Uri.parse(urlPengunjung),
       body: {field: textController.text},
     );
   }

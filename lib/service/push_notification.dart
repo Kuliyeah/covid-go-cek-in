@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, no_leading_underscores_for_local_identifiers
 
 import 'package:covid_go_cek_in/main.dart';
 import 'package:covid_go_cek_in/view/screen/notification_screen/notification_screen.dart';

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'dart:convert';
 
 import 'package:covid_go_cek_in/constant/constant.dart';
@@ -39,7 +41,7 @@ class HistoryPageState extends State<HistoryPage> {
           "/" +
           searchBarController.text;
     }
-    var result = await http.get(apiUrl);
+    var result = await http.get(Uri.parse(apiUrl));
     return json.decode(result.body)['data'];
   }
 
@@ -141,16 +143,16 @@ class HistoryPageState extends State<HistoryPage> {
                                 (BuildContext context, int index) =>
                                     const Divider(),
                           );
-                        } else if (snapshot.hasError) {
-                          return Text('${snapshot.error}');
+                        } else{
+                          return const Center(child: Text('Data Kunjungan Belum Ada'));
                         }
-                        return const SizedBox(
-                          height: 40,
-                          width: 20,
-                          child: Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        );
+                        // return const SizedBox(
+                        //   height: 40,
+                        //   width: 20,
+                        //   child: Center(
+                        //     child: CircularProgressIndicator(),
+                        //   ),
+                        // );
                       },
                     ),
                   ),

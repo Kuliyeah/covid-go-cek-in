@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, prefer_interpolation_to_compose_strings
+
 import 'dart:convert';
 
 import 'package:covid_go_cek_in/constant/constant.dart';
@@ -41,8 +43,8 @@ class MainScreenState extends State<MainScreen> {
 
   void initial() async {
     String url = MyUrl().getUrl();
-    var response = await http.get("$url/v1/pengunjung/login/" +
-        logindata.getString('username').toString());
+    var response = await http.get(Uri.parse("$url/v1/pengunjung/login/" +
+        logindata.getString('username').toString()));
     decodedData = jsonDecode(response.body);
   }
 

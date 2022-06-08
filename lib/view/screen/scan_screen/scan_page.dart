@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, prefer_interpolation_to_compose_strings
 
 import 'dart:convert';
 import 'package:covid_go_cek_in/helperurl.dart';
@@ -29,7 +29,7 @@ String getIDMitraFromScanner(String data) {
 
 Future insertPengunjung(int idPengunjung, int idMitra) async {
   await http.post(
-    "$url/v1/kunjungan",
+    Uri.parse("$url/v1/kunjungan"),
     body: {
       "idPengunjung": idPengunjung.toString(),
       "idMitra": idMitra.toString(),
@@ -42,7 +42,7 @@ Future insertPengunjung(int idPengunjung, int idMitra) async {
 }
 
 void checkIn(String data) async {
-  var response = await http.get("$url/v1/mitra/" + data);
+  var response = await http.get(Uri.parse("$url/v1/mitra/" + data));
   var decodedData = jsonDecode(response.body);
 
   checkInData.setBool('checkIn', true);

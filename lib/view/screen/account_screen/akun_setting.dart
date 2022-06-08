@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'dart:convert';
 
 import 'package:covid_go_cek_in/constant/constant.dart';
@@ -294,7 +296,7 @@ Future updateData(String field, String data) async {
   String urlPengunjung =
       "$url/v1/pengunjung/$data/" + logindata.getString('username').toString();
   await http.put(
-    urlPengunjung,
+    Uri.parse(urlPengunjung),
     body: {field: md5.convert(utf8.encode(passwordController.text)).toString()},
   );
 }

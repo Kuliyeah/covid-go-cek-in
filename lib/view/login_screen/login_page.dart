@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, prefer_interpolation_to_compose_strings, library_private_types_in_public_api, sort_child_properties_last
+
 import 'dart:convert';
 import 'package:covid_go_cek_in/helperurl.dart';
 import 'package:covid_go_cek_in/view/screen/main_screen.dart';
@@ -165,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                     // Ini pake IPV4, jadi klo beda pc gk bisa
                     String url = MyUrl().getUrl();
                     var response =
-                        await http.get("$url/v1/pengunjung/login/" + username);
+                        await http.get(Uri.parse("$url/v1/pengunjung/login/$username"));
                     var decodedData = jsonDecode(response.body);
 
                     if (decodedData != null) {
