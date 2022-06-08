@@ -29,7 +29,7 @@ dev_dependencies:
   test: ^1.21.1
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.9.0
+  flutter_launcher_icons: ^0.9.3
 
 flutter_icons:
   image_path: "assets/icon/icon.png"
