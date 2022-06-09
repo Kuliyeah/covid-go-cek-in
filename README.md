@@ -1,16 +1,10 @@
-# covid_go_cek_in
+# Go Check-In Apps
+Simple app of covid check-in and using api for using handle database
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## How to run
+- Install `Flutter`(Latest version is recommended)
+- Change `lib/helperurl.dart` url to your IP Address. U can get your IP Address by open CMD and typing `ipconfig` then u will got IPV4 example: `http://192.168.1.102:8787`
+- Then you need to clone [Go Check-In Apps API](https://choosealicense.com/licenses/mit/)
+- Make sure `Go Check-In Apps API` is running on background by following instruction on Go Check-In Apps API repo
+- Open project then typing `flutter pub get` on terminal
+- Run the project by click `f5` button or you can build and install release version by typing `flutter build apk` then `flutter install`
